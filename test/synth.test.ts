@@ -7,7 +7,7 @@ test('App can be synthesized', () => {
   const app = new cdk.App();
   const stack = new cdk.Stack(app, 'TestStack');
   new S32Rds(stack, 'S32RDS', {
-    bucketArn: 'arn:aws:s3:::my-bucket',
+    bucketName: 'arn:aws:s3:::my-bucket',
   });
 
   app.synth();
