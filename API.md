@@ -2,41 +2,39 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### Sharepoint2S3Flow <a name="Sharepoint2S3Flow" id="snr-patterns.Sharepoint2S3Flow"></a>
+### S32Rds <a name="S32Rds" id="dms-patterns.S32Rds"></a>
 
-A pattern for creating a scheduled or on-demand flow from a sharepoint site to an S3 bucket.
-
-#### Initializers <a name="Initializers" id="snr-patterns.Sharepoint2S3Flow.Initializer"></a>
+#### Initializers <a name="Initializers" id="dms-patterns.S32Rds.Initializer"></a>
 
 ```typescript
-import { Sharepoint2S3Flow } from 'snr-patterns'
+import { S32Rds } from 'dms-patterns'
 
-new Sharepoint2S3Flow(scope: Construct, id: string, props: Sharepoint2S3FlowProps)
+new S32Rds(scope: Construct, id: string, props: S32RdsProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.Initializer.parameter.props">props</a></code> | <code><a href="#snr-patterns.Sharepoint2S3FlowProps">Sharepoint2S3FlowProps</a></code> | *No description.* |
+| <code><a href="#dms-patterns.S32Rds.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#dms-patterns.S32Rds.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.S32Rds.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.S32RdsProps">S32RdsProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="snr-patterns.Sharepoint2S3Flow.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="dms-patterns.S32Rds.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="snr-patterns.Sharepoint2S3Flow.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="dms-patterns.S32Rds.Initializer.parameter.id"></a>
 
 - *Type:* string
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="snr-patterns.Sharepoint2S3Flow.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.S32Rds.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#snr-patterns.Sharepoint2S3FlowProps">Sharepoint2S3FlowProps</a>
+- *Type:* <a href="#dms-patterns.S32RdsProps">S32RdsProps</a>
 
 ---
 
@@ -44,11 +42,11 @@ new Sharepoint2S3Flow(scope: Construct, id: string, props: Sharepoint2S3FlowProp
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#dms-patterns.S32Rds.toString">toString</a></code> | Returns a string representation of this construct. |
 
 ---
 
-##### `toString` <a name="toString" id="snr-patterns.Sharepoint2S3Flow.toString"></a>
+##### `toString` <a name="toString" id="dms-patterns.S32Rds.toString"></a>
 
 ```typescript
 public toString(): string
@@ -60,21 +58,21 @@ Returns a string representation of this construct.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#dms-patterns.S32Rds.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 
 ---
 
-##### ~~`isConstruct`~~ <a name="isConstruct" id="snr-patterns.Sharepoint2S3Flow.isConstruct"></a>
+##### ~~`isConstruct`~~ <a name="isConstruct" id="dms-patterns.S32Rds.isConstruct"></a>
 
 ```typescript
-import { Sharepoint2S3Flow } from 'snr-patterns'
+import { S32Rds } from 'dms-patterns'
 
-Sharepoint2S3Flow.isConstruct(x: any)
+S32Rds.isConstruct(x: any)
 ```
 
 Checks if `x` is a construct.
 
-###### `x`<sup>Required</sup> <a name="x" id="snr-patterns.Sharepoint2S3Flow.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="dms-patterns.S32Rds.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -86,11 +84,11 @@ Any object.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#snr-patterns.Sharepoint2S3Flow.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#dms-patterns.S32Rds.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="snr-patterns.Sharepoint2S3Flow.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="dms-patterns.S32Rds.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -105,86 +103,33 @@ The tree node.
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### Sharepoint2S3FlowProps <a name="Sharepoint2S3FlowProps" id="snr-patterns.Sharepoint2S3FlowProps"></a>
+### S32RdsProps <a name="S32RdsProps" id="dms-patterns.S32RdsProps"></a>
 
-#### Initializer <a name="Initializer" id="snr-patterns.Sharepoint2S3FlowProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="dms-patterns.S32RdsProps.Initializer"></a>
 
 ```typescript
-import { Sharepoint2S3FlowProps } from 'snr-patterns'
+import { S32RdsProps } from 'dms-patterns'
 
-const sharepoint2S3FlowProps: Sharepoint2S3FlowProps = { ... }
+const s32RdsProps: S32RdsProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.bucketName">bucketName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.entities">entities</a></code> | <code>string[]</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.profileArn">profileArn</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.site">site</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.prefix">prefix</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#snr-patterns.Sharepoint2S3FlowProps.property.scheduleExpression">scheduleExpression</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.S32RdsProps.property.bucketArn">bucketArn</a></code> | <code>string</code> | The name of the S3 bucket to be used as data source. |
 
 ---
 
-##### `bucketName`<sup>Required</sup> <a name="bucketName" id="snr-patterns.Sharepoint2S3FlowProps.property.bucketName"></a>
+##### `bucketArn`<sup>Required</sup> <a name="bucketArn" id="dms-patterns.S32RdsProps.property.bucketArn"></a>
 
 ```typescript
-public readonly bucketName: string;
+public readonly bucketArn: string;
 ```
 
 - *Type:* string
 
----
-
-##### `entities`<sup>Required</sup> <a name="entities" id="snr-patterns.Sharepoint2S3FlowProps.property.entities"></a>
-
-```typescript
-public readonly entities: string[];
-```
-
-- *Type:* string[]
-
----
-
-##### `profileArn`<sup>Required</sup> <a name="profileArn" id="snr-patterns.Sharepoint2S3FlowProps.property.profileArn"></a>
-
-```typescript
-public readonly profileArn: string;
-```
-
-- *Type:* string
-
----
-
-##### `site`<sup>Required</sup> <a name="site" id="snr-patterns.Sharepoint2S3FlowProps.property.site"></a>
-
-```typescript
-public readonly site: string;
-```
-
-- *Type:* string
-
----
-
-##### `prefix`<sup>Optional</sup> <a name="prefix" id="snr-patterns.Sharepoint2S3FlowProps.property.prefix"></a>
-
-```typescript
-public readonly prefix: string;
-```
-
-- *Type:* string
-
----
-
-##### `scheduleExpression`<sup>Optional</sup> <a name="scheduleExpression" id="snr-patterns.Sharepoint2S3FlowProps.property.scheduleExpression"></a>
-
-```typescript
-public readonly scheduleExpression: string;
-```
-
-- *Type:* string
+The name of the S3 bucket to be used as data source.
 
 ---
 

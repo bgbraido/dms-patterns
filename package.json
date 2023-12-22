@@ -1,6 +1,10 @@
 {
   "name": "dms-patterns",
   "description": "L3-level cdk constructs for DMS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MarcDuQuesne/dms-patterns"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",

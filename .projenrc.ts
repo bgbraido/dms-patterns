@@ -11,7 +11,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   jsiiVersion: '~5.0.0',
   name: 'dms-patterns',
   projenrcTs: true,
-  repositoryUrl: '',
+  repositoryUrl: 'https://github.com/MarcDuQuesne/dms-patterns',
   deps: [],
   publishToPypi: {
     distName: 'dms-patterns',

@@ -1,16 +1,16 @@
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 
-interface S32RDSProps {
+export interface S32RdsProps {
   /**
    * The name of the S3 bucket to be used as data source.
    */
-  bucketArn: string;
+  readonly bucketArn: string;
 }
 
-export class S32RDS extends Construct {
+export class S32Rds extends Construct {
 
-  constructor(scope: Construct, id: string, props: S32RDSProps) {
+  constructor(scope: Construct, id: string, props: S32RdsProps) {
     super(scope, id);
 
     // const bucket = s3.Bucket.fromBucketArn(this, 'Bucket', props.bucketArn);
