@@ -52,3 +52,4 @@ tsconfig.json
 !/API.md
 
 .github-token
+.pypi-token
