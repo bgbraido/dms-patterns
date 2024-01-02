@@ -41,7 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^6",
     "@typescript-eslint/parser": "^6",
     "aws-cdk-lib": "2.110.1",
-    "cdk-nag": "^2.27.222",
+    "cdk-nag": "^2.27.227",
     "constructs": "10.0.5",
     "eslint": "^8",
     "eslint-import-resolver-typescript": "^3.6.1",
@@ -51,10 +51,10 @@
     "jest-junit": "^15",
     "jsii": "~5.0.0",
     "jsii-diff": "^1.93.0",
-    "jsii-docgen": "^10.3.2",
+    "jsii-docgen": "^10.3.3",
     "jsii-pacmak": "^1.93.0",
     "jsii-rosetta": "~5.0.0",
-    "projen": "^0.78.2",
+    "projen": "^0.78.6",
     "standard-version": "^9",
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.2",
@@ -106,11 +106,13 @@
         }
       ]
     ],
-    "preset": "ts-jest",
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.dev.json"
-      }
+    "transform": {
+      "^.+\\.[t]sx?$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.dev.json"
+        }
+      ]
     }
   },
   "types": "lib/index.d.ts",
