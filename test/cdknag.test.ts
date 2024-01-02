@@ -1,27 +1,33 @@
 
 import * as cdk from 'aws-cdk-lib';
-import { AwsSolutionsChecks } from 'cdk-nag';
-import { S32Rds } from '../src/dms-patterns/s32rds';
-import { S32S3 } from '../src/dms-patterns/s32s3';
+import { Annotations, Match } from 'aws-cdk-lib/assertions';
+import { AwsSolutionsChecks, NagSuppressions } from 'cdk-nag';
+import { s32rdsStack, s32s3Stack } from './test-apps';
 
-test('S32Rds CDK Nag tests', () => {
 
-  const app = new cdk.App();
-  const stack = new cdk.Stack(app, 'TestStack');
-  new S32Rds(stack, 'S32RDS', {
-    bucketName: 'arn:aws:s3:::my-bucket',
-  });
+test.each([s32rdsStack, s32s3Stack])('S32Rds CDK Nag tests', (stack) => {
+  cdk.Aspects.of(stack).add(new AwsSolutionsChecks({ verbose: true }));
 
-  cdk.Aspects.of(stack).add(new AwsSolutionsChecks());
-});
+  NagSuppressions.addStackSuppressions(stack, [
+    {
+      id: 'AwsSolutions-S1',
+      reason: 'S3 bucket is used for testing purposes',
+    },
+    {
+      id: 'AwsSolutions-S10',
+      reason: 'S3 bucket is used for testing purposes',
+    },
+  ]);
 
-test('S32S3 CDK Nag tests', () => {
+  const warnings = Annotations.fromStack(stack).findWarning(
+    '*',
+    Match.stringLikeRegexp('AwsSolutions-.*'),
+  );
+  expect(warnings).toHaveLength(0);
 
-  const app = new cdk.App();
-  const stack = new cdk.Stack(app, 'TestStack');
-  new S32S3(stack, 'S32S3', {
-    bucketName: 'arn:aws:s3:::my-bucket',
-  });
-
-  cdk.Aspects.of(stack).add(new AwsSolutionsChecks());
+  const errors = Annotations.fromStack(stack).findError(
+    '*',
+    Match.stringLikeRegexp('AwsSolutions-.*'),
+  );
+  expect(errors).toHaveLength(0);
 });
