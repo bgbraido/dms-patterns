@@ -69,19 +69,19 @@ export class DMSS3Schema {
             ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
           };
         }),
-        TableColumnsTotal: table.TableColumns.length.toString()
+        TableColumnsTotal: table.TableColumns.length.toString(),
       };
     });
 
     return JSON.stringify(
       {
         TableCount: this.tables.length.toString(),
-        Tables: formattedTables
+        Tables: formattedTables,
       }, null, 4);
   }
 }
 
-export interface SourceS3Props {
+export interface S3SourceProps {
   /**
    * The name of the S3 bucket to be used as data source.
    */
@@ -155,11 +155,11 @@ export interface SourceS3Props {
 
 }
 
-export class SourceS3 extends Construct {
+export class S3Source extends Construct {
 
   settings: dms.CfnEndpoint.S3SettingsProperty;
 
-  constructor(scope: Construct, id: string, props: SourceS3Props) {
+  constructor(scope: Construct, id: string, props: S3SourceProps) {
     super(scope, id);
 
     // TODO come up with sensible defaults for dates.
@@ -168,7 +168,7 @@ export class SourceS3 extends Construct {
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
       description: 'Role for DMS to access S3',
       inlinePolicies: {
-        'S3Access': new iam.PolicyDocument({
+        S3Access: new iam.PolicyDocument({
           statements: [
             new iam.PolicyStatement({
               actions: ['iam:PassRole'],
@@ -178,8 +178,9 @@ export class SourceS3 extends Construct {
             new iam.PolicyStatement({
               actions: [
                 's3:ListBucket',
-                "s3:GetObject",
-                "s3:GetBucketLocation",],
+                's3:GetObject',
+                's3:GetBucketLocation',
+              ],
               effect: iam.Effect.ALLOW,
               resources: [props.bucketName],
             }),

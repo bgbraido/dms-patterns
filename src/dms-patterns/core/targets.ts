@@ -64,8 +64,8 @@ export class TargetS3 extends Construct {
       csvDelimiter: 'csvDelimiter',
       csvRowDelimiter: 'csvRowDelimiter',
       externalTableDefinition: 'externalTableDefinition',
-      serviceAccessRoleArn: 'serviceAccessRoleArn'
-    }
+      serviceAccessRoleArn: 'serviceAccessRoleArn',
+    };
   }
 }
 
