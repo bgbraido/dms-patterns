@@ -117,14 +117,14 @@ const s32RdsProps: S32RdsProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.S32RdsProps.property.bucketArn">bucketArn</a></code> | <code>string</code> | The name of the S3 bucket to be used as data source. |
+| <code><a href="#dms-patterns.S32RdsProps.property.bucketName">bucketName</a></code> | <code>string</code> | The name of the S3 bucket to be used as data source. |
 
 ---
 
-##### `bucketArn`<sup>Required</sup> <a name="bucketArn" id="dms-patterns.S32RdsProps.property.bucketArn"></a>
+##### `bucketName`<sup>Required</sup> <a name="bucketName" id="dms-patterns.S32RdsProps.property.bucketName"></a>
 
 ```typescript
-public readonly bucketArn: string;
+public readonly bucketName: string;
 ```
 
 - *Type:* string
