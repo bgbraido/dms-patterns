@@ -1,7 +1,7 @@
 import { Construct } from 'constructs';
+import { DMSReplicationConfigComputeConfig } from './core/serverless';
 import { S3Source } from './core/sources';
 import { RdsTarget } from './core/targets';
-
 export interface S32RdsProps {
   /**
    * The name of the S3 bucket to be used as data source.
@@ -21,5 +21,10 @@ export class S32Rds extends Construct {
     new RdsTarget(this, 'RdsTarget', {
       engine: 'postgres',
     });
+
+    new DMSReplicationConfigComputeConfig(this, 'ComputeConfig', {
+      MaxCapacityUnits: 1,
+    });
+
   }
 }
