@@ -1,7 +1,7 @@
 import { aws_dms as dms } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 
-export interface TargetS3Props {
+export interface S3TargetProps {
   /**
    * The name of the S3 bucket to be used as data source.
    */
@@ -50,11 +50,11 @@ export interface TargetS3Props {
 
 }
 
-export class TargetS3 extends Construct {
+export class S3Target extends Construct {
 
   settings: dms.CfnEndpoint.S3SettingsProperty;
 
-  constructor(scope: Construct, id: string, props: TargetS3Props) {
+  constructor(scope: Construct, id: string, props: S3TargetProps) {
     super(scope, id);
 
     this.settings = {
