@@ -50,6 +50,3 @@ junit.xml
 .jsii
 tsconfig.json
 !/API.md
-
-.github-token
-.pypi-token
