@@ -4,9 +4,14 @@ import { S3Target } from './core/targets';
 
 export interface S32S3Props {
   /**
-   * The name of the S3 bucket to be used as data source.
+   * The name of the S3 bucket to be used as source.
    */
-  readonly bucketName: string;
+  readonly sourceBucket: string;
+  /**
+   * The name of the S3 bucket to be used as target.
+   */
+  readonly targetBucket: string;
+
 }
 
 export class S32S3 extends Construct {
@@ -15,11 +20,11 @@ export class S32S3 extends Construct {
     super(scope, id);
 
     new S3Source(this, 'S3Source', {
-      bucketName: props.bucketName,
+      bucketName: props.sourceBucket,
     });
 
     new S3Target(this, 'S3Target', {
-      bucketName: props.bucketName,
+      bucketName: props.targetBucket,
     });
 
   }

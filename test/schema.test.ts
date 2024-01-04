@@ -1,6 +1,6 @@
 import { AWSDMSDataType, DMSS3Schema } from '../src/dms-patterns/core/sources';
 
-test('Produce Schema', () => {
+test('DMSS3Schema Constructor', () => {
 
   const providedJsonString = JSON.stringify({
     TableCount: '1',
@@ -72,6 +72,50 @@ test('Produce Schema', () => {
         ColumnLength: 20,
       }],
     }],
+  );
+
+  const json = schema.toJSON();
+
+  expect(json).toEqual(providedJsonString);
+});
+
+
+test('DMSS3Schema add table', () => {
+
+  const providedJsonString = JSON.stringify({
+    TableCount: '1',
+    Tables: [
+      {
+        TableName: 'employee',
+        TablePath: 'hr/employee/',
+        TableOwner: 'hr',
+        TableColumns: [
+          {
+            ColumnName: 'Id',
+            ColumnType: 'INT8',
+            ColumnNullable: 'false',
+            ColumnIsPk: 'true',
+          },
+        ],
+        TableColumnsTotal: '1',
+      },
+    ],
+  }, null, 4);
+
+  const schema = new DMSS3Schema();
+
+  schema.addTable(
+    {
+      TableName: 'employee',
+      TablePath: 'hr/employee/',
+      TableOwner: 'hr',
+      TableColumns: [{
+        ColumnName: 'Id',
+        ColumnType: AWSDMSDataType.INT8,
+        ColumnIsPk: true,
+        ColumnNullable: false,
+      }],
+    },
   );
 
   const json = schema.toJSON();
