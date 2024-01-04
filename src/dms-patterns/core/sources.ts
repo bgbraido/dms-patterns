@@ -147,7 +147,9 @@ export class S3Source extends Construct {
       },
     });
 
-    this.endpoint = new S3SourceEndpoint(this, 'S3SourceEndpoint', {
+    this.endpoint = new Endpoint(this, 'S3SourceEndpoint', {
+      endpointType: 'source',
+      engineName: 's3',
       s3Settings: {
         serviceAccessRoleArn: serviceAccessRole.roleArn,
         cdcPath: props.s3EndpointSettings.cdcPath,
@@ -160,10 +162,3 @@ export class S3Source extends Construct {
     });
   }
 }
-
-//     this.settings = {
-//       ...props,
-//       serviceAccessRoleArn: serviceAccessRole.roleArn,
-//     };
-//   }
-// }
