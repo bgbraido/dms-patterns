@@ -2,90 +2,33 @@ import { aws_dms as dms } from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 
-export enum AWSDMSDataType {
-  BYTE = 'BYTE',
-  DATE = 'DATE',
-  TIME = 'TIME',
-  DATETIME = 'DATETIME',
-  INT1 = 'INT1',
-  INT2 = 'INT2',
-  INT4 = 'INT4',
-  INT8 = 'INT8',
-  NUMERIC = 'NUMERIC',
-  REAL4 = 'REAL4',
-  REAL8 = 'REAL8',
-  STRING = 'STRING',
-  UINT1 = 'UINT1',
-  UINT2 = 'UINT2',
-  UINT4 = 'UINT4',
-  UINT8 = 'UINT8',
-  BLOB = 'BLOB',
-  CLOB = 'CLOB',
-  BOOLEAN = 'BOOLEAN'
-}
+// see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html
+export class Endpoint extends dms.CfnEndpoint {
 
-export interface TableColumn {
-  ColumnName: string;
-  ColumnType: AWSDMSDataType;
-  ColumnLength?: number;
-  ColumnNullable?: boolean;
-  ColumnIsPk?: boolean;
-  ColumnDateFormat?: string;
-}
+  arn: string;
 
-export interface Table {
-  TableName: string;
-  TablePath: string;
-  TableOwner: string;
-  TableColumns: TableColumn[];
-}
-
-export class DMSS3Schema {
-
-  tableCount: number = 0;
-  tables: Table[] = [];
-
-  public constructor(tables: Table[] = []) {
-    this.tables = tables;
+  constructor(scope: Construct, id: string, props: dms.CfnEndpointProps) {
+    super(scope, id, props);
+    const region = 'bptj';
+    const account = 'fgfg';
+    const resourcename = 'fgfg';
+    this.arn = `arn:aws:dms:${region}:${account}:endpoint:${resourcename}`;
   }
+}
 
-  public addTable(table: Table) {
-    this.tables.push(table);
-  }
+export interface SourceEndPointProps extends Omit<dms.CfnEndpointProps, 'endpointType'> { }
 
-  public toJSON(): string {
+export class SourceEndPoint extends Endpoint {
+  constructor(scope: Construct, id: string, props: SourceEndPointProps) {
 
-    const formattedTables = this.tables.map(table => {
-      return {
-        TableName: table.TableName,
-        TablePath: table.TablePath,
-        TableOwner: table.TableOwner,
-        TableColumns: table.TableColumns.map(column => {
-          return {
-            ColumnName: column.ColumnName,
-            ColumnType: column.ColumnType,
-            ColumnLength: column.ColumnLength ? column.ColumnLength.toString() : undefined,
-            ColumnNullable: typeof column.ColumnNullable !== 'undefined' ? String(column.ColumnNullable) : undefined,
-            ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
-          };
-        }),
-        TableColumnsTotal: table.TableColumns.length.toString(),
-      };
+    super(scope, id, {
+      endpointType: 'source',
+      ...props,
     });
-
-    return JSON.stringify(
-      {
-        TableCount: this.tables.length.toString(),
-        Tables: formattedTables,
-      }, null, 4);
   }
 }
 
-export interface S3SourceProps {
-  /**
-   * The name of the S3 bucket to be used as data source.
-   */
-  readonly bucketName: string;
+export class S3SourceEndpointSettings {
   /**
    * Specifies the folder path of CDC files.
    *
@@ -155,16 +98,29 @@ export interface S3SourceProps {
 
 }
 
+export interface S3SourceEndpointProps extends Omit<SourceEndPointProps, 'engineName'> {}
+
+export class S3SourceEndpoint extends SourceEndPoint {
+  constructor(scope: Construct, id: string, props: S3SourceEndpointProps) {
+
+    super(scope, id, {
+      engineName: 's3',
+      s3Settings: props.s3Settings as dms.CfnEndpoint.S3SettingsProperty,
+    });
+  }
+}
+
+export interface S3SourceProps {
+  bucketArn: string;
+  s3EndpointSettings: S3SourceEndpointSettings;
+}
+
 export class S3Source extends Construct {
 
-  settings: dms.CfnEndpoint.S3SettingsProperty;
+  endpoint: S3SourceEndpoint;
 
   constructor(scope: Construct, id: string, props: S3SourceProps) {
     super(scope, id);
-
-    // TODO come up with sensible defaults for dates.
-
-    const bucketArn = `arn:aws:s3:::${props.bucketName}`;
 
     const serviceAccessRole = new iam.Role(this, 'ServiceAccessRole', {
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
@@ -175,7 +131,7 @@ export class S3Source extends Construct {
             new iam.PolicyStatement({
               actions: ['iam:PassRole'],
               effect: iam.Effect.ALLOW,
-              resources: [bucketArn], // TODO on what resources should we limit this?
+              resources: [props.bucketArn], // TODO on what resources should we limit this?
             }),
             new iam.PolicyStatement({
               actions: [
@@ -184,16 +140,30 @@ export class S3Source extends Construct {
                 's3:GetBucketLocation',
               ],
               effect: iam.Effect.ALLOW,
-              resources: [bucketArn],
+              resources: [props.bucketArn],
             }),
           ],
         }),
       },
     });
 
-    this.settings = {
-      ...props,
-      serviceAccessRoleArn: serviceAccessRole.roleArn,
-    };
+    this.endpoint = new S3SourceEndpoint(this, 'S3SourceEndpoint', {
+      s3Settings: {
+        serviceAccessRoleArn: serviceAccessRole.roleArn,
+        cdcPath: props.s3EndpointSettings.cdcPath,
+        csvDelimiter: props.s3EndpointSettings.csvDelimiter,
+        csvRowDelimiter: props.s3EndpointSettings.csvRowDelimiter,
+        externalTableDefinition: props.s3EndpointSettings.externalTableDefinition,
+        ignoreHeaderRows: props.s3EndpointSettings.ignoreHeaderRows,
+        bucketFolder: props.s3EndpointSettings.bucketFolder,
+      },
+    });
   }
 }
+
+//     this.settings = {
+//       ...props,
+//       serviceAccessRoleArn: serviceAccessRole.roleArn,
+//     };
+//   }
+// }

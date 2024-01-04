@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { S3Source } from './core/sources';
+import { S3SourceEndpoint } from './core/sources';
 import { S3Target } from './core/targets';
 
 export interface S32S3Props {
@@ -19,7 +19,7 @@ export class S32S3 extends Construct {
   constructor(scope: Construct, id: string, props: S32S3Props) {
     super(scope, id);
 
-    new S3Source(this, 'S3Source', {
+    new S3SourceEndpoint(this, 'S3Source', {
       bucketName: props.sourceBucket,
     });
 
