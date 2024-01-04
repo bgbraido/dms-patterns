@@ -77,6 +77,4 @@ test('Produce Schema', () => {
   const json = schema.toJSON();
 
   expect(json).toEqual(providedJsonString);
-
-
 });
