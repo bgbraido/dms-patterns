@@ -164,6 +164,8 @@ export class S3Source extends Construct {
 
     // TODO come up with sensible defaults for dates.
 
+    const bucketArn = `arn:aws:s3:::${props.bucketName}`;
+
     const serviceAccessRole = new iam.Role(this, 'ServiceAccessRole', {
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
       description: 'Role for DMS to access S3',
@@ -173,7 +175,7 @@ export class S3Source extends Construct {
             new iam.PolicyStatement({
               actions: ['iam:PassRole'],
               effect: iam.Effect.ALLOW,
-              resources: ['*'], // TODO
+              resources: [bucketArn], // TODO on what resources should we limit this?
             }),
             new iam.PolicyStatement({
               actions: [
@@ -182,7 +184,7 @@ export class S3Source extends Construct {
                 's3:GetBucketLocation',
               ],
               effect: iam.Effect.ALLOW,
-              resources: [props.bucketName],
+              resources: [bucketArn],
             }),
           ],
         }),
