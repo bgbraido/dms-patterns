@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { DMSReplicationConfigComputeConfig } from './core/serverless';
+import { DMSReplicationConfig } from './core/serverless';
 import { S3Source } from './core/sources';
 import { RdsTarget } from './core/targets';
 
@@ -23,9 +23,10 @@ export class S32Rds extends Construct {
       engine: 'postgres',
     });
 
-    new DMSReplicationConfigComputeConfig(this, 'ComputeConfig', {
-      MaxCapacityUnits: 1,
+    new DMSReplicationConfig(this, 'ComputeConfig', {
+      computeConfig: {
+        MaxCapacityUnits: 1,
+      },
     });
-
   }
 }

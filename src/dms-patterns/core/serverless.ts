@@ -1,5 +1,7 @@
 /**
  * As of 2024-02-01, AWS DMS Serverless replication is not supported by the aws-cdk-lib.
+ *
+ * see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationconfig.html
  */
 
 
@@ -9,7 +11,7 @@ import { Construct } from 'constructs';
 /**
  * Interface that defines the properties for configuring AWS DMS Serverless replication.
  */
-export interface DMSReplicationConfigComputeConfigProps {
+export interface DMSReplicationConfigComputeConfig {
   /**
      * A list of custom DNS name servers supported for AWS DMS Serverless replication to access the source or target database.
      * This list overrides the default name servers supported by AWS DMS Serverless replication.
@@ -81,27 +83,85 @@ export interface DMSReplicationConfigComputeConfigProps {
   ReplicationSubnetGroupId?: string;
 }
 
+/**
+ * Interface representing properties for configuring an AWS DMS (Database Migration Service) Serverless replication.
+ */
+export interface DMSReplicationConfigProps {
 
-export class DMSReplicationConfigComputeConfig extends Resource implements ITaggable {
-  public readonly tags = new TagManager(TagType.KEY_VALUE, 'AWS::DMS::ReplicationConfig.ComputeConfig');
+  /**
+    * Configuration parameters for provisioning an AWS DMS Serverless replication.
+    */
+  computeConfig?: DMSReplicationConfigComputeConfig;
 
-  constructor(scope: Construct, id: string, props: DMSReplicationConfigComputeConfigProps) {
+  /**
+    * The Amazon Resource Name (ARN) of this AWS DMS Serverless replication configuration.
+    */
+  replicationConfigArn?: string;
+
+  /**
+    * A unique identifier for the replication configuration.
+    * This identifier can be used for actions and identifying specific replications.
+    */
+  replicationConfigIdentifier: string;
+
+  /**
+    * Optional JSON settings for AWS DMS Serverless replications.
+    */
+  replicationSettings?: string;
+
+  /**
+    * The type of AWS DMS Serverless replication to provision.
+    * Possible values: "full-load", "cdc", "full-load-and-cdc".
+    */
+  replicationType: string;
+
+  /**
+    * Optional unique value or name for a given resource.
+    */
+  resourceIdentifier?: string;
+
+  /**
+    * The Amazon Resource Name (ARN) of the source endpoint.
+    */
+  sourceEndpointArn: string;
+
+  /**
+    * Optional JSON settings for specifying supplemental data.
+    */
+  supplementalSettings?: string;
+
+  /**
+    * JSON table mappings for AWS DMS Serverless replications.
+    */
+  tableMappings: string;
+
+  /**
+    * The Amazon Resource Name (ARN) of the target endpoint.
+    */
+  targetEndpointArn: string;
+}
+
+
+export class DMSReplicationConfig extends Resource implements ITaggable {
+  public readonly tags = new TagManager(TagType.KEY_VALUE, 'AWS::DMS::ReplicationConfig');
+
+  constructor(scope: Construct, id: string, props: DMSReplicationConfigProps) {
 
     super(scope, id);
 
     new CfnResource(this, 'ReplicationConfig', {
-      type: 'AWS::DMS::ReplicationConfig.ComputeConfig',
+      type: 'AWS::DMS::ReplicationConfig',
       properties: {
-        DnsNameServers: props.DnsNameServers,
-        KmsKeyId: props.KmsKeyId,
-        VpcSecurityGroupIds: props.VpcSecurityGroupIds,
-        MaxCapacityUnits: props.MaxCapacityUnits,
-        ReplicationSubnetGroupId: props.ReplicationSubnetGroupId,
-        AvailabilityZone: props.AvailabilityZone,
-        PreferredMaintenanceWindow: props.PreferredMaintenanceWindow,
-        MinCapacityUnits: props.MinCapacityUnits,
-        MultiAZ: props.MultiAZ,
-        // Assuming you want to add tags (you can adjust this based on your requirements)
+        ComputeConfig: props.computeConfig,
+        ReplicationConfigArn: props.replicationConfigArn,
+        ReplicationConfigIdentifier: props.replicationConfigIdentifier,
+        ReplicationSettings: props.replicationSettings,
+        ReplicationType: props.replicationType,
+        ResourceIdentifier: props.resourceIdentifier,
+        SourceEndpointArn: props.sourceEndpointArn,
+        SupplementalSettings: props.supplementalSettings,
+        TableMappings: props.tableMappings,
+        TargetEndpointArn: props.targetEndpointArn,
         Tags: this.tags.renderedTags,
       },
     });
