@@ -1,4 +1,5 @@
 import { Construct } from 'constructs';
+import { ReplicationTypes } from './core';
 import { DMSReplicationConfig } from './core/serverless';
 import { S3Source } from './core/sources';
 
@@ -33,11 +34,11 @@ export class S32Rds extends Construct {
       computeConfig: {
         MaxCapacityUnits: 1,
       },
-      sourceEndpointArn: s3source.endpoint.arn,
-      targetEndpointArn: s3source.endpoint.arn,
+      sourceEndpointArn: s3source.endpoint.ref,
+      targetEndpointArn: s3source.endpoint.ref,
       tableMappings: tablemapping,
-      replicationType: 'full-load',
-      replicationConfigIdentifier: 'test',
+      replicationType: ReplicationTypes.FULL_LOAD,
+      replicationConfigIdentifier: 'S32RDS',
     });
   }
 }
