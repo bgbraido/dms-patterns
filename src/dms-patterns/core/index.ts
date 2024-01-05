@@ -13,4 +13,3 @@ export enum ReplicationTypes {
   CDC = 'cdc',
   FULL_LOAD_AND_CDC = 'full-load-and-cdc',
 }
-

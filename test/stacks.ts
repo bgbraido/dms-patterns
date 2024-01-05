@@ -16,7 +16,7 @@ export class S32RDSStack extends cdk.Stack {
 
     // The S32Rds construct
     new S32Rds(this, 'S32Rds', {
-      bucketName: bucket.bucketName,
+      bucketArn: bucket.bucketArn,
     });
 
   }
@@ -41,3 +41,18 @@ export class S32S3Stack extends cdk.Stack {
   }
 }
 
+// this is for testing purposes only. TODO to be removed.
+const app = new cdk.App();
+new S32RDSStack(app, 'S32Rds', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: 'eu-west-1',
+  },
+});
+
+// new S32S3Stack(app, 'S32S3', {
+//   env: {
+//     account: process.env.CDK_DEFAULT_ACCOUNT,
+//     region: 'eu-west-1',
+//   },
+// });

@@ -2,23 +2,9 @@ import { aws_dms as dms } from 'aws-cdk-lib';
 import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 
-// see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Introduction.AWS.ARN.html
-export class Endpoint extends dms.CfnEndpoint {
-
-  arn: string;
-
-  constructor(scope: Construct, id: string, props: dms.CfnEndpointProps) {
-    super(scope, id, props);
-    const region = 'bptj';
-    const account = 'fgfg';
-    const resourcename = 'fgfg';
-    this.arn = `arn:aws:dms:${region}:${account}:endpoint:${resourcename}`;
-  }
-}
-
 export interface SourceEndPointProps extends Omit<dms.CfnEndpointProps, 'endpointType'> { }
 
-export class SourceEndPoint extends Endpoint {
+export class SourceEndPoint extends dms.CfnEndpoint {
   constructor(scope: Construct, id: string, props: SourceEndPointProps) {
 
     super(scope, id, {
@@ -147,7 +133,7 @@ export class S3Source extends Construct {
       },
     });
 
-    this.endpoint = new Endpoint(this, 'S3SourceEndpoint', {
+    this.endpoint = new dms.CfnEndpoint(this, 'S3SourceEndpoint', {
       endpointType: 'source',
       engineName: 's3',
       s3Settings: {

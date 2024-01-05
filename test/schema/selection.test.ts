@@ -1,128 +1,5 @@
-import { AWSDMSDataType, DMSS3Schema, RuleAction, RulesSchema } from '../src/dms-patterns/core/schema';
-
-test('DMSS3Schema Constructor', () => {
-
-  const providedJsonString = JSON.stringify({
-    TableCount: '1',
-    Tables: [
-      {
-        TableName: 'employee',
-        TablePath: 'hr/employee/',
-        TableOwner: 'hr',
-        TableColumns: [
-          {
-            ColumnName: 'Id',
-            ColumnType: 'INT8',
-            ColumnNullable: 'false',
-            ColumnIsPk: 'true',
-          },
-          {
-            ColumnName: 'LastName',
-            ColumnType: 'STRING',
-            ColumnLength: '20',
-          },
-          {
-            ColumnName: 'FirstName',
-            ColumnType: 'STRING',
-            ColumnLength: '30',
-          },
-          {
-            ColumnName: 'HireDate',
-            ColumnType: 'DATETIME',
-          },
-          {
-            ColumnName: 'OfficeLocation',
-            ColumnType: 'STRING',
-            ColumnLength: '20',
-          },
-        ],
-        TableColumnsTotal: '5',
-      },
-    ],
-  }, null, 4);
-
-  const schema = new DMSS3Schema(
-    [{
-      TableName: 'employee',
-      TablePath: 'hr/employee/',
-      TableOwner: 'hr',
-      TableColumns: [{
-        ColumnName: 'Id',
-        ColumnType: AWSDMSDataType.INT8,
-        ColumnIsPk: true,
-        ColumnNullable: false,
-      },
-      {
-        ColumnName: 'LastName',
-        ColumnType: AWSDMSDataType.STRING,
-        ColumnLength: 20,
-      },
-      {
-        ColumnName: 'FirstName',
-        ColumnType: AWSDMSDataType.STRING,
-        ColumnLength: 30,
-      },
-      {
-        ColumnName: 'HireDate',
-        ColumnType: AWSDMSDataType.DATETIME,
-      },
-      {
-        ColumnName: 'OfficeLocation',
-        ColumnType: AWSDMSDataType.STRING,
-        ColumnLength: 20,
-      }],
-    }],
-  );
-
-  const json = schema.toJSON();
-
-  expect(json).toEqual(providedJsonString);
-});
-
-
-test('DMSS3Schema add table', () => {
-
-  const providedJsonString = JSON.stringify({
-    TableCount: '1',
-    Tables: [
-      {
-        TableName: 'employee',
-        TablePath: 'hr/employee/',
-        TableOwner: 'hr',
-        TableColumns: [
-          {
-            ColumnName: 'Id',
-            ColumnType: 'INT8',
-            ColumnNullable: 'false',
-            ColumnIsPk: 'true',
-          },
-        ],
-        TableColumnsTotal: '1',
-      },
-    ],
-  }, null, 4);
-
-  const schema = new DMSS3Schema();
-
-  schema.addTable(
-    {
-      TableName: 'employee',
-      TablePath: 'hr/employee/',
-      TableOwner: 'hr',
-      TableColumns: [{
-        ColumnName: 'Id',
-        ColumnType: AWSDMSDataType.INT8,
-        ColumnIsPk: true,
-        ColumnNullable: false,
-      }],
-    },
-  );
-
-  const json = schema.toJSON();
-
-  expect(json).toEqual(providedJsonString);
-});
-
+import { Rules } from '../../src/dms-patterns/core//schema/base';
+import { SelectionAction, SelectionRule } from '../../src/dms-patterns/core/schema';
 
 test('Migrate all tables in a schema', () => {
 
@@ -142,16 +19,16 @@ test('Migrate all tables in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema(
-    [{
+  const schema = new Rules(
+    [new SelectionRule({
       ruleName: '1',
       ruleId: '1',
       objectLocator: {
         schemaName: 'Test',
         tableName: '%',
       },
-      ruleAction: RuleAction.INCLUDE,
-    }],
+      ruleAction: SelectionAction.INCLUDE,
+    })],
   );
 
   const json = schema.toJSON();
@@ -159,8 +36,7 @@ test('Migrate all tables in a schema', () => {
 
 });
 
-
-test('Example Migrate some tables in a schema', () => {
+test('Migrate some tables in a schema', () => {
 
   const providedJsonString = JSON.stringify(
     {
@@ -188,34 +64,33 @@ test('Example Migrate some tables in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema();
+  const schema = new Rules();
 
-  schema.addRule({
+  schema.addRule(new SelectionRule({
     ruleName: '1',
     ruleId: '1',
     objectLocator: {
       schemaName: 'Test',
       tableName: '%',
     },
-    ruleAction: RuleAction.INCLUDE,
-  });
-  schema.addRule({
+    ruleAction: SelectionAction.INCLUDE,
+  }));
+  schema.addRule(new SelectionRule({
     ruleName: '2',
     ruleId: '2',
     objectLocator: {
       schemaName: 'Test',
       tableName: 'DMS%',
     },
-    ruleAction: RuleAction.EXCLUDE,
-  });
+    ruleAction: SelectionAction.EXCLUDE,
+  }));
 
   const json = schema.toJSON();
   expect(json).toEqual(providedJsonString);
 
 });
 
-
-test('Example Migrate a specified single table in single schema', () => {
+test('Migrate a specified single table in single schema', () => {
 
   const providedJsonString = JSON.stringify(
     {
@@ -233,16 +108,16 @@ test('Example Migrate a specified single table in single schema', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema(
-    [{
+  const schema = new Rules(
+    [new SelectionRule({
       ruleName: '1',
-      ruleId: '1',
+      // ruleId: '1', // not required
       objectLocator: {
         schemaName: 'NewCust',
         tableName: 'Customer',
       },
-      ruleAction: RuleAction.EXPLICIT,
-    }],
+      ruleAction: SelectionAction.EXPLICIT,
+    })],
   );
 
   const json = schema.toJSON();
@@ -250,7 +125,7 @@ test('Example Migrate a specified single table in single schema', () => {
 
 });
 
-test('Example Migrate tables in a set order', () => {
+test('Migrate tables in a set order', () => {
 
   const providedJsonString = JSON.stringify(
     {
@@ -280,27 +155,27 @@ test('Example Migrate tables in a set order', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema(
-    [{
+  const schema = new Rules(
+    [new SelectionRule({
       ruleName: '1',
       ruleId: '1',
       objectLocator: {
         schemaName: 'Test',
         tableName: 'loadsecond',
       },
-      ruleAction: RuleAction.INCLUDE,
+      ruleAction: SelectionAction.INCLUDE,
       loadOrder: 2,
-    },
-    {
+    }),
+    new SelectionRule({
       ruleName: '2',
       ruleId: '2',
       objectLocator: {
         schemaName: 'Test',
         tableName: 'loadfirst',
       },
-      ruleAction: RuleAction.INCLUDE,
+      ruleAction: SelectionAction.INCLUDE,
       loadOrder: 1,
-    }],
+    })],
   );
 
   const json = schema.toJSON();
@@ -308,7 +183,7 @@ test('Example Migrate tables in a set order', () => {
 
 });
 
-test('Example Migrate some views in a schema', () => {
+test('Migrate some views in a schema', () => {
 
   const providedJsonString = JSON.stringify(
     {
@@ -327,8 +202,8 @@ test('Example Migrate some views in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema(
-    [{
+  const schema = new Rules(
+    [new SelectionRule({
       ruleName: '2',
       ruleId: '2',
       objectLocator: {
@@ -336,8 +211,8 @@ test('Example Migrate some views in a schema', () => {
         tableName: 'view_DMS%',
         tableType: 'view',
       },
-      ruleAction: RuleAction.INCLUDE,
-    }],
+      ruleAction: SelectionAction.INCLUDE,
+    })],
   );
 
   const json = schema.toJSON();
@@ -345,7 +220,7 @@ test('Example Migrate some views in a schema', () => {
 
 });
 
-test('Example Migrate all tables and views in a schema', () => {
+test('Migrate all tables and views in a schema', () => {
 
   const providedJsonString = JSON.stringify(
     {
@@ -364,8 +239,8 @@ test('Example Migrate all tables and views in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new RulesSchema(
-    [
+  const schema = new Rules(
+    [new SelectionRule(
       {
         ruleName: '3',
         ruleId: '3',
@@ -374,9 +249,8 @@ test('Example Migrate all tables and views in a schema', () => {
           tableName: '%',
           tableType: 'all',
         },
-        ruleAction: RuleAction.INCLUDE,
-      },
-    ],
+        ruleAction: SelectionAction.INCLUDE,
+      })],
   );
 
   const json = schema.toJSON();

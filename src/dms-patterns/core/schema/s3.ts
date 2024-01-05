@@ -1,5 +1,5 @@
 
-export enum AWSDMSDataType {
+export enum S3DataType {
   BYTE = 'BYTE',
   DATE = 'DATE',
   TIME = 'TIME',
@@ -23,7 +23,7 @@ export enum AWSDMSDataType {
 
 export interface TableColumn {
   ColumnName: string;
-  ColumnType: AWSDMSDataType;
+  ColumnType: S3DataType;
   ColumnLength?: number;
   ColumnNullable?: boolean;
   ColumnIsPk?: boolean;
@@ -37,7 +37,7 @@ export interface Table {
   TableColumns: TableColumn[];
 }
 
-export class DMSS3Schema {
+export class S3Schema {
 
   tables: Table[] = [];
 
@@ -75,67 +75,4 @@ export class DMSS3Schema {
         Tables: formattedTables,
       }, null, 4);
   }
-}
-
-// https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html
-export enum RuleAction {
-  INCLUDE = 'include',
-  EXCLUDE = 'exclude',
-  EXPLICIT = 'explicit',
-}
-
-export interface ObjectLocator {
-  schemaName: string;
-  tableName: string;
-  tableType?: 'table' | 'view' | 'all';
-}
-
-
-export interface RuleSchema {
-  ruleName: string;
-  ruleId?: string;
-  ruleAction: RuleAction;
-  objectLocator: ObjectLocator;
-  loadOrder?: number;
-  filters?: any[]; // Define a type for the filters based on your needs
-}
-
-export class RulesSchema {
-
-  rules: RuleSchema[] = [];
-
-  constructor(
-    rules: RuleSchema[] = [],
-  ) {
-    this.rules = rules;
-  }
-
-  public addRule(rule: RuleSchema) {
-    rule.ruleId = rule.ruleId || String(this.rules.length + 1);
-    this.rules.push(rule);
-  }
-
-  public toJSON(): string {
-
-    const formattedRules = this.rules.map(rules => {
-      return {
-        'rule-type': 'selection',
-        'rule-id': rules.ruleId,
-        'rule-name': rules.ruleName,
-        'object-locator': {
-          'schema-name': rules.objectLocator.schemaName,
-          'table-name': rules.objectLocator.tableName,
-          'table-type': typeof rules.objectLocator.tableType !== 'undefined' ? String(rules.objectLocator.tableType) : undefined,
-        },
-        'rule-action': rules.ruleAction,
-        'load-order': typeof rules.loadOrder !== 'undefined' ? String(rules.loadOrder) : undefined,
-      };
-    });
-
-    return JSON.stringify(
-      {
-        rules: formattedRules,
-      }, null, 4);
-  }
-
 }
