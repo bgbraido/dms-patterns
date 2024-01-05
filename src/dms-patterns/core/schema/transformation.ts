@@ -108,10 +108,23 @@ export class TransformationRule extends Rule {
       },
       'value': this.value,
       'old-value': typeof this.oldValue !== 'undefined' ? String(this.oldValue) : undefined,
-      'data-type': typeof this.dataType !== 'undefined' ? String(this.dataType) : undefined,
+      'data-type': typeof this.dataType !== 'undefined' ? {
+        type: typeof this.dataType.type !== 'undefined' ? String(this.dataType.type) : undefined,
+        precision: typeof this.dataType.precision !== 'undefined' ? this.dataType.precision : undefined,
+        scale: typeof this.dataType.scale !== 'undefined' ? String(this.dataType.scale) : undefined,
+        length: typeof this.dataType.length !== 'undefined' ? String(this.dataType.length) : undefined,
+      } : undefined,
       'expression': typeof this.expression !== 'undefined' ? String(this.expression) : undefined,
-      'primary-key': typeof this.primaryKeyDef !== 'undefined' ? this.primaryKeyDef : undefined,
-      'before-image': typeof this.beforeImageDef !== 'undefined' ? this.beforeImageDef : undefined,
+      'primary-key-def': typeof this.primaryKeyDef !== 'undefined' ? {
+        name: typeof this.primaryKeyDef.name !== 'undefined' ? String(this.primaryKeyDef.name) : undefined,
+        origin: typeof this.primaryKeyDef.origin !== 'undefined' ? String(this.primaryKeyDef.origin) : undefined,
+        columns: typeof this.primaryKeyDef.columns !== 'undefined' ? this.primaryKeyDef.columns : undefined,
+      } : undefined,
+      'before-image-def': typeof this.beforeImageDef !== 'undefined' ? {
+        'column-prefix': typeof this.beforeImageDef.columnPrefix !== 'undefined' ? String(this.beforeImageDef.columnPrefix) : undefined,
+        'column-suffix': typeof this.beforeImageDef.columnSuffix !== 'undefined' ? String(this.beforeImageDef.columnSuffix) : undefined,
+        'column-filter': typeof this.beforeImageDef.columnFilter !== 'undefined' ? String(this.beforeImageDef.columnFilter) : undefined,
+      } : undefined,
     };
   }
 }
