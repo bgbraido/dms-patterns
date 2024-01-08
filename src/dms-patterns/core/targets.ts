@@ -1,7 +1,8 @@
 import { aws_dms as dms } from 'aws-cdk-lib';
+import * as iam from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 
-export interface S3TargetProps {
+export interface S3TargetEndpointSettings {
   /**
    * The name of the S3 bucket to be used as data source.
    */
@@ -50,22 +51,52 @@ export interface S3TargetProps {
 
 }
 
+export interface S3TargetProps {
+  bucketArn: string;
+  s3EndpointSettings?: S3TargetEndpointSettings;
+}
+
 export class S3Target extends Construct {
 
-  settings: dms.CfnEndpoint.S3SettingsProperty;
+  endpoint: dms.CfnEndpoint;
 
   constructor(scope: Construct, id: string, props: S3TargetProps) {
     super(scope, id);
 
-    this.settings = {
-      bucketName: props.bucketName,
-      bucketFolder: props.bucketFolder,
-      compressionType: 'compressionType',
-      csvDelimiter: 'csvDelimiter',
-      csvRowDelimiter: 'csvRowDelimiter',
-      externalTableDefinition: 'externalTableDefinition',
-      serviceAccessRoleArn: 'serviceAccessRoleArn',
-    };
+    const serviceAccessRole = new iam.Role(this, 'ServiceAccessRole', {
+      assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
+      description: 'Role for DMS to access S3',
+      inlinePolicies: {
+        S3Access: new iam.PolicyDocument({
+          statements: [
+            new iam.PolicyStatement({
+              actions: ['iam:PassRole'],
+              effect: iam.Effect.ALLOW,
+              resources: [props.bucketArn], // TODO on what resources should we limit this?
+            }),
+            new iam.PolicyStatement({
+              actions: [
+                's3:ListBucket',
+                's3:GetObject',
+                's3:GetBucketLocation',
+                // TODO add more actions to write
+              ],
+              effect: iam.Effect.ALLOW,
+              resources: [props.bucketArn],
+            }),
+          ],
+        }),
+      },
+    });
+
+    this.endpoint = new dms.CfnEndpoint(this, 'S3SourceEndpoint', {
+      endpointType: 'target',
+      engineName: 's3',
+      s3Settings: {
+        ...props.s3EndpointSettings,
+        serviceAccessRoleArn: serviceAccessRole.roleArn,
+      },
+    });
   }
 }
 

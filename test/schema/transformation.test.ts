@@ -1,5 +1,4 @@
-import { SelectionAction, SelectionRule, TransformationAction, TransformationRule, TransformationTarget } from '../../src/dms-patterns/core/schema';
-import { TableMappings } from '../../src/dms-patterns/core/table-mappings';
+import { SelectionAction, SelectionRule, TableMappings, TransformationAction, TransformationRule, TransformationTarget } from '../../src/dms-patterns/core/table-mappings';
 
 test('Rename a schema', () => {
 

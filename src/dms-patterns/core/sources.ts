@@ -98,7 +98,7 @@ export class S3SourceEndpoint extends SourceEndPoint {
 
 export interface S3SourceProps {
   bucketArn: string;
-  s3EndpointSettings: S3SourceEndpointSettings;
+  s3EndpointSettings?: S3SourceEndpointSettings;
 }
 
 export class S3Source extends Construct {
@@ -137,13 +137,8 @@ export class S3Source extends Construct {
       endpointType: 'source',
       engineName: 's3',
       s3Settings: {
+        ... props.s3EndpointSettings,
         serviceAccessRoleArn: serviceAccessRole.roleArn,
-        cdcPath: props.s3EndpointSettings.cdcPath,
-        csvDelimiter: props.s3EndpointSettings.csvDelimiter,
-        csvRowDelimiter: props.s3EndpointSettings.csvRowDelimiter,
-        externalTableDefinition: props.s3EndpointSettings.externalTableDefinition,
-        ignoreHeaderRows: props.s3EndpointSettings.ignoreHeaderRows,
-        bucketFolder: props.s3EndpointSettings.bucketFolder,
       },
     });
   }
