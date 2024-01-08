@@ -1,4 +1,4 @@
-import { S3DataType, S3Schema } from '../../src/dms-patterns/core/table-mappings';
+import { S3DataType, S3Schema } from '../src/dms-patterns/core/table-mappings';
 
 test('Constructor', () => {
 
