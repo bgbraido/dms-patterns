@@ -3,7 +3,7 @@ export interface ObjectLocator {
 
 export interface RuleProps {
   ruleId?: string;
-  ruleAction: string;
+  ruleAction?: string;
   ruleName: string;
   objectLocator: ObjectLocator;
   loadOrder?: number;
@@ -12,7 +12,7 @@ export interface RuleProps {
 
 export class Rule {
   ruleId?: string;
-  ruleAction: string;
+  ruleAction?: string;
   ruleName: string;
   objectLocator: ObjectLocator;
   loadOrder?: number;
