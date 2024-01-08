@@ -4,7 +4,7 @@ import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
 import { S32Rds, S32S3 } from '../src/dms-patterns';
 import { TableMappings } from '../src/dms-patterns/core';
-
+import { S3DataType, S3Schema } from '../src/dms-patterns/core/table-mappings';
 
 // A stack for testing the S32Rds construct
 export class S32RDSStack extends cdk.Stack {
@@ -43,8 +43,38 @@ export class S32S3Stack extends cdk.Stack {
       [],
     );
 
+    const schema = new S3Schema(
+      [{
+        TableName: 'weather',
+        TablePath: 'weather',
+        TableOwner: 'weather',
+        TableColumns: [
+          {
+            ColumnName: 'ID',
+            ColumnType: S3DataType.INT8,
+            ColumnIsPk: true,
+          },
+          {
+            ColumnName: 'Humidity',
+            ColumnType: S3DataType.NUMERIC,
+            ColumnPrecision: 3,
+            ColumnScale: 1,
+          },
+          {
+            ColumnName: 'Temperature',
+            ColumnType: S3DataType.NUMERIC,
+            ColumnPrecision: 3,
+            ColumnScale: 1,
+          },
+        ],
+      }],
+    );
+
     new S32S3(this, 'S32S3', {
       sourceBucketArn: sourceBucket.bucketArn,
+      sourceEndpointSettings: {
+        externalTableDefinition: schema.toJSON(),
+      },
       targetBucketArn: targetBucket.bucketArn,
       tableMappings: tableMappings,
     });
@@ -54,16 +84,16 @@ export class S32S3Stack extends cdk.Stack {
 
 // this is for testing purposes only. TODO to be removed.
 const app = new cdk.App();
-new S32RDSStack(app, 'S32Rds', {
-  env: {
-    account: process.env.CDK_DEFAULT_ACCOUNT,
-    region: 'eu-west-1',
-  },
-});
-
-// new S32S3Stack(app, 'S32S3', {
+// new S32RDSStack(app, 'S32Rds', {
 //   env: {
 //     account: process.env.CDK_DEFAULT_ACCOUNT,
 //     region: 'eu-west-1',
 //   },
 // });
+
+new S32S3Stack(app, 'S32S3', {
+  env: {
+    account: process.env.CDK_DEFAULT_ACCOUNT,
+    region: 'eu-west-1',
+  },
+});

@@ -1,20 +1,10 @@
 import { aws_dms as dms } from 'aws-cdk-lib';
-import * as iam from 'aws-cdk-lib/aws-iam';
+import { CfnEndpoint } from 'aws-cdk-lib/aws-dms';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 import { Construct } from 'constructs';
+import { S3SourceTarget } from './base';
 
-export interface SourceEndPointProps extends Omit<dms.CfnEndpointProps, 'endpointType'> { }
-
-export class SourceEndPoint extends dms.CfnEndpoint {
-  constructor(scope: Construct, id: string, props: SourceEndPointProps) {
-
-    super(scope, id, {
-      endpointType: 'source',
-      ...props,
-    });
-  }
-}
-
-export class S3SourceEndpointSettings {
+export interface S3SourceEndpointSettings {
   /**
    * Specifies the folder path of CDC files.
    *
@@ -52,7 +42,7 @@ export class S3SourceEndpointSettings {
    *
    * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-s3settings.html#cfn-dms-endpoint-s3settings-externaltabledefinition
    */
-  readonly externalTableDefinition?: string;
+  readonly externalTableDefinition: string;
   /**
    * When this value is set to 1, AWS DMS ignores the first row header in a .csv file. A value of 1 turns on the feature; a value of 0 turns off the feature.
    *
@@ -84,61 +74,38 @@ export class S3SourceEndpointSettings {
 
 }
 
-export interface S3SourceEndpointProps extends Omit<SourceEndPointProps, 'engineName'> {}
-
-export class S3SourceEndpoint extends SourceEndPoint {
-  constructor(scope: Construct, id: string, props: S3SourceEndpointProps) {
-
-    super(scope, id, {
-      engineName: 's3',
-      s3Settings: props.s3Settings as dms.CfnEndpoint.S3SettingsProperty,
-    });
-  }
-}
-
 export interface S3SourceProps {
   bucketArn: string;
-  s3EndpointSettings?: S3SourceEndpointSettings;
+  s3SourceEndpointSettings?: S3SourceEndpointSettings;
 }
 
-export class S3Source extends Construct {
+export class S3Source extends S3SourceTarget {
 
-  endpoint: S3SourceEndpoint;
+  endpoint: CfnEndpoint;
 
   constructor(scope: Construct, id: string, props: S3SourceProps) {
     super(scope, id);
 
-    const serviceAccessRole = new iam.Role(this, 'ServiceAccessRole', {
-      assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
-      description: 'Role for DMS to access S3',
-      inlinePolicies: {
-        S3Access: new iam.PolicyDocument({
-          statements: [
-            new iam.PolicyStatement({
-              actions: ['iam:PassRole'],
-              effect: iam.Effect.ALLOW,
-              resources: [props.bucketArn], // TODO on what resources should we limit this?
-            }),
-            new iam.PolicyStatement({
-              actions: [
-                's3:ListBucket',
-                's3:GetObject',
-                's3:GetBucketLocation',
-              ],
-              effect: iam.Effect.ALLOW,
-              resources: [props.bucketArn],
-            }),
-          ],
-        }),
-      },
-    });
+    // Maybe not needed.
+    // new iam.PolicyStatement({
+    //   actions: [
+    //     's3:ListBucket',
+    //     's3:GetObject',
+    //     's3:GetBucketLocation',
+    //   ],
+    //   effect: iam.Effect.ALLOW,
+    //   resources: [props.bucketArn],
+    // });
+
+    const accessRole = this.createS3AccessRole(props.bucketArn);
 
     this.endpoint = new dms.CfnEndpoint(this, 'S3SourceEndpoint', {
       endpointType: 'source',
       engineName: 's3',
       s3Settings: {
-        ... props.s3EndpointSettings,
-        serviceAccessRoleArn: serviceAccessRole.roleArn,
+        ...props.s3SourceEndpointSettings,
+        bucketName: s3.Bucket.fromBucketArn(this, 'Bucket', props.bucketArn).bucketName,
+        serviceAccessRoleArn: accessRole.roleArn,
       },
     });
   }

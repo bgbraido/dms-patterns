@@ -59,3 +59,11 @@ export class TableMappings {
 
 }
 
+export class TaskSettings {
+
+  public toJSON(): string {
+    return JSON.stringify(
+      {}, null, 4);
+  }
+
+}

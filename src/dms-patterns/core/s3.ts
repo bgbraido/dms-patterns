@@ -28,6 +28,8 @@ export interface TableColumn {
   ColumnNullable?: boolean;
   ColumnIsPk?: boolean;
   ColumnDateFormat?: string;
+  ColumnPrecision?: number;
+  ColumnScale?: number;
 }
 
 export interface Table {
@@ -63,6 +65,8 @@ export class S3Schema {
             ColumnLength: column.ColumnLength ? column.ColumnLength.toString() : undefined,
             ColumnNullable: typeof column.ColumnNullable !== 'undefined' ? String(column.ColumnNullable) : undefined,
             ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
+            ColumnPrecision: column.ColumnPrecision ? column.ColumnPrecision.toString() : undefined,
+            ColumnScale: column.ColumnScale ? column.ColumnScale.toString() : undefined,
           };
         }),
         TableColumnsTotal: table.TableColumns.length.toString(),

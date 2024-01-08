@@ -2,6 +2,10 @@
  * As of 2024-02-01, AWS DMS Serverless replication is not supported by the aws-cdk-lib.
  *
  * see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-replicationconfig.html
+ *
+ * Note that AWS DMS Serverless only supports a subset of the endpoint types that AWS DMS standard supports.
+ * see https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Components.html
+ * and https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Serverless.Limitations.html
  */
 
 
