@@ -1,4 +1,4 @@
-import { Rule, RuleProps } from './base';
+import { ObjectLocator, Rule, RuleProps } from './base';
 
 export enum TransformationAction {
   ADD_COLUMN = 'add-column',
@@ -45,9 +45,7 @@ export interface BeforeImageDefinition {
   columnFilter: 'pk-only' | 'non-lob' | 'all';
 }
 
-export interface TransformationObjectLocator {
-  schemaName: string;
-  tableName?: string;
+export interface TransformationObjectLocator extends ObjectLocator {
   tableTablespaceName?: string;
   indexTablespaceName?: string;
   columnName?: string;

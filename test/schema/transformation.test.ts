@@ -1,5 +1,5 @@
 import { SelectionAction, SelectionRule, TransformationAction, TransformationRule, TransformationTarget } from '../../src/dms-patterns/core/schema';
-import { Rules } from '../../src/dms-patterns/core/schema/base';
+import { TableMappings } from '../../src/dms-patterns/core/table-mappings';
 
 test('Rename a schema', () => {
 
@@ -30,7 +30,7 @@ test('Rename a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule({
       ruleName: '1',
       ruleId: '1',
@@ -88,7 +88,7 @@ test('Rename a table', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -150,7 +150,7 @@ test('Rename a column', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -213,7 +213,7 @@ test('Rename an Oracle table tablespace', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -276,7 +276,7 @@ test('Rename an Oracle index tablespace', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -342,7 +342,7 @@ test(' Add a column', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -407,7 +407,7 @@ test('Remove a column', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -466,7 +466,7 @@ test('Convert to lowercase', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -525,7 +525,7 @@ test('Add a prefix', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -588,7 +588,7 @@ test('Replace a prefix', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -650,7 +650,7 @@ test('Remove a suffix', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -717,7 +717,7 @@ test(' Define a primary key', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -792,7 +792,7 @@ test('Define a unique index', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -854,7 +854,7 @@ test('Change data type of target column', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -913,7 +913,7 @@ test('Add a before image column', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -983,7 +983,7 @@ test('Adding a column using an expression', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -1042,7 +1042,7 @@ test('Flagging target records using an expression', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1094,7 +1094,7 @@ test('Add a before image column using the stream position value from the source'
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1146,7 +1146,7 @@ test('Add a before column with unique incrementing number from the source.', () 
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1199,7 +1199,7 @@ test('Adding a new string column to the target table using a case condition', ()
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1251,7 +1251,7 @@ test('Adding a new date column to the target table', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1302,7 +1302,7 @@ test('Adding a new numeric column to the target table', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1351,7 +1351,7 @@ test('Adding a new string column to the target table using the hash function', (
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {
@@ -1401,7 +1401,7 @@ test('Adding metadata to a target table using expressions', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TransformationRule(
         {

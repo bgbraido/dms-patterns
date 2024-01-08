@@ -1,7 +1,7 @@
-import { SelectionAction, SelectionRule } from '../../src/dms-patterns/core/schema';
-import { Rules } from '../../src/dms-patterns/core/schema/base';
+import { SelectionAction, SelectionRule } from '../../src/dms-patterns/core/table-mappings';
+import { TableMappings } from '../../src/dms-patterns/core/table-mappings/base';
 
-import { TableSettings } from '../../src/dms-patterns/core/schema/table-settings';
+import { TableSettings } from '../../src/dms-patterns/core/table-mappings/table-settings';
 
 
 test('Wildcards', () => {
@@ -26,7 +26,7 @@ test('Wildcards', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new TableSettings({
         ruleName: '8',
@@ -80,7 +80,7 @@ test('Load a table segmented by partitions', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -138,7 +138,7 @@ test('Load a table segmented by subpartitions', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -204,7 +204,7 @@ test('Load a table segmented by a list of partitions', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -282,7 +282,7 @@ test('Load an Oracle table segmented by a selected list of partitions and subpar
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -378,7 +378,7 @@ test('Load two tables: One segmented by ranges and another segmented by partitio
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -475,7 +475,7 @@ test('Load a table segmented by ranges of column values', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -547,7 +547,7 @@ test('Load a table with LOBs using limited LOB mode', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -606,7 +606,7 @@ test('Load a table with LOBs using standard full LOB mode', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -666,7 +666,7 @@ test('Load a table with LOBs using combination full LOB mode', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',
@@ -726,7 +726,7 @@ test('Load a table with LOBs using the task LOB settings', () => {
       }],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [
       new SelectionRule({
         ruleName: '1',

@@ -1,5 +1,8 @@
 export interface ObjectLocator {
+  schemaName: string;
+  tableName?: string;
 }
+
 
 export interface RuleProps {
   ruleId?: string;
@@ -34,7 +37,7 @@ export class Rule {
 
 }
 
-export class Rules {
+export class TableMappings {
 
   rules: Rule[] = [];
 

@@ -1,7 +1,7 @@
 
 // https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html
 
-import { Rule, RuleProps } from './base';
+import { Rule, RuleProps, ObjectLocator } from './base';
 
 export enum SelectionAction {
   INCLUDE = 'include',
@@ -9,9 +9,7 @@ export enum SelectionAction {
   EXPLICIT = 'explicit',
 }
 
-export interface SelectionObjectLocator {
-  schemaName: string;
-  tableName: string;
+export interface SelectionObjectLocator extends ObjectLocator {
   tableType?: 'table' | 'view' | 'all';
 }
 

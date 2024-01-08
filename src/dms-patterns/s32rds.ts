@@ -2,12 +2,19 @@ import { Construct } from 'constructs';
 import { ReplicationTypes } from './core';
 import { DMSReplicationConfig } from './core/serverless';
 import { S3Source } from './core/sources';
+import { TableMappings } from './core/table-mappings';
+
 
 export interface S32RdsProps {
   /**
    * The name of the S3 bucket to be used as data source.
    */
   readonly bucketArn: string;
+  /**
+   * The table mappings to be used for the replication.
+   */
+  readonly tableMappings: TableMappings;
+
 }
 
 export class S32Rds extends Construct {
@@ -28,15 +35,13 @@ export class S32Rds extends Construct {
     //   engine: 'postgres',
     // });
 
-    const tablemapping = '1';
-
     new DMSReplicationConfig(this, 'ComputeConfig', {
       computeConfig: {
         MaxCapacityUnits: 1,
       },
       sourceEndpointArn: s3source.endpoint.ref,
       targetEndpointArn: s3source.endpoint.ref,
-      tableMappings: tablemapping,
+      tableMappings: props.tableMappings.toJSON(), // Convert the table mappings to JSON
       replicationType: ReplicationTypes.FULL_LOAD,
       replicationConfigIdentifier: 'S32RDS',
     });

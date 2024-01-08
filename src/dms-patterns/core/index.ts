@@ -2,9 +2,9 @@
 All Rights Reserved.
 */
 
-export * from './schema';
 export * from './serverless';
 export * from './sources';
+export * from './table-mappings';
 export * from './targets';
 
 

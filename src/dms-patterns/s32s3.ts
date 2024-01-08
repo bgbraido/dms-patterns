@@ -1,16 +1,19 @@
 import { Construct } from 'constructs';
-import { S3SourceEndpoint } from './core/sources';
-import { S3Target } from './core/targets';
+import { TableMappings } from './core/table-mappings';
 
 export interface S32S3Props {
   /**
-   * The name of the S3 bucket to be used as source.
+   * The arn of the S3 bucket to be used as source.
    */
-  readonly sourceBucket: string;
+  readonly sourceBucketArn: string;
   /**
-   * The name of the S3 bucket to be used as target.
+   * The arn of the S3 bucket to be used as target.
    */
-  readonly targetBucket: string;
+  readonly targetBucketArn: string;
+  /**
+   * The table mappings to be used for the replication.
+   */
+  readonly tableMappings: TableMappings;
 
 }
 
@@ -19,13 +22,13 @@ export class S32S3 extends Construct {
   constructor(scope: Construct, id: string, props: S32S3Props) {
     super(scope, id);
 
-    new S3SourceEndpoint(this, 'S3Source', {
-      bucketName: props.sourceBucket,
-    });
+    // new S3SourceEndpoint(this, 'S3Source', {
+    //   bucketArn: props.sourceBucketArn,
+    // });
 
-    new S3Target(this, 'S3Target', {
-      bucketName: props.targetBucket,
-    });
+    // new S3Target(this, 'S3Target', {
+    //   bucketName: props.targetBucket,
+    // });
 
   }
 }

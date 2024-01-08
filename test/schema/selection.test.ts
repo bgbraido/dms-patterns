@@ -1,5 +1,5 @@
-import { Rules } from '../../src/dms-patterns/core//schema/base';
-import { SelectionAction, SelectionRule } from '../../src/dms-patterns/core/schema';
+import { TableMappings } from '../../src/dms-patterns/core/table-mappings';
+import { SelectionAction, SelectionRule } from '../../src/dms-patterns/core/table-mappings/selection';
 
 test('Migrate all tables in a schema', () => {
 
@@ -19,7 +19,7 @@ test('Migrate all tables in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule({
       ruleName: '1',
       ruleId: '1',
@@ -64,7 +64,7 @@ test('Migrate some tables in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules();
+  const schema = new TableMappings();
 
   schema.addRule(new SelectionRule({
     ruleName: '1',
@@ -108,7 +108,7 @@ test('Migrate a specified single table in single schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule({
       ruleName: '1',
       // ruleId: '1', // not required
@@ -155,7 +155,7 @@ test('Migrate tables in a set order', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule({
       ruleName: '1',
       ruleId: '1',
@@ -202,7 +202,7 @@ test('Migrate some views in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule({
       ruleName: '2',
       ruleId: '2',
@@ -239,7 +239,7 @@ test('Migrate all tables and views in a schema', () => {
       ],
     }, null, 4);
 
-  const schema = new Rules(
+  const schema = new TableMappings(
     [new SelectionRule(
       {
         ruleName: '3',

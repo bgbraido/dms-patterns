@@ -1,4 +1,4 @@
-import { Rule, RuleProps } from './base';
+import { ObjectLocator, Rule, RuleProps } from './base';
 
 // Define the rule type enum
 export enum RuleType {
@@ -6,7 +6,7 @@ export enum RuleType {
 }
 
 // Define the object locator interface
-export interface ObjectLocator {
+export interface TableSettingsObjectLocator extends ObjectLocator{
   schemaName: string;
   tableName: string;
 }
@@ -43,13 +43,13 @@ export interface LobSettings {
 
 // Define the TableSettings properties
 export interface TableSettingsProps extends RuleProps {
-  objectLocator: ObjectLocator;
+  objectLocator: TableSettingsObjectLocator;
   parallelLoad?: ParallelLoad;
   lobSettings?: LobSettings;
 }
 
 export class TableSettings extends Rule {
-  objectLocator: ObjectLocator;
+  objectLocator: TableSettingsObjectLocator;
   parallelLoad?: ParallelLoad;
   lobSettings?: LobSettings;
   ruleType: string = 'table-settings';
