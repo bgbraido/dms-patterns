@@ -947,3 +947,485 @@ test('Add a before image column', () => {
   expect(json).toEqual(providedJsonString);
 
 });
+
+test('Adding a column using an expression', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'selection',
+          'rule-id': '1',
+          'rule-name': '1',
+          'object-locator': {
+            'schema-name': 'Test',
+            'table-name': '%',
+          },
+          'rule-action': 'include',
+        },
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': 'Test',
+            'table-name': 'ITEM',
+          },
+          'value': 'FULL_NAME',
+          'expression': "$FIRST_NAME||'_'||$LAST_NAME",
+          'data-type': {
+            type: 'string',
+            length: 50,
+          },
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new SelectionRule({
+        ruleName: '1',
+        ruleId: '1',
+        objectLocator: {
+          schemaName: 'Test',
+          tableName: '%',
+        },
+        ruleAction: SelectionAction.INCLUDE,
+      }),
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleAction: TransformationAction.ADD_COLUMN,
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: 'Test',
+            tableName: 'ITEM',
+          },
+          value: 'FULL_NAME',
+          expression: "$FIRST_NAME||'_'||$LAST_NAME",
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Flagging target records using an expression', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [{
+        'rule-type': 'transformation',
+        'rule-id': '2',
+        'rule-name': '2',
+        'rule-action': 'add-column',
+        'rule-target': 'column',
+        'object-locator': {
+          'schema-name': '%',
+          'table-name': '%',
+        },
+        'value': 'Operation',
+        'expression': "operation_indicator('D', 'U', 'I')",
+        'data-type': {
+          type: 'string',
+          length: 50,
+        },
+      }],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: '%',
+            tableName: '%',
+          },
+          ruleAction: TransformationAction.ADD_COLUMN,
+          value: 'Operation',
+          expression: "operation_indicator('D', 'U', 'I')",
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Add a before image column using the stream position value from the source', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': '%',
+            'table-name': '%',
+          },
+          'value': 'transact_id',
+          'expression': '$AR_H_STREAM_POSITION',
+          'data-type': {
+            type: 'string',
+            length: 50,
+          },
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: '%',
+            tableName: '%',
+          },
+          ruleAction: TransformationAction.ADD_COLUMN,
+          value: 'transact_id',
+          expression: '$AR_H_STREAM_POSITION',
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Add a before column with unique incrementing number from the source.', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': '%',
+            'table-name': '%',
+          },
+          'value': 'transact_id',
+          'expression': '$AR_H_CHANGE_SEQ',
+          'data-type': {
+            type: 'string',
+            length: 50,
+          },
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: '%',
+            tableName: '%',
+          },
+          ruleAction: TransformationAction.ADD_COLUMN,
+          value: 'transact_id',
+          expression: '$AR_H_CHANGE_SEQ',
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Adding a new string column to the target table using a case condition', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': 'public',
+            'table-name': 'employee',
+          },
+          'value': 'emp_seniority',
+          'expression': ' CASE WHEN round($emp_salary)>=20000 THEN ‘SENIOR’ ELSE ‘JUNIOR’ END',
+          'data-type': {
+            type: 'string',
+            length: 50,
+          },
+
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleAction: TransformationAction.ADD_COLUMN,
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: 'public',
+            tableName: 'employee',
+          },
+          value: 'emp_seniority',
+          expression: ' CASE WHEN round($emp_salary)>=20000 THEN ‘SENIOR’ ELSE ‘JUNIOR’ END',
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Adding a new date column to the target table', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': 'public',
+            'table-name': 'employee',
+          },
+          'value': 'createdate',
+          'expression': 'datetime ()',
+          'data-type': {
+            type: 'datetime',
+            precision: 6,
+          },
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleAction: TransformationAction.ADD_COLUMN,
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: 'public',
+            tableName: 'employee',
+          },
+          value: 'createdate',
+          expression: 'datetime ()',
+          dataType: {
+            type: 'datetime',
+            precision: 6,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Adding a new numeric column to the target table', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'transformation',
+          'rule-id': '2',
+          'rule-name': '2',
+          'rule-action': 'add-column',
+          'rule-target': 'column',
+          'object-locator': {
+            'schema-name': 'public',
+            'table-name': 'employee',
+          },
+          'value': 'rounded_emp_salary',
+          'expression': 'round($emp_salary)',
+          'data-type': {
+            type: 'int8',
+          },
+        },
+      ],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleAction: TransformationAction.ADD_COLUMN,
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: 'public',
+            tableName: 'employee',
+          },
+          value: 'rounded_emp_salary',
+          expression: 'round($emp_salary)',
+          dataType: {
+            type: 'int8',
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Adding a new string column to the target table using the hash function', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [{
+        'rule-type': 'transformation',
+        'rule-id': '2',
+        'rule-name': '2',
+        'rule-action': 'add-column',
+        'rule-target': 'column',
+        'object-locator': {
+          'schema-name': 'public',
+          'table-name': 'employee',
+        },
+        'value': 'hashed_emp_number',
+        'expression': 'hash_sha256($emp_number)',
+        'data-type': {
+          type: 'string',
+          length: 64,
+        },
+      }],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: 'public',
+            tableName: 'employee',
+          },
+          ruleAction: TransformationAction.ADD_COLUMN,
+          value: 'hashed_emp_number',
+          expression: 'hash_sha256($emp_number)',
+          dataType: {
+            type: 'string',
+            length: 64,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+test('Adding metadata to a target table using expressions', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [{
+        'rule-type': 'transformation',
+        'rule-id': '2',
+        'rule-name': '2',
+        'rule-action': 'add-column',
+        'rule-target': 'column',
+        'object-locator': {
+          'schema-name': '%',
+          'table-name': '%',
+        },
+        'value': 'schema_name',
+        'expression': '$AR_M_SOURCE_SCHEMA',
+        'data-type': {
+          type: 'string',
+          length: 50,
+        },
+      }],
+    }, null, 4);
+
+  const schema = new Rules(
+    [
+      new TransformationRule(
+        {
+          ruleName: '2',
+          ruleId: '2',
+          ruleTarget: TransformationTarget.COLUMN,
+          objectLocator: {
+            schemaName: '%',
+            tableName: '%',
+          },
+          ruleAction: TransformationAction.ADD_COLUMN,
+          value: 'schema_name',
+          expression: '$AR_M_SOURCE_SCHEMA',
+          dataType: {
+            type: 'string',
+            length: 50,
+          },
+        }),
+    ],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});
+
+

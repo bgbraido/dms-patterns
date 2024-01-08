@@ -108,13 +108,13 @@ export class TransformationRule extends Rule {
       },
       'value': this.value,
       'old-value': typeof this.oldValue !== 'undefined' ? String(this.oldValue) : undefined,
+      'expression': typeof this.expression !== 'undefined' ? String(this.expression) : undefined,
       'data-type': typeof this.dataType !== 'undefined' ? {
         type: typeof this.dataType.type !== 'undefined' ? String(this.dataType.type) : undefined,
         precision: typeof this.dataType.precision !== 'undefined' ? this.dataType.precision : undefined,
         scale: typeof this.dataType.scale !== 'undefined' ? String(this.dataType.scale) : undefined,
-        length: typeof this.dataType.length !== 'undefined' ? String(this.dataType.length) : undefined,
+        length: typeof this.dataType.length !== 'undefined' ? this.dataType.length : undefined,
       } : undefined,
-      'expression': typeof this.expression !== 'undefined' ? String(this.expression) : undefined,
       'primary-key-def': typeof this.primaryKeyDef !== 'undefined' ? {
         name: typeof this.primaryKeyDef.name !== 'undefined' ? String(this.primaryKeyDef.name) : undefined,
         origin: typeof this.primaryKeyDef.origin !== 'undefined' ? String(this.primaryKeyDef.origin) : undefined,
