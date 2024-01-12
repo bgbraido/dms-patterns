@@ -1,15 +1,14 @@
 import * as cdk from 'aws-cdk-lib';
 import { Annotations, Match } from 'aws-cdk-lib/assertions';
 import { AwsSolutionsChecks, NagSuppressions } from 'cdk-nag';
-import { S32RDSStack, S32S3Stack } from './stacks';
+import { Postgres2S3Stack } from './stacks';
 
 const app = new cdk.App();
-let s32rds = new S32RDSStack(app, 'S32Rds');
-let s32s3 = new S32S3Stack(app, 'S32S3');
+let postgres2S3 = new Postgres2S3Stack(app, 'S32Rds');
 
 describe('Nag Warnings', () => {
 
-  test.each([s32rds, s32s3])('Nag Warnings for %p', (stack) => {
+  test.each([postgres2S3])('Nag Warnings for %p', (stack) => {
     cdk.Aspects.of(stack).add(new AwsSolutionsChecks({ verbose: true }));
 
     NagSuppressions.addStackSuppressions(stack, [
@@ -34,8 +33,7 @@ describe('Nag Warnings', () => {
 describe('Nag Errors', () => {
 
   test.each([
-    { stack: new S32RDSStack(new cdk.App(), 'S32Rds') },
-    { stack: new S32S3Stack(new cdk.App(), 'S32S3') },
+    { stack: new Postgres2S3Stack(new cdk.App(), 'S32Rds') },
   ])('Nag Errors for %p', ({ stack }) => {
     cdk.Aspects.of(stack).add(new AwsSolutionsChecks({ verbose: true }));
 

@@ -1,6 +1,6 @@
+import * as dms from 'aws-cdk-lib/aws-dms';
 import { Construct } from 'constructs';
-import { TableMappings } from './core';
-import { TaskSettings } from './core/';
+import { ReplicationTypes, TableMappings, TaskSettings } from './core';
 import { S3Source, S3SourceEndpointSettings } from './endpoints/sources';
 import { S3Target, S3TargetEndpointSettings } from './endpoints/targets';
 
@@ -34,10 +34,10 @@ export interface S32S3Props {
 
 export class S32S3 extends Construct {
 
-  // readonly replicationInstance: dms.CfnReplicationInstance;
-  // replicationTask: dms.CfnReplicationTask;
-  target: S3Target;
+  readonly replicationInstance: dms.CfnReplicationInstance;
+  replicationTask: dms.CfnReplicationTask;
   source: S3Source;
+  target: S3Target;
 
   constructor(scope: Construct, id: string, props: S32S3Props) {
     super(scope, id);
@@ -52,53 +52,22 @@ export class S32S3 extends Construct {
       s3TargetEndpointSettings: props.targetEndpointSettings,
     });
 
-    // As of 08-01-2024, AWS DMS Serverless does not support S3 as a source, just as a target.
-    // new DMSReplicationConfig(this, 'ComputeConfig', {
-    //   computeConfig: {
-    //     MaxCapacityUnits: 1,
-    //   },
-    //   sourceEndpointArn: s3source.endpoint.ref,
-    //   targetEndpointArn: s3target.endpoint.ref,
-    //   tableMappings: props.tableMappings.toJSON(), // Convert the table mappings to JSON
-    //   replicationType: ReplicationTypes.FULL_LOAD,
-    //   replicationConfigIdentifier: 'S32S3',
-    // });
+    this.replicationInstance = new dms.CfnReplicationInstance(this, 'MyCfnReplicationInstance', {
+      replicationInstanceClass: 'replicationInstanceClass',
+      // the properties below are optional
+      allocatedStorage: 123,
+      multiAz: false,
+      publiclyAccessible: false,
+    });
 
-    // As of 08-01-2024, AWS DMS Serverless does not support S3 as a source, just as a target.
-    // new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
-    //   computeConfig: {
-    //     maxCapacityUnits: 1,
-    //     minCapacityUnits: 2,
-    //     multiAz: false,
-    //   },
-    //   // replicationConfigIdentifier: 'replicationConfigIdentifier',
-    //   // replicationSettings: replicationSettings,
-    //   replicationType: ReplicationTypes.FULL_LOAD,
-    //   sourceEndpointArn: s3source.endpoint.ref,
-    //   tableMappings: props.tableMappings.toJSON(),
-    //   targetEndpointArn: s3target.endpoint.ref,
-    // });
-
-    // this.replicationInstance = new dms.CfnReplicationInstance(this, 'MyCfnReplicationInstance', {
-    //   replicationInstanceClass: 'replicationInstanceClass',
-    //   // the properties below are optional
-    //   allocatedStorage: 123,
-    //   multiAz: false,
-    //   publiclyAccessible: false,
-    //   // replicationInstanceIdentifier: 'replicationInstanceIdentifier',
-    //   // resourceIdentifier: 'resourceIdentifier',
-    //   // vpcSecurityGroupIds: ['vpcSecurityGroupIds'],
-    // });
-
-    // this.replicationTask = new dms.CfnReplicationTask(this, 'replicationTask', {
-    //   replicationInstanceArn: this.replicationInstance.ref,
-    //   // replicationTaskIdentifier,
-    //   migrationType: ReplicationTypes.FULL_LOAD,
-    //   sourceEndpointArn: s3source.endpoint.ref,
-    //   targetEndpointArn: s3target.endpoint.ref,
-    //   replicationTaskSettings: props.taskSettings? props.taskSettings.toJSON() : undefined,
-    //   tableMappings: props.tableMappings.toJSON(),
-    // });
+    this.replicationTask = new dms.CfnReplicationTask(this, 'replicationTask', {
+      replicationInstanceArn: this.replicationInstance.ref,
+      migrationType: ReplicationTypes.FULL_LOAD,
+      sourceEndpointArn: this.source.endpoint.ref,
+      targetEndpointArn: this.target.endpoint.ref,
+      replicationTaskSettings: props.taskSettings? props.taskSettings.toJSON() : undefined,
+      tableMappings: props.tableMappings.toJSON(),
+    });
 
   }
 }
