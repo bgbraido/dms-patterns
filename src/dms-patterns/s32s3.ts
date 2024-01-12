@@ -1,8 +1,7 @@
 import * as dms from 'aws-cdk-lib/aws-dms';
 import { Construct } from 'constructs';
 import { ReplicationTypes, TableMappings, TaskSettings } from './core';
-import { S3Source, S3SourceEndpointSettings } from './endpoints/sources';
-import { S3Target, S3TargetEndpointSettings } from './endpoints/targets';
+import { S3SourceEndpoint, S3SourceEndpointSettings, S3TargetEndpoint, S3TargetEndpointSettings } from './endpoints';
 
 export interface S32S3Props {
   /**
@@ -36,19 +35,19 @@ export class S32S3 extends Construct {
 
   readonly replicationInstance: dms.CfnReplicationInstance;
   replicationTask: dms.CfnReplicationTask;
-  source: S3Source;
-  target: S3Target;
+  source: S3SourceEndpoint;
+  target: S3TargetEndpoint;
 
   constructor(scope: Construct, id: string, props: S32S3Props) {
     super(scope, id);
 
-    this.source = new S3Source(this, 'S3Source', {
+    this.source = new S3SourceEndpoint(this, 'S3Source', {
       bucketArn: props.sourceBucketArn,
       s3SourceEndpointSettings: props.sourceEndpointSettings,
     });
 
-    this.target = new S3Target(this, 'S3Target', {
-      bucketArn: props.sourceBucketArn,
+    this.target = new S3TargetEndpoint(this, 'S3Target', {
+      bucketArn: props.targetBucketArn,
       s3TargetEndpointSettings: props.targetEndpointSettings,
     });
 
@@ -63,8 +62,8 @@ export class S32S3 extends Construct {
     this.replicationTask = new dms.CfnReplicationTask(this, 'replicationTask', {
       replicationInstanceArn: this.replicationInstance.ref,
       migrationType: ReplicationTypes.FULL_LOAD,
-      sourceEndpointArn: this.source.endpoint.ref,
-      targetEndpointArn: this.target.endpoint.ref,
+      sourceEndpointArn: this.source.ref,
+      targetEndpointArn: this.target.ref,
       replicationTaskSettings: props.taskSettings? props.taskSettings.toJSON() : undefined,
       tableMappings: props.tableMappings.toJSON(),
     });

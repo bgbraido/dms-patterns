@@ -1,10 +1,19 @@
 import * as dms from 'aws-cdk-lib/aws-dms';
 import { Construct } from 'constructs';
-import { TaskSettings } from './core';
+import { ReplicationTypes, TaskSettings } from './core';
 import { TableMappings } from './core/table-mappings';
-import { S3Source } from './endpoints/sources';
+import { EndpointType, PostgreSQLEndpoint, PostgreSqlSettings, S3SourceEndpoint } from './endpoints';
+
 
 export interface S32RdsProps {
+  /**
+    * The name of the S3 bucket to be used as data source.
+    */
+  readonly databaseName: string;
+  /**
+    * The settings for the source s3 endpoint.
+    */
+  readonly postgresEndpointSettings: PostgreSqlSettings;
   /**
    * The name of the S3 bucket to be used as data source.
    */
@@ -23,28 +32,37 @@ export class S32Rds extends Construct {
 
   readonly replicationInstance: dms.CfnReplicationInstance;
 
+  source: S3SourceEndpoint;
+  target: PostgreSQLEndpoint;
+
   constructor(scope: Construct, id: string, props: S32RdsProps) {
     super(scope, id);
 
-    new S3Source(this, 'S3Source', {
+    this.source = new S3SourceEndpoint(this, 'S3Source', {
       bucketArn: props.bucketArn,
       s3SourceEndpointSettings: {
         externalTableDefinition: '{}',
       },
     });
 
-    // const rdsTarget = new RdsTarget(this, 'RdsTarget', {
-    //   engine: 'postgres',
-    // });
+    this.target = new PostgreSQLEndpoint(this, 'PostgreEndpoint', {
+      endpointType: EndpointType.SOURCE,
+      databaseName: props.databaseName,
+      username: 'username',
+      password: 'password',
+      postgresSourceEndpointSettings: {
+        secretsManagerSecretId: 'secretsManagerSecretId',
+      },
+    });
 
-    // const taskSettings = props.taskSettings || new TaskSettings();
+    const taskSettings = props.taskSettings || new TaskSettings();
 
-    // new DMSReplicationConfig(this, 'ComputeConfig', {
+    // new dms.CfnReplicationConfig(this, 'ComputeConfig', {
     //   computeConfig: {
     //     MaxCapacityUnits: 1,
     //   },
-    //   sourceEndpointArn: s3source.endpoint.ref,
-    //   targetEndpointArn: s3source.endpoint.ref,
+    //   sourceEndpointArn: this.source.ref,
+    //   targetEndpointArn: this.target.ref,
     //   tableMappings: props.tableMappings.toJSON(), // Convert the table mappings to JSON
     //   replicationType: ReplicationTypes.FULL_LOAD,
     //   replicationConfigIdentifier: 'S32RDS',
@@ -61,15 +79,15 @@ export class S32Rds extends Construct {
       // vpcSecurityGroupIds: ['vpcSecurityGroupIds'],
     });
 
-    // const replicationTask = new dms.CfnReplicationTask(this, 'replicationTask', {
-    //   replicationInstanceArn: this.replicationInstance.ref,
-    //   // replicationTaskIdentifier,
-    //   migrationType: ReplicationTypes.FULL_LOAD,
-    //   sourceEndpointArn: s3source.endpoint.ref,
-    //   targetEndpointArn: rdsTarget.endpoint.ref,
-    //   replicationTaskSettings: taskSettings.toJSON(),
-    //   tableMappings: props.tableMappings.toJSON(),
-    // });
+    new dms.CfnReplicationTask(this, 'replicationTask', {
+      replicationInstanceArn: this.replicationInstance.ref,
+      // replicationTaskIdentifier,
+      migrationType: ReplicationTypes.FULL_LOAD,
+      sourceEndpointArn: this.source.ref,
+      targetEndpointArn: this.target.ref,
+      replicationTaskSettings: taskSettings.toJSON(),
+      tableMappings: props.tableMappings.toJSON(),
+    });
 
   }
 }
