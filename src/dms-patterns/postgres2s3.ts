@@ -1,9 +1,9 @@
 
 
+import * as dms from 'aws-cdk-lib/aws-dms';
 import { Construct } from 'constructs';
-import { TableMappings, TaskSettings } from './core';
+import { ReplicationTypes, TableMappings, TaskSettings } from './core';
 import { EndpointType, PostgreSQLEndpoint, PostgreSqlSettings, S3TargetEndpoint, S3TargetEndpointSettings } from './endpoints';
-
 
 export interface Postgres2S3Props {
 
@@ -11,14 +11,6 @@ export interface Postgres2S3Props {
    * The name of the S3 bucket to be used as data source.
    */
   readonly databaseName: string;
-  /*
-   * User name for the source endpoint.
-   */
-  readonly username: string;
-  /*
-   * Password for the source endpoint.
-   */
-  readonly password: string;
   /*
    * The settings for the source postgres endpoint.
    */
@@ -39,7 +31,20 @@ export interface Postgres2S3Props {
    * Optional JSON settings for AWS DMS Serverless replications.
    */
   readonly taskSettings?: TaskSettings;
-
+  /*
+   * Optional JSON settings for AWS DMS Serverless replications.
+   * @default {
+   *  Logging:
+   *    {
+   *     EnableLogging: true,
+   *    },
+   * }
+   */
+  readonly replicationSettings?: any;
+  /*
+   * The compute configuration for the replication.
+   */
+  readonly computeConfig?: any;
 }
 
 export class Postgres2S3 extends Construct {
@@ -55,9 +60,8 @@ export class Postgres2S3 extends Construct {
     this.source = new PostgreSQLEndpoint(this, 'PostgreEndpoint', {
       endpointType: EndpointType.SOURCE,
       databaseName: props.databaseName,
+      endpointIdentifier: `${scope}-postgresEndpoint`,
       postgresSourceEndpointSettings: props.postgresEndpointSettings,
-      username: props.username,
-      password: props.password,
     });
 
     this.target = new S3TargetEndpoint(this, 'S3Target', {
@@ -66,20 +70,33 @@ export class Postgres2S3 extends Construct {
     });
 
 
-    // As of 08-01-2024, AWS DMS Serverless does not support S3 as a source, just as a target.
-    // new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
-    //   computeConfig: {
-    //     minCapacityUnits: CapacityUnits._1,
-    //     maxCapacityUnits: CapacityUnits._2,
-    //     multiAz: false,
-    //   },
-    //   replicationConfigIdentifier: 'replicationConfigIdentifier',
-    //   // replicationSettings: replicationSettings,
-    //   replicationType: ReplicationTypes.FULL_LOAD,
-    //   sourceEndpointArn: this.target.endpoint.ref, // this.source.endpoint.ref, // TODO
-    //   tableMappings: { rules: [] },
-    //   targetEndpointArn: this.target.endpoint.ref,
-    // });
+    const replicationSettings = props.replicationSettings || {
+      Logging:
+      {
+        EnableLogging: true,
+      },
+    };
+
+    new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
+      computeConfig: props.computeConfig,
+      replicationConfigIdentifier: 'replicationConfigIdentifier',
+      replicationSettings: replicationSettings,
+      replicationType: ReplicationTypes.FULL_LOAD,
+      sourceEndpointArn: this.source.ref,
+      tableMappings: {
+        rules: [{
+          'rule-type': 'selection',
+          'rule-id': '1',
+          'rule-name': '1',
+          'object-locator': {
+            'schema-name': 'yogaidb',
+            'table-name': 'experiment',
+          },
+          'rule-action': 'include',
+        }],
+      },
+      targetEndpointArn: this.target.ref,
+    });
 
   }
 }

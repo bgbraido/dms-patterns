@@ -48,8 +48,7 @@ export class S32Rds extends Construct {
     this.target = new PostgreSQLEndpoint(this, 'PostgreEndpoint', {
       endpointType: EndpointType.SOURCE,
       databaseName: props.databaseName,
-      username: 'username',
-      password: 'password',
+      endpointIdentifier: `${scope}-postgresEndpoint`,
       postgresSourceEndpointSettings: {
         secretsManagerSecretId: 'secretsManagerSecretId',
       },

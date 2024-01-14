@@ -22,7 +22,7 @@ export enum EndpointType {
  * @param bucketArn
  * @returns iam.Role
 */
-export function createS3AccessRole(scope: Construct, bucketArn: string): iam.Role {
+export function createCreateS3AccessRole(scope: Construct, bucketArn: string): iam.Role {
   const serviceAccessRole = new iam.Role(scope, 'ServiceAccessRole', {
     assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
     description: 'Role for DMS to access S3',
@@ -48,15 +48,15 @@ export function createS3AccessRole(scope: Construct, bucketArn: string): iam.Rol
   * @param region
   * @returns iam.Role
   */
-export function secretsManagerAccessRole(scope: Construct, region: string): iam.Role {
+export function createSecretsManagerAccessRole(scope: Construct, region: string, arn: string, identifier: string): iam.Role {
 
-  const role = new iam.Role(scope, 'dms-secretsmgr-access-role', {
+  const role = new iam.Role(scope, `${identifier}-dms-secretsmgr-access-role`, {
     assumedBy: new iam.ServicePrincipal(`dms.${region}.amazonaws.com`),
   });
 
   role.addToPolicy(
     new iam.PolicyStatement({
-      resources: ['*'],
+      resources: [arn],
       actions: [
         'secretsmanager:GetSecretValue',
         'secretsmanager:DescribeSecret',
@@ -84,7 +84,7 @@ export class S3EndpointBase extends dms.CfnEndpoint {
       s3Settings: {
         ...props.s3Settings,
         bucketName: s3.Bucket.fromBucketArn(scope, 'Bucket', props.bucketArn).bucketName,
-        serviceAccessRoleArn: createS3AccessRole(scope, props.bucketArn).roleArn,
+        serviceAccessRoleArn: createCreateS3AccessRole(scope, props.bucketArn).roleArn,
       },
     });
   }
@@ -131,43 +131,52 @@ export class S3TargetEndpoint extends S3EndpointBase {
 export interface PostgreSqlSettings extends Required<Pick<dms.CfnEndpoint.PostgreSqlSettingsProperty, 'secretsManagerSecretId' >> {}
 
 
-export interface PostgresSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'username' | 'password' >>, Partial<Pick<dms.CfnEndpoint, 'port'>> {
+export interface PostgresSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier' >>, Partial<Pick<dms.CfnEndpoint, 'port'>> {
   postgresSourceEndpointSettings: PostgreSqlSettings;
 }
 
 export class PostgreSQLEndpoint extends dms.CfnEndpoint {
 
-
   constructor(scope: Construct, id: string, props: PostgresSourceProps) {
+
+    const secretArn = props.postgresSourceEndpointSettings.secretsManagerSecretId;
+    const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
+
     props.port = props.port || 5432;
     super(scope, id, {
       endpointType: props.endpointType,
+      endpointIdentifier: props.endpointIdentifier,
       engineName: EndpointEngine.POSTGRES,
       databaseName: props.databaseName,
-      port: props.port || 5432,
       postgreSqlSettings: {
         ...props.postgresSourceEndpointSettings,
-        secretsManagerAccessRoleArn: secretsManagerAccessRole(scope, cdk.Stack.of(scope).region).roleArn,
+        secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
+        secretsManagerSecretId: secretArn,
       },
     });
   }
 }
 
 
-export interface MySqlSettings extends Pick<dms.CfnEndpoint.MySqlSettingsProperty, 'secretsManagerSecretId'> { }
-export interface MySqlSourceProps extends Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'password' | 'port'> {
+export interface MySqlSettings extends Required<Pick<dms.CfnEndpoint.MySqlSettingsProperty, 'secretsManagerSecretId'>> { }
+export interface MySqlSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier'>> {
   MySqlSourceEndpointSettings: MySqlSettings;
 }
 
 export class MySqlEndpoint extends dms.CfnEndpoint {
 
   constructor(scope: Construct, id: string, props: MySqlSourceProps) {
+
+    const secretArn = props.MySqlSourceEndpointSettings.secretsManagerSecretId;
+    const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
+
     super(scope, id, {
       endpointType: props.endpointType,
       engineName: EndpointEngine.MYSQL,
       mySqlSettings: {
-        ...props.MySqlSourceEndpointSettings,
-        secretsManagerAccessRoleArn: secretsManagerAccessRole(scope, cdk.Stack.of(scope).region).roleArn,
+        // ...props.MySqlSourceEndpointSettings,
+        secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
+        secretsManagerSecretId: secretArn,
       },
     });
   }
