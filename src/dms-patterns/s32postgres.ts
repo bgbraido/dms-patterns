@@ -40,9 +40,7 @@ export class S32Rds extends Construct {
 
     this.source = new S3SourceEndpoint(this, 'S3Source', {
       bucketArn: props.bucketArn,
-      s3SourceEndpointSettings: {
-        externalTableDefinition: '{}',
-      },
+      s3SourceEndpointSettings: {},
     });
 
     this.target = new PostgreSQLEndpoint(this, 'PostgreEndpoint', {

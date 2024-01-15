@@ -90,8 +90,17 @@ export class S3EndpointBase extends dms.CfnEndpoint {
   }
 }
 
+// https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.S3.html
+export interface S3SourceEndpointSettings extends Pick<dms.CfnEndpoint.S3SettingsProperty,
+'bucketFolder' |
+'bucketName' |
+'cdcPath' |
+'csvDelimiter' |
+'csvNullValue' |
+'csvRowDelimiter' |
+'ignoreHeaderRows' |
+'rfc4180' > {}
 
-export interface S3SourceEndpointSettings { }
 
 export interface S3SourceEndpointProps {
   bucketArn: string;
@@ -110,7 +119,38 @@ export class S3SourceEndpoint extends S3EndpointBase {
   }
 }
 
-export interface S3TargetEndpointSettings extends Pick<dms.CfnEndpoint.S3SettingsProperty, 'bucketFolder' | 'csvDelimiter' | 'csvNullValue' | 'csvRowDelimiter' | 'dataFormat' | 'serviceAccessRoleArn'> { }
+// https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring
+export interface S3TargetEndpointSettings extends Pick<dms.CfnEndpoint.S3SettingsProperty,
+'csvNullValue' |
+'addColumnName' |
+'bucketFolder' |
+'bucketName' |
+'cannedAclForObjects' |
+'cdcInsertsOnly' |
+'cdcInsertsAndUpdates' |
+'cdcPath' |
+'cdcMaxBatchInterval' |
+'cdcMinFileSize' |
+'preserveTransactions' |
+'includeOpForFullLoad' |
+'compressionType' |
+'csvDelimiter' |
+'csvRowDelimiter' |
+'maxFileSize' |
+'rfc4180' |
+'encryptionMode' |
+'serverSideEncryptionKmsKeyId' |
+'dataFormat' |
+'encodingType' |
+'dictPageSizeLimit' |
+'rowGroupLength' |
+'dataPageSize' |
+'parquetVersion' |
+'enableStatistics' |
+'timestampColumnName' |
+'useTaskStartTimeForFullLoadTimestamp' |
+'parquetTimestampInMillisecond' > {}
+
 
 export interface S3TargetEndpointProps {
   bucketArn: string;
@@ -128,7 +168,21 @@ export class S3TargetEndpoint extends S3EndpointBase {
   }
 }
 
-export interface PostgreSqlSettings extends Required<Pick<dms.CfnEndpoint.PostgreSqlSettingsProperty, 'secretsManagerSecretId' >> {}
+export interface PostgreSqlSettings extends Required<Pick<dms.CfnEndpoint.PostgreSqlSettingsProperty, 'secretsManagerSecretId'>>, Partial<Pick<dms.CfnEndpoint.PostgreSqlSettingsProperty,
+'captureDdls' |
+// "consumeMonotonicEvents" |
+'ddlArtifactsSchema' |
+'executeTimeout' |
+'failTasksOnLobTruncation' |
+// "fetchCacheSize" |
+'heartbeatFrequency' |
+'heartbeatSchema' |
+// "mapJsonbAsClob" |
+// "mapLongVarcharAs" |
+// "mapUnboundedNumericAsString" |
+'mapBooleanAsBoolean' |
+'pluginName' |
+'slotName' >> {}
 
 
 export interface PostgresSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier' >>, Partial<Pick<dms.CfnEndpoint, 'port'>> {
