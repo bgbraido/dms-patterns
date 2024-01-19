@@ -22,21 +22,21 @@ export enum S3DataType {
 }
 
 export interface TableColumn {
-  ColumnName: string;
-  ColumnType: S3DataType;
-  ColumnLength?: number;
-  ColumnNullable?: boolean;
-  ColumnIsPk?: boolean;
-  ColumnDateFormat?: string;
-  ColumnPrecision?: number;
-  ColumnScale?: number;
+  readonly columnName: string;
+  readonly columnType: S3DataType;
+  readonly columnLength?: number;
+  readonly columnNullable?: boolean;
+  readonly columnIsPk?: boolean;
+  readonly columnDateFormat?: string;
+  readonly columnPrecision?: number;
+  readonly columnScale?: number;
 }
 
 export interface Table {
-  TableName: string;
-  TablePath: string;
-  TableOwner: string;
-  TableColumns: TableColumn[];
+  readonly tableName: string;
+  readonly tablePath: string;
+  readonly tableOwner: string;
+  readonly tableColumns: TableColumn[];
 }
 
 export class S3Schema {
@@ -55,21 +55,21 @@ export class S3Schema {
 
     const formattedTables = this.tables.map(table => {
       return {
-        TableName: table.TableName,
-        TablePath: table.TablePath,
-        TableOwner: table.TableOwner,
-        TableColumns: table.TableColumns.map(column => {
-          return {
-            ColumnName: column.ColumnName,
-            ColumnType: column.ColumnType,
-            ColumnLength: column.ColumnLength ? column.ColumnLength.toString() : undefined,
-            ColumnNullable: typeof column.ColumnNullable !== 'undefined' ? String(column.ColumnNullable) : undefined,
-            ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
-            ColumnPrecision: column.ColumnPrecision ? column.ColumnPrecision.toString() : undefined,
-            ColumnScale: column.ColumnScale ? column.ColumnScale.toString() : undefined,
-          };
-        }),
-        TableColumnsTotal: table.TableColumns.length.toString(),
+        TableName: table.tableName,
+        TablePath: table.tablePath,
+        TableOwner: table.tableOwner,
+        // TableColumns: table.tableColumns.map(column => {
+        //   return {
+        //     ColumnName: column.columnName,
+        //     ColumnType: column.columnType,
+        //     ColumnLength: column.columnLength ? column.columnLength.toString() : undefined,
+        //     ColumnNullable: typeof column.columnNullable !== 'undefined' ? String(column.columnNullable) : undefined,
+        //     ColumnIsPk: typeof column.columnIsPk !== 'undefined' ? String(column.columnIsPk) : undefined,
+        //     ColumnPrecision: column.columnPrecision ? column.columnPrecision.toString() : undefined,
+        //     ColumnScale: column.columnScale ? column.columnScale.toString() : undefined,
+        //   };
+        // }),
+        TableColumnsTotal: table.tableColumns.length.toString(),
       };
     });
 

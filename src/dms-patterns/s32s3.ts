@@ -3,7 +3,7 @@ import { Construct } from 'constructs';
 import { ReplicationTypes, TableMappings, TaskSettings } from './core';
 import { S3SourceEndpoint, S3SourceEndpointSettings, S3TargetEndpoint, S3TargetEndpointSettings } from './endpoints';
 
-export interface S32S3Props {
+export interface S32s3Props {
   /**
    * The arn of the S3 bucket to be used as source.
    */
@@ -31,14 +31,14 @@ export interface S32S3Props {
 
 }
 
-export class S32S3 extends Construct {
+export class S32s3 extends Construct {
 
   readonly replicationInstance: dms.CfnReplicationInstance;
   replicationTask: dms.CfnReplicationTask;
   source: S3SourceEndpoint;
   target: S3TargetEndpoint;
 
-  constructor(scope: Construct, id: string, props: S32S3Props) {
+  constructor(scope: Construct, id: string, props: S32s3Props) {
     super(scope, id);
 
     this.source = new S3SourceEndpoint(this, 'S3Source', {

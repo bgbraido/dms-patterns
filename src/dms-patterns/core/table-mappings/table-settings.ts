@@ -7,27 +7,25 @@ export enum RuleType {
 
 // Define the object locator interface
 export interface TableSettingsObjectLocator extends ObjectLocator{
-  schemaName: string;
-  tableName: string;
 }
 
 // Define the parallel load interface
 export interface ParallelLoad {
-  type: 'partitions-auto' | 'subpartitions-auto' | 'partitions-list' | 'ranges' | 'none';
-  numberOfPartitions?: number;
-  collectionCountFromMetadata?: boolean;
-  maxRecordsSkipPerPage?: number;
-  batchSize?: number;
-  partitions?: string[];
-  subpartitions?: string[];
-  columns?: string[];
-  boundaries?: any[][]; // Define a type based on your needs
+  readonly type: 'partitions-auto' | 'subpartitions-auto' | 'partitions-list' | 'ranges' | 'none';
+  readonly numberOfPartitions?: number;
+  readonly collectionCountFromMetadata?: boolean;
+  readonly maxRecordsSkipPerPage?: number;
+  readonly batchSize?: number;
+  readonly partitions?: string[];
+  readonly subpartitions?: string[];
+  readonly columns?: string[];
+  readonly boundaries?: any[][]; // Define a type based on your needs
 }
 
 // Define the LOB settings interface
 export interface LobSettings {
-  mode?: 'limited' | 'unlimited' | 'none';
-  bulkMaxSize?: number;
+  readonly mode?: 'limited' | 'unlimited' | 'none';
+  readonly bulkMaxSize?: number;
 }
 
 // // Define the main parameters interface
@@ -43,9 +41,9 @@ export interface LobSettings {
 
 // Define the TableSettings properties
 export interface TableSettingsProps extends RuleProps {
-  objectLocator: TableSettingsObjectLocator;
-  parallelLoad?: ParallelLoad;
-  lobSettings?: LobSettings;
+  readonly parallelLoad?: ParallelLoad;
+  readonly lobSettings?: LobSettings;
+  readonly objectLocator: TableSettingsObjectLocator;
 }
 
 export class TableSettings extends Rule {

@@ -1,7 +1,7 @@
 
 // https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.CustomizingTasks.TableMapping.SelectionTransformation.Selections.html
 
-import { Rule, RuleProps, ObjectLocator } from './base';
+import { ObjectLocator, Rule, RuleProps } from './base';
 
 export enum SelectionAction {
   INCLUDE = 'include',
@@ -10,30 +10,26 @@ export enum SelectionAction {
 }
 
 export interface SelectionObjectLocator extends ObjectLocator {
-  tableType?: 'table' | 'view' | 'all';
+  readonly tableType?: 'table' | 'view' | 'all';
 }
 
 export interface SelectionRuleProps extends RuleProps {
-  objectLocator: SelectionObjectLocator;
-  loadOrder?: number;
-  filters?: any[]; // Define a type for the filters based on your needs
-  ruleAction: SelectionAction;
+  readonly objectLocator: SelectionObjectLocator;
 }
 
 export class SelectionRule extends Rule {
-  ruleName: any;
-  objectLocator: SelectionObjectLocator;
   loadOrder?: number;
   filters?: any[]; // Define a type for the filters based on your needs
-  ruleAction: SelectionAction;
   ruleType: string = 'selection';
+  objectLocator: SelectionObjectLocator;
 
   constructor(props: SelectionRuleProps) {
     super(props);
     this.objectLocator = props.objectLocator;
     this.loadOrder = props.loadOrder;
     this.filters = props.filters;
-    this.ruleAction = props.ruleAction;
+
+    this.ruleAction = props.ruleAction as SelectionAction;
   }
 
   public format(): any {

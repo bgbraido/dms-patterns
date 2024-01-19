@@ -12,7 +12,7 @@ export class DmsVpcRoleStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const dsmAssumeRolePolicy = new iam.Policy(this, 'DmsVpcRolePolicy', {
+    const dmsAssumeRolePolicy = new iam.Policy(this, 'DmsVpcRolePolicy', {
       statements: [
         new iam.PolicyStatement({
           effect: iam.Effect.ALLOW,
@@ -28,7 +28,7 @@ export class DmsVpcRoleStack extends cdk.Stack {
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
     });
     this.dmsVpcRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonDMSVPCManagementRole'));
-    this.dmsVpcRole.attachInlinePolicy(dsmAssumeRolePolicy);
+    this.dmsVpcRole.attachInlinePolicy(dmsAssumeRolePolicy);
 
 
     this.dmsCloudwatchRole = new iam.Role(this, 'DmsCloudwatchRole', {
@@ -37,7 +37,7 @@ export class DmsVpcRoleStack extends cdk.Stack {
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
     });
     this.dmsCloudwatchRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonDMSCloudWatchLogsRole '));
-    this.dmsCloudwatchRole.attachInlinePolicy(dsmAssumeRolePolicy);
+    this.dmsCloudwatchRole.attachInlinePolicy(dmsAssumeRolePolicy);
 
   }
 }
