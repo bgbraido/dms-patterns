@@ -14,7 +14,7 @@ export interface SelectionObjectLocator extends ObjectLocator {
 }
 
 export interface SelectionRuleProps extends RuleProps {
-  objectLocator: SelectionObjectLocator;
+  readonly objectLocator: SelectionObjectLocator;
 }
 
 export class SelectionRule extends Rule {

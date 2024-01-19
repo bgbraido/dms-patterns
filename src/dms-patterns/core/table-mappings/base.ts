@@ -1,7 +1,6 @@
 export interface ObjectLocator {
   readonly schemaName: string;
   readonly tableName?: string;
-  readonly tableType?: string;
 }
 
 export interface RuleProps {
