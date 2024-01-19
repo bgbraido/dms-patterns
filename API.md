@@ -101,6 +101,105 @@ The tree node.
 ---
 
 
+### S32s3 <a name="S32s3" id="dms-patterns.S32s3"></a>
+
+#### Initializers <a name="Initializers" id="dms-patterns.S32s3.Initializer"></a>
+
+```typescript
+import { S32s3 } from 'dms-patterns'
+
+new S32s3(scope: Construct, id: string, props: S32s3Props)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.S32s3.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#dms-patterns.S32s3.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.S32s3.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.S32s3Props">S32s3Props</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="dms-patterns.S32s3.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="dms-patterns.S32s3.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.S32s3.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#dms-patterns.S32s3Props">S32s3Props</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.S32s3.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="dms-patterns.S32s3.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.S32s3.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="dms-patterns.S32s3.isConstruct"></a>
+
+```typescript
+import { S32s3 } from 'dms-patterns'
+
+S32s3.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="dms-patterns.S32s3.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.S32s3.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="dms-patterns.S32s3.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+
 ## Structs <a name="Structs" id="Structs"></a>
 
 ### S32RdsProps <a name="S32RdsProps" id="dms-patterns.S32RdsProps"></a>
@@ -117,19 +216,62 @@ const s32RdsProps: S32RdsProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.S32RdsProps.property.bucketArn">bucketArn</a></code> | <code>string</code> | The name of the S3 bucket to be used as data source. |
+| <code><a href="#dms-patterns.S32RdsProps.property.bucketName">bucketName</a></code> | <code>string</code> | The name of the S3 bucket to be used as data source. |
 
 ---
 
-##### `bucketArn`<sup>Required</sup> <a name="bucketArn" id="dms-patterns.S32RdsProps.property.bucketArn"></a>
+##### `bucketName`<sup>Required</sup> <a name="bucketName" id="dms-patterns.S32RdsProps.property.bucketName"></a>
 
 ```typescript
-public readonly bucketArn: string;
+public readonly bucketName: string;
 ```
 
 - *Type:* string
 
 The name of the S3 bucket to be used as data source.
+
+---
+
+### S32s3Props <a name="S32s3Props" id="dms-patterns.S32s3Props"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.S32s3Props.Initializer"></a>
+
+```typescript
+import { S32s3Props } from 'dms-patterns'
+
+const s32s3Props: S32s3Props = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.S32s3Props.property.sourceBucket">sourceBucket</a></code> | <code>string</code> | The name of the S3 bucket to be used as source. |
+| <code><a href="#dms-patterns.S32s3Props.property.targetBucket">targetBucket</a></code> | <code>string</code> | The name of the S3 bucket to be used as target. |
+
+---
+
+##### `sourceBucket`<sup>Required</sup> <a name="sourceBucket" id="dms-patterns.S32s3Props.property.sourceBucket"></a>
+
+```typescript
+public readonly sourceBucket: string;
+```
+
+- *Type:* string
+
+The name of the S3 bucket to be used as source.
+
+---
+
+##### `targetBucket`<sup>Required</sup> <a name="targetBucket" id="dms-patterns.S32s3Props.property.targetBucket"></a>
+
+```typescript
+public readonly targetBucket: string;
+```
+
+- *Type:* string
+
+The name of the S3 bucket to be used as target.
 
 ---
 
