@@ -44,7 +44,11 @@ export interface Postgres2S3Props {
   /*
    * The compute configuration for the replication.
    */
-  readonly computeConfig?: any;
+  readonly computeConfig?: dms.CfnReplicationConfig.ComputeConfigProperty;
+  /*
+   * The replication identifier.
+   */
+  readonly replicationConfigIdentifier: string;
 }
 
 export class Postgres2S3 extends Construct {
@@ -79,7 +83,7 @@ export class Postgres2S3 extends Construct {
 
     new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
       computeConfig: props.computeConfig,
-      replicationConfigIdentifier: 'replicationConfigIdentifier',
+      replicationConfigIdentifier: props.replicationConfigIdentifier,
       replicationSettings: replicationSettings,
       replicationType: ReplicationTypes.FULL_LOAD,
       sourceEndpointArn: this.source.ref,
@@ -89,7 +93,7 @@ export class Postgres2S3 extends Construct {
           'rule-id': '1',
           'rule-name': '1',
           'object-locator': {
-            'schema-name': 'yogaidb',
+            'schema-name': '%',
             'table-name': 'experiment',
           },
           'rule-action': 'include',
@@ -97,6 +101,5 @@ export class Postgres2S3 extends Construct {
       },
       targetEndpointArn: this.target.ref,
     });
-
   }
 }

@@ -192,7 +192,7 @@ export interface PostgreSqlSettings extends Required<Pick<dms.CfnEndpoint.Postgr
 'slotName' >> {}
 
 
-export interface PostgresSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier' >>, Partial<Pick<dms.CfnEndpoint, 'port'>> {
+export interface PostgresSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier'>>, Partial<Pick<dms.CfnEndpoint, 'port' | 'sslMode'>> {
   postgresSourceEndpointSettings: PostgreSqlSettings;
 }
 
@@ -209,6 +209,7 @@ export class PostgreSQLEndpoint extends dms.CfnEndpoint {
       endpointIdentifier: props.endpointIdentifier,
       engineName: EndpointEngine.POSTGRES,
       databaseName: props.databaseName,
+      sslMode: props.sslMode,
       postgreSqlSettings: {
         ...props.postgresSourceEndpointSettings,
         secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
@@ -218,24 +219,30 @@ export class PostgreSQLEndpoint extends dms.CfnEndpoint {
   }
 }
 
-
-export interface MySqlSettings extends Required<Pick<dms.CfnEndpoint.MySqlSettingsProperty, 'secretsManagerSecretId'>> { }
+// https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.MySQL.html
+export interface MySqlSettings extends Required<Pick<dms.CfnEndpoint.MySqlSettingsProperty, 'secretsManagerSecretId'>>, Partial<Pick<dms.CfnEndpoint.MySqlSettingsProperty,
+'eventsPollInterval' |
+'afterConnectScript' |
+'serverTimezone' |
+'afterConnectScript' |
+'cleanSourceMetadataOnMismatch'
+>> { }
 export interface MySqlSourceProps extends Required<Pick<dms.CfnEndpoint, 'endpointType' | 'databaseName' | 'endpointIdentifier'>> {
-  MySqlSourceEndpointSettings: MySqlSettings;
+  mySqlSourceEndpointSettings: MySqlSettings;
 }
 
 export class MySqlEndpoint extends dms.CfnEndpoint {
 
   constructor(scope: Construct, id: string, props: MySqlSourceProps) {
 
-    const secretArn = props.MySqlSourceEndpointSettings.secretsManagerSecretId;
+    const secretArn = props.mySqlSourceEndpointSettings.secretsManagerSecretId;
     const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
 
     super(scope, id, {
       endpointType: props.endpointType,
       engineName: EndpointEngine.MYSQL,
       mySqlSettings: {
-        // ...props.MySqlSourceEndpointSettings,
+        ...props.mySqlSourceEndpointSettings,
         secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
         secretsManagerSecretId: secretArn,
       },
