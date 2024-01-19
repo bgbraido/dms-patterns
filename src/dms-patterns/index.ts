@@ -2,6 +2,8 @@
 All Rights Reserved.
 */
 
+export * from './core';
+export * from './endpoints';
 export * from './mysql2s3';
 export * from './postgres2s3';
 export * from './s32rds'; // not working.

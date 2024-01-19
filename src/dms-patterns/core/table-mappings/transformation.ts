@@ -27,60 +27,58 @@ export enum TransformationTarget {
 }
 
 export interface DataTypeParams {
-  type: string;
-  precision?: number;
-  scale?: number | string;
-  length?: number;
+  readonly type: string;
+  readonly precision?: number;
+  readonly scale?: number | string;
+  readonly length?: number;
 }
 
 export interface PrimaryKeyDefinition {
-  name: string;
-  origin?: 'primary-key' | 'unique-index';
-  columns: string[];
+  readonly name: string;
+  readonly origin?: 'primary-key' | 'unique-index';
+  readonly columns: string[];
 }
 
 export interface BeforeImageDefinition {
-  columnPrefix?: string;
-  columnSuffix?: string;
-  columnFilter: 'pk-only' | 'non-lob' | 'all';
+  readonly columnPrefix?: string;
+  readonly columnSuffix?: string;
+  readonly columnFilter: 'pk-only' | 'non-lob' | 'all';
 }
 
 export interface TransformationObjectLocator extends ObjectLocator {
-  tableTablespaceName?: string;
-  indexTablespaceName?: string;
-  columnName?: string;
-  dataType?: DataTypeParams;
+  readonly tableTablespaceName?: string;
+  readonly indexTablespaceName?: string;
+  readonly columnName?: string;
+  readonly dataType?: DataTypeParams;
 }
 
 export interface TransformationRuleProps extends RuleProps {
-  ruleTarget: TransformationTarget;
-  objectLocator: TransformationObjectLocator;
-  ruleAction: TransformationAction;
-  value?: string;
-  oldValue?: string;
-  dataType?: DataTypeParams;
-  expression?: string;
-  primaryKeyDef?: PrimaryKeyDefinition;
-  beforeImageDef?: BeforeImageDefinition;
+  readonly ruleTarget: TransformationTarget;
+  readonly value?: string;
+  readonly oldValue?: string;
+  readonly dataType?: DataTypeParams;
+  readonly expression?: string;
+  readonly primaryKeyDef?: PrimaryKeyDefinition;
+  readonly beforeImageDef?: BeforeImageDefinition;
+  readonly objectLocator: TransformationObjectLocator;
 }
 
 export class TransformationRule extends Rule {
   ruleType: string = 'transformation';
   ruleTarget: TransformationTarget;
-  objectLocator: TransformationObjectLocator;
-  ruleAction: TransformationAction;
   value?: string;
   oldValue?: string;
   dataType?: DataTypeParams;
   expression?: string;
   primaryKeyDef?: PrimaryKeyDefinition;
   beforeImageDef?: BeforeImageDefinition;
+  objectLocator: TransformationObjectLocator;
 
   constructor(props: TransformationRuleProps) {
     super(props);
     this.ruleTarget = props.ruleTarget;
-    this.objectLocator = props.objectLocator;
-    this.ruleAction = props.ruleAction;
+    this.objectLocator = props.objectLocator as TransformationObjectLocator;
+    this.ruleAction = props.ruleAction as TransformationAction;
     this.value = props.value;
     this.oldValue = props.oldValue;
     this.dataType = props.dataType;

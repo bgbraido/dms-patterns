@@ -1,4 +1,4 @@
-# DSM Patterns - a library to facilitate migrations
+# DMS Patterns - a library to facilitate migrations
 
 This library aims at simplifying the task of setting up a migration project using AWS DMS and the AWS CDK, by providing L2 constructs that take care of creating the necessary roles and resources and high-level L3 constructs that represent migration patterns from a database (in the cloud or a DB in AWS RDS) to AWS s3. See the example section below for more details.
 
@@ -10,11 +10,11 @@ Note: this library is just the result of some personal experimentation. It is no
 
 The library is available on npmjs.com and can be installed using:
 
-`npm i dsm-patterns`
+`npm i dms-patterns`
 
 And on pypi:
 
-`pip install dsm-patterns`
+`pip install dms-patterns`
 
 # Usage Examples
 

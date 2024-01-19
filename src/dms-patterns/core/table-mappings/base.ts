@@ -1,23 +1,23 @@
 export interface ObjectLocator {
-  schemaName: string;
-  tableName?: string;
+  readonly schemaName: string;
+  readonly tableName?: string;
+  readonly tableType?: string;
 }
 
-
 export interface RuleProps {
-  ruleId?: string;
-  ruleAction?: string;
-  ruleName: string;
-  objectLocator: ObjectLocator;
-  loadOrder?: number;
-  filters?: any[]; // Define a type for the filters based on your needs
+  readonly ruleId?: string;
+  readonly ruleAction?: string;
+  readonly ruleName: string;
+  // readonly objectLocator: ObjectLocator;
+  readonly loadOrder?: number;
+  readonly filters?: any[]; // Define a type for the filters based on your needs
 }
 
 export class Rule {
   ruleId?: string;
   ruleAction?: string;
   ruleName: string;
-  objectLocator: ObjectLocator;
+  // objectLocator: ObjectLocator;
   loadOrder?: number;
   filters?: any[]; // Define a type for the filters based on your needs
 
@@ -25,7 +25,7 @@ export class Rule {
     this.ruleId = props.ruleId || undefined;
     this.ruleAction = props.ruleAction;
     this.ruleName = props.ruleName;
-    this.objectLocator = props.objectLocator;
+    // this.objectLocator = props.objectLocator;
     this.loadOrder = props.loadOrder;
     this.filters = props.filters;
   }
