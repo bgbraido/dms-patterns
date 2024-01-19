@@ -32,7 +32,12 @@ export function createCreateS3AccessRole(scope: Construct, bucketArn: string): i
           new iam.PolicyStatement({
             actions: ['iam:PassRole'],
             effect: iam.Effect.ALLOW,
-            resources: [bucketArn], // TODO on what resources should we limit this?
+            resources: ['*'], // TODO on what resources should we limit this?
+          }),
+          new iam.PolicyStatement({
+            actions: ['s3:PutObject', 's3:DeleteObject', 's3:PutObjectTagging', 's3:ListBucket'],
+            effect: iam.Effect.ALLOW,
+            resources: [bucketArn, `${bucketArn}/*`],
           }),
         ],
       }),
@@ -84,7 +89,6 @@ export class S3EndpointBase extends dms.CfnEndpoint {
       s3Settings: {
         ...props.s3Settings,
         bucketName: s3.Bucket.fromBucketArn(scope, 'Bucket', props.bucketArn).bucketName,
-        serviceAccessRoleArn: createCreateS3AccessRole(scope, props.bucketArn).roleArn,
       },
     });
   }
@@ -162,7 +166,10 @@ export class S3TargetEndpoint extends S3EndpointBase {
   constructor(scope: Construct, id: string, props: S3TargetEndpointProps) {
     super(scope, id, {
       bucketArn: props.bucketArn,
-      s3Settings: props.s3TargetEndpointSettings,
+      s3Settings: {
+        ...props.s3TargetEndpointSettings,
+        serviceAccessRoleArn: createCreateS3AccessRole(scope, props.bucketArn).roleArn,
+      },
       endpointType: EndpointType.TARGET,
     });
   }
