@@ -1,4 +1,4 @@
-import { S3DataType, S3Schema, Table } from '../src/dms-patterns/core/table-mappings';
+import { S3DataType, S3Schema, Table, TableColumn } from '../src/dms-patterns/core/table-mappings';
 
 test('Constructor', () => {
 
@@ -43,34 +43,34 @@ test('Constructor', () => {
 
   const schema = new S3Schema(
     [new Table({
-      TableName: 'employee',
-      TablePath: 'hr/employee/',
-      TableOwner: 'hr',
-      TableColumns: [{
-        ColumnName: 'Id',
-        ColumnType: S3DataType.INT8,
-        ColumnIsPk: true,
-        ColumnNullable: false,
-      },
-      {
-        ColumnName: 'LastName',
-        ColumnType: S3DataType.STRING,
-        ColumnLength: 20,
-      },
-      {
-        ColumnName: 'FirstName',
-        ColumnType: S3DataType.STRING,
-        ColumnLength: 30,
-      },
-      {
-        ColumnName: 'HireDate',
-        ColumnType: S3DataType.DATETIME,
-      },
-      {
-        ColumnName: 'OfficeLocation',
-        ColumnType: S3DataType.STRING,
-        ColumnLength: 20,
-      }],
+      tableName: 'employee',
+      tablePath: 'hr/employee/',
+      tableOwner: 'hr',
+      tableColumns: [new TableColumn({
+        columnName: 'Id',
+        columnType: S3DataType.INT8,
+        columnIsPk: true,
+        columnNullable: false,
+      }),
+      new TableColumn({
+        columnName: 'LastName',
+        columnType: S3DataType.STRING,
+        columnLength: 20,
+      }),
+      new TableColumn({
+        columnName: 'FirstName',
+        columnType: S3DataType.STRING,
+        columnLength: 30,
+      }),
+      new TableColumn({
+        columnName: 'HireDate',
+        columnType: S3DataType.DATETIME,
+      }),
+      new TableColumn({
+        columnName: 'OfficeLocation',
+        columnType: S3DataType.STRING,
+        columnLength: 20,
+      })],
     })],
   );
 
@@ -101,18 +101,17 @@ test('Add table', () => {
   }, null, 4);
 
   const schema = new S3Schema();
-
   schema.addTable(
     new Table({
-      TableName: 'employee',
-      TablePath: 'hr/employee/',
-      TableOwner: 'hr',
-      TableColumns: [{
-        ColumnName: 'Id',
-        ColumnType: S3DataType.INT8,
-        ColumnIsPk: true,
-        ColumnNullable: false,
-      }],
+      tableName: 'employee',
+      tablePath: 'hr/employee/',
+      tableOwner: 'hr',
+      tableColumns: [new TableColumn({
+        columnName: 'Id',
+        columnType: S3DataType.INT8,
+        columnIsPk: true,
+        columnNullable: false,
+      })],
     }));
 
   const json = schema.toJSON();

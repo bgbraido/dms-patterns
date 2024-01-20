@@ -1,3 +1,4 @@
+// all these classes suffer from https://github.com/aws/jsii/issues/3468
 
 export enum S3DataType {
   BYTE = 'BYTE',
@@ -21,55 +22,82 @@ export enum S3DataType {
   BOOLEAN = 'BOOLEAN'
 }
 
-export interface TableColumn {
-  readonly ColumnName: string;
-  readonly ColumnType: S3DataType;
-  readonly ColumnLength?: number;
-  readonly ColumnNullable?: boolean;
-  readonly ColumnIsPk?: boolean;
-  readonly ColumnDateFormat?: string;
-  readonly ColumnPrecision?: number;
-  readonly ColumnScale?: number;
+export interface TableColumnProps {
+  readonly columnName: string;
+  readonly columnType: S3DataType;
+  readonly columnLength?: number;
+  readonly columnNullable?: boolean;
+  readonly columnIsPk?: boolean;
+  readonly columnDateFormat?: string;
+  readonly columnPrecision?: number;
+  readonly columnScale?: number;
 }
 
-export interface TableProps {
-  readonly TableName: string;
-  readonly TablePath: string;
-  readonly TableOwner: string;
-  readonly TableColumns: TableColumn[];
-}
+export class TableColumn {
 
-export class Table {
+  columnName: string;
+  columnType: S3DataType;
+  columnLength?: number;
+  columnNullable?: boolean;
+  columnIsPk?: boolean;
+  columnDateFormat?: string;
+  columnPrecision?: number;
+  columnScale?: number;
 
-  TableName: string;
-  TablePath: string;
-  TableOwner: string;
-  TableColumns: TableColumn[];
-
-  constructor(props: TableProps) {
-    this.TableName = props.TableName;
-    this.TablePath = props.TablePath;
-    this.TableOwner = props.TableOwner;
-    this.TableColumns = props.TableColumns;
+  constructor(props: TableColumnProps) {
+    this.columnName = props.columnName;
+    this.columnType = props.columnType;
+    this.columnLength = props.columnLength;
+    this.columnNullable = props.columnNullable;
+    this.columnIsPk = props.columnIsPk;
+    this.columnDateFormat = props.columnDateFormat;
+    this.columnPrecision = props.columnPrecision;
+    this.columnScale = props.columnScale;
   }
 
   public format(): any {
     return {
-      TableName: this.TableName,
-      TablePath: this.TablePath,
-      TableOwner: this.TableOwner,
-      TableColumns: this.TableColumns.map(column => {
-        return {
-          ColumnName: column.ColumnName,
-          ColumnType: column.ColumnType,
-          ColumnLength: column.ColumnLength ? column.ColumnLength.toString() : undefined,
-          ColumnNullable: typeof column.ColumnNullable !== 'undefined' ? String(column.ColumnNullable) : undefined,
-          ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
-          ColumnPrecision: column.ColumnPrecision ? column.ColumnPrecision.toString() : undefined,
-          ColumnScale: column.ColumnScale ? column.ColumnScale.toString() : undefined,
-        };
-      }),
-      TableColumnsTotal: this.TableColumns.length.toString(),
+      ColumnName: this.columnName,
+      ColumnType: this.columnType,
+      ColumnLength: this.columnLength ? this.columnLength.toString() : undefined,
+      ColumnNullable: typeof this.columnNullable !== 'undefined' ? String(this.columnNullable) : undefined,
+      ColumnIsPk: typeof this.columnIsPk !== 'undefined' ? String(this.columnIsPk) : undefined,
+      ColumnDateFormat: this.columnDateFormat,
+      ColumnPrecision: this.columnPrecision ? this.columnPrecision.toString() : undefined,
+      ColumnScale: this.columnScale ? this.columnScale.toString() : undefined,
+    };
+  }
+
+}
+
+export interface TableProps {
+  readonly tableName: string;
+  readonly tablePath: string;
+  readonly tableOwner: string;
+  readonly tableColumns: TableColumn[];
+}
+
+export class Table {
+
+  tableName: string;
+  tablePath: string;
+  tableOwner: string;
+  tableColumns: TableColumn[];
+
+  constructor(props: TableProps) {
+    this.tableName = props.tableName;
+    this.tablePath = props.tablePath;
+    this.tableOwner = props.tableOwner;
+    this.tableColumns = props.tableColumns;
+  }
+
+  public format(): any {
+    return {
+      TableName: this.tableName,
+      TablePath: this.tablePath,
+      TableOwner: this.tableOwner,
+      TableColumns: this.tableColumns.map(column => column.format()),
+      TableColumnsTotal: this.tableColumns.length.toString(),
     };
   }
 }
