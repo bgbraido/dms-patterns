@@ -22,21 +22,56 @@ export enum S3DataType {
 }
 
 export interface TableColumn {
-  readonly columnName: string;
-  readonly columnType: S3DataType;
-  readonly columnLength?: number;
-  readonly columnNullable?: boolean;
-  readonly columnIsPk?: boolean;
-  readonly columnDateFormat?: string;
-  readonly columnPrecision?: number;
-  readonly columnScale?: number;
+  readonly ColumnName: string;
+  readonly ColumnType: S3DataType;
+  readonly ColumnLength?: number;
+  readonly ColumnNullable?: boolean;
+  readonly ColumnIsPk?: boolean;
+  readonly ColumnDateFormat?: string;
+  readonly ColumnPrecision?: number;
+  readonly ColumnScale?: number;
 }
 
-export interface Table {
-  readonly tableName: string;
-  readonly tablePath: string;
-  readonly tableOwner: string;
-  readonly tableColumns: TableColumn[];
+export interface TableProps {
+  readonly TableName: string;
+  readonly TablePath: string;
+  readonly TableOwner: string;
+  readonly TableColumns: TableColumn[];
+}
+
+export class Table {
+
+  TableName: string;
+  TablePath: string;
+  TableOwner: string;
+  TableColumns: TableColumn[];
+
+  constructor(props: TableProps) {
+    this.TableName = props.TableName;
+    this.TablePath = props.TablePath;
+    this.TableOwner = props.TableOwner;
+    this.TableColumns = props.TableColumns;
+  }
+
+  public format(): any {
+    return {
+      TableName: this.TableName,
+      TablePath: this.TablePath,
+      TableOwner: this.TableOwner,
+      TableColumns: this.TableColumns.map(column => {
+        return {
+          ColumnName: column.ColumnName,
+          ColumnType: column.ColumnType,
+          ColumnLength: column.ColumnLength ? column.ColumnLength.toString() : undefined,
+          ColumnNullable: typeof column.ColumnNullable !== 'undefined' ? String(column.ColumnNullable) : undefined,
+          ColumnIsPk: typeof column.ColumnIsPk !== 'undefined' ? String(column.ColumnIsPk) : undefined,
+          ColumnPrecision: column.ColumnPrecision ? column.ColumnPrecision.toString() : undefined,
+          ColumnScale: column.ColumnScale ? column.ColumnScale.toString() : undefined,
+        };
+      }),
+      TableColumnsTotal: this.TableColumns.length.toString(),
+    };
+  }
 }
 
 export class S3Schema {
@@ -51,32 +86,14 @@ export class S3Schema {
     this.tables.push(table);
   }
 
+  public format(): any {
+    return {
+      TableCount: this.tables.length.toString(),
+      Tables: this.tables.map(table => table.format()),
+    };
+  }
+
   public toJSON(): string {
-
-    const formattedTables = this.tables.map(table => {
-      return {
-        TableName: table.tableName,
-        TablePath: table.tablePath,
-        TableOwner: table.tableOwner,
-        // TableColumns: table.tableColumns.map(column => {
-        //   return {
-        //     ColumnName: column.columnName,
-        //     ColumnType: column.columnType,
-        //     ColumnLength: column.columnLength ? column.columnLength.toString() : undefined,
-        //     ColumnNullable: typeof column.columnNullable !== 'undefined' ? String(column.columnNullable) : undefined,
-        //     ColumnIsPk: typeof column.columnIsPk !== 'undefined' ? String(column.columnIsPk) : undefined,
-        //     ColumnPrecision: column.columnPrecision ? column.columnPrecision.toString() : undefined,
-        //     ColumnScale: column.columnScale ? column.columnScale.toString() : undefined,
-        //   };
-        // }),
-        TableColumnsTotal: table.tableColumns.length.toString(),
-      };
-    });
-
-    return JSON.stringify(
-      {
-        TableCount: this.tables.length.toString(),
-        Tables: formattedTables,
-      }, null, 4);
+    return JSON.stringify(this.format(), null, 4);
   }
 }

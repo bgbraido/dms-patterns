@@ -6,7 +6,7 @@ export interface ObjectLocator {
 export interface RuleProps {
   readonly ruleId?: string;
   readonly ruleAction?: string;
-  readonly ruleName: string;
+  readonly ruleName?: string;
   // readonly objectLocator: ObjectLocator;
   readonly loadOrder?: number;
   readonly filters?: any[]; // Define a type for the filters based on your needs
@@ -15,15 +15,15 @@ export interface RuleProps {
 export class Rule {
   ruleId?: string;
   ruleAction?: string;
-  ruleName: string;
+  ruleName?: string;
   // objectLocator: ObjectLocator;
   loadOrder?: number;
   filters?: any[]; // Define a type for the filters based on your needs
 
   constructor(props: RuleProps) {
     this.ruleId = props.ruleId || undefined;
+    this.ruleName = props.ruleName || undefined;
     this.ruleAction = props.ruleAction;
-    this.ruleName = props.ruleName;
     // this.objectLocator = props.objectLocator;
     this.loadOrder = props.loadOrder;
     this.filters = props.filters;
@@ -51,9 +51,13 @@ export class TableMappings {
     this.rules.push(rule);
   }
 
+  public format(): any {
+    return { rules: this.rules.map(rules => rules.format()) };
+  }
+
   public toJSON(): string {
     return JSON.stringify(
-      { rules: this.rules.map(rules => rules.format()) }, null, 4);
+      this.format(), null, 4);
   }
 
 }

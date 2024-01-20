@@ -257,3 +257,40 @@ test('Migrate all tables and views in a schema', () => {
   expect(json).toEqual(providedJsonString);
 
 });
+
+
+test('Migrate all tables and views in a schema, without id and name', () => {
+
+  const providedJsonString = JSON.stringify(
+    {
+      rules: [
+        {
+          'rule-type': 'selection',
+          'rule-id': '1',
+          'rule-name': '1',
+          'object-locator': {
+            'schema-name': 'report',
+            'table-name': '%',
+            'table-type': 'all',
+          },
+          'rule-action': 'include',
+        },
+      ],
+    }, null, 4);
+
+  const schema = new TableMappings(
+    [new SelectionRule(
+      {
+        objectLocator: {
+          schemaName: 'report',
+          tableName: '%',
+          tableType: 'all',
+        },
+        ruleAction: SelectionAction.INCLUDE,
+      })],
+  );
+
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
+
+});

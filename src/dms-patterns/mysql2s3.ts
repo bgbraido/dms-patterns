@@ -87,18 +87,7 @@ export class MySql2S3 extends Construct {
       replicationSettings: replicationSettings,
       replicationType: ReplicationTypes.FULL_LOAD,
       sourceEndpointArn: this.source.ref,
-      tableMappings: {
-        rules: [{
-          'rule-type': 'selection',
-          'rule-id': '1',
-          'rule-name': '1',
-          'object-locator': {
-            'schema-name': '%',
-            'table-name': 'experiment',
-          },
-          'rule-action': 'include',
-        }],
-      },
+      tableMappings: props.tableMappings.format(),
       targetEndpointArn: this.target.ref,
     });
   }
