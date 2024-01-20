@@ -1,9 +1,8 @@
-import { S3DataType, S3Schema } from '../src/dms-patterns/core/table-mappings';
+import { S3DataType, S3Schema, Table, TableColumn } from '../src/dms-patterns/core/table-mappings';
 
 test('Constructor', () => {
 
-  JSON.stringify({
-    // const providedJsonString = JSON.stringify({
+  const providedJsonString = JSON.stringify({
     TableCount: '1',
     Tables: [
       {
@@ -43,85 +42,80 @@ test('Constructor', () => {
   }, null, 4);
 
   const schema = new S3Schema(
-    [{
+    [new Table({
       tableName: 'employee',
       tablePath: 'hr/employee/',
       tableOwner: 'hr',
-      tableColumns: [{
+      tableColumns: [new TableColumn({
         columnName: 'Id',
         columnType: S3DataType.INT8,
         columnIsPk: true,
         columnNullable: false,
-      },
-      {
+      }),
+      new TableColumn({
         columnName: 'LastName',
         columnType: S3DataType.STRING,
         columnLength: 20,
-      },
-      {
+      }),
+      new TableColumn({
         columnName: 'FirstName',
         columnType: S3DataType.STRING,
         columnLength: 30,
-      },
-      {
+      }),
+      new TableColumn({
         columnName: 'HireDate',
         columnType: S3DataType.DATETIME,
-      },
-      {
+      }),
+      new TableColumn({
         columnName: 'OfficeLocation',
         columnType: S3DataType.STRING,
         columnLength: 20,
-      }],
-    }],
+      })],
+    })],
   );
 
-  // const json = schema.toJSON();
-  // expect(json).toEqual(providedJsonString);
-  expect(schema).toBeDefined();
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
 });
 
 test('Add table', () => {
 
-  // const providedJsonString = JSON.stringify({
-  JSON.stringify({
-    tableCount: '1',
-    tables: [
+  const providedJsonString = JSON.stringify({
+    TableCount: '1',
+    Tables: [
       {
-        tableName: 'employee',
-        tablePath: 'hr/employee/',
-        tableOwner: 'hr',
-        tableColumns: [
+        TableName: 'employee',
+        TablePath: 'hr/employee/',
+        TableOwner: 'hr',
+        TableColumns: [
           {
-            columnName: 'Id',
-            columnType: 'INT8',
-            columnNullable: 'false',
-            columnIsPk: 'true',
+            ColumnName: 'Id',
+            ColumnType: 'INT8',
+            ColumnNullable: 'false',
+            ColumnIsPk: 'true',
           },
         ],
-        tableColumnsTotal: '1',
+        TableColumnsTotal: '1',
       },
     ],
   }, null, 4);
 
   const schema = new S3Schema();
-
   schema.addTable(
-    {
+    new Table({
       tableName: 'employee',
       tablePath: 'hr/employee/',
       tableOwner: 'hr',
-      tableColumns: [{
+      tableColumns: [new TableColumn({
         columnName: 'Id',
         columnType: S3DataType.INT8,
         columnIsPk: true,
         columnNullable: false,
-      }],
-    },
-  );
+      })],
+    }));
 
-  // const json = schema.toJSON();
-  // expect(json).toEqual(providedJsonString);
-  expect(schema).toBeDefined();
+  const json = schema.toJSON();
+  expect(json).toEqual(providedJsonString);
 
 });
 

@@ -23,20 +23,21 @@ export class SelectionRule extends Rule {
   ruleType: string = 'selection';
   objectLocator: SelectionObjectLocator;
 
+
   constructor(props: SelectionRuleProps) {
     super(props);
     this.objectLocator = props.objectLocator;
     this.loadOrder = props.loadOrder;
     this.filters = props.filters;
-
     this.ruleAction = props.ruleAction as SelectionAction;
   }
 
   public format(): any {
+
     return {
       'rule-type': this.ruleType,
       'rule-id': this.ruleId,
-      'rule-name': this.ruleName,
+      'rule-name': this.ruleName || this.ruleId,
       'object-locator': {
         'schema-name': this.objectLocator.schemaName,
         'table-name': this.objectLocator.tableName,

@@ -1,3 +1,4 @@
+// all these classes suffer from https://github.com/aws/jsii/issues/3468
 
 export enum S3DataType {
   BYTE = 'BYTE',
@@ -21,7 +22,7 @@ export enum S3DataType {
   BOOLEAN = 'BOOLEAN'
 }
 
-export interface TableColumn {
+export interface TableColumnProps {
   readonly columnName: string;
   readonly columnType: S3DataType;
   readonly columnLength?: number;
@@ -32,11 +33,73 @@ export interface TableColumn {
   readonly columnScale?: number;
 }
 
-export interface Table {
+export class TableColumn {
+
+  columnName: string;
+  columnType: S3DataType;
+  columnLength?: number;
+  columnNullable?: boolean;
+  columnIsPk?: boolean;
+  columnDateFormat?: string;
+  columnPrecision?: number;
+  columnScale?: number;
+
+  constructor(props: TableColumnProps) {
+    this.columnName = props.columnName;
+    this.columnType = props.columnType;
+    this.columnLength = props.columnLength;
+    this.columnNullable = props.columnNullable;
+    this.columnIsPk = props.columnIsPk;
+    this.columnDateFormat = props.columnDateFormat;
+    this.columnPrecision = props.columnPrecision;
+    this.columnScale = props.columnScale;
+  }
+
+  public format(): any {
+    return {
+      ColumnName: this.columnName,
+      ColumnType: this.columnType,
+      ColumnLength: this.columnLength ? this.columnLength.toString() : undefined,
+      ColumnNullable: typeof this.columnNullable !== 'undefined' ? String(this.columnNullable) : undefined,
+      ColumnIsPk: typeof this.columnIsPk !== 'undefined' ? String(this.columnIsPk) : undefined,
+      ColumnDateFormat: this.columnDateFormat,
+      ColumnPrecision: this.columnPrecision ? this.columnPrecision.toString() : undefined,
+      ColumnScale: this.columnScale ? this.columnScale.toString() : undefined,
+    };
+  }
+
+}
+
+export interface TableProps {
   readonly tableName: string;
   readonly tablePath: string;
   readonly tableOwner: string;
   readonly tableColumns: TableColumn[];
+}
+
+export class Table {
+
+  tableName: string;
+  tablePath: string;
+  tableOwner: string;
+  tableColumns: TableColumn[];
+
+  constructor(props: TableProps) {
+    this.tableName = props.tableName;
+    this.tablePath = props.tablePath;
+    this.tableOwner = props.tableOwner;
+    this.tableColumns = props.tableColumns;
+  }
+
+  public format(): any {
+    return {
+      TableName: this.tableName,
+      TablePath: this.tablePath,
+      TableOwner: this.tableOwner,
+      TableColumns: this.tableColumns.map(column => column.format()),
+      TableColumnsTotal: this.tableColumns.length.toString(),
+    };
+  }
 }
 
 export class S3Schema {
@@ -51,32 +114,14 @@ export class S3Schema {
     this.tables.push(table);
   }
 
+  public format(): any {
+    return {
+      TableCount: this.tables.length.toString(),
+      Tables: this.tables.map(table => table.format()),
+    };
+  }
+
   public toJSON(): string {
-
-    const formattedTables = this.tables.map(table => {
-      return {
-        TableName: table.tableName,
-        TablePath: table.tablePath,
-        TableOwner: table.tableOwner,
-        // TableColumns: table.tableColumns.map(column => {
-        //   return {
-        //     ColumnName: column.columnName,
-        //     ColumnType: column.columnType,
-        //     ColumnLength: column.columnLength ? column.columnLength.toString() : undefined,
-        //     ColumnNullable: typeof column.columnNullable !== 'undefined' ? String(column.columnNullable) : undefined,
-        //     ColumnIsPk: typeof column.columnIsPk !== 'undefined' ? String(column.columnIsPk) : undefined,
-        //     ColumnPrecision: column.columnPrecision ? column.columnPrecision.toString() : undefined,
-        //     ColumnScale: column.columnScale ? column.columnScale.toString() : undefined,
-        //   };
-        // }),
-        TableColumnsTotal: table.tableColumns.length.toString(),
-      };
-    });
-
-    return JSON.stringify(
-      {
-        TableCount: this.tables.length.toString(),
-        Tables: formattedTables,
-      }, null, 4);
+    return JSON.stringify(this.format(), null, 4);
   }
 }

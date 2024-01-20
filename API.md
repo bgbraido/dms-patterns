@@ -7704,21 +7704,11 @@ const ruleProps: RuleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.RuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.RuleProps.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.RuleProps.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.RuleProps.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.RuleProps.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.RuleProps.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
+| <code><a href="#dms-patterns.RuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -7756,6 +7746,16 @@ public readonly ruleAction: string;
 
 ```typescript
 public readonly ruleId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.RuleProps.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
 ```
 
 - *Type:* string
@@ -8753,22 +8753,12 @@ const selectionRuleProps: SelectionRuleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.SelectionRuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRuleProps.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRuleProps.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRuleProps.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRuleProps.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.SelectionRuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRuleProps.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.SelectionObjectLocator">SelectionObjectLocator</a></code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.SelectionRuleProps.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -8812,6 +8802,16 @@ public readonly ruleId: string;
 
 ---
 
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.SelectionRuleProps.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* string
+
+---
+
 ##### `objectLocator`<sup>Required</sup> <a name="objectLocator" id="dms-patterns.SelectionRuleProps.property.objectLocator"></a>
 
 ```typescript
@@ -8822,93 +8822,32 @@ public readonly objectLocator: SelectionObjectLocator;
 
 ---
 
-### Table <a name="Table" id="dms-patterns.Table"></a>
+### TableColumnProps <a name="TableColumnProps" id="dms-patterns.TableColumnProps"></a>
 
-#### Initializer <a name="Initializer" id="dms-patterns.Table.Initializer"></a>
+#### Initializer <a name="Initializer" id="dms-patterns.TableColumnProps.Initializer"></a>
 
 ```typescript
-import { Table } from 'dms-patterns'
+import { TableColumnProps } from 'dms-patterns'
 
-const table: Table = { ... }
+const tableColumnProps: TableColumnProps = { ... }
 ```
 
 #### Properties <a name="Properties" id="Properties"></a>
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.Table.property.tableColumns">tableColumns</a></code> | <code><a href="#dms-patterns.TableColumn">TableColumn</a>[]</code> | *No description.* |
-| <code><a href="#dms-patterns.Table.property.tableName">tableName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.Table.property.tableOwner">tableOwner</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.Table.property.tablePath">tablePath</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnName">columnName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnType">columnType</a></code> | <code><a href="#dms-patterns.S3DataType">S3DataType</a></code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnDateFormat">columnDateFormat</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnIsPk">columnIsPk</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnLength">columnLength</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnNullable">columnNullable</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnPrecision">columnPrecision</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumnProps.property.columnScale">columnScale</a></code> | <code>number</code> | *No description.* |
 
 ---
 
-##### `tableColumns`<sup>Required</sup> <a name="tableColumns" id="dms-patterns.Table.property.tableColumns"></a>
-
-```typescript
-public readonly tableColumns: TableColumn[];
-```
-
-- *Type:* <a href="#dms-patterns.TableColumn">TableColumn</a>[]
-
----
-
-##### `tableName`<sup>Required</sup> <a name="tableName" id="dms-patterns.Table.property.tableName"></a>
-
-```typescript
-public readonly tableName: string;
-```
-
-- *Type:* string
-
----
-
-##### `tableOwner`<sup>Required</sup> <a name="tableOwner" id="dms-patterns.Table.property.tableOwner"></a>
-
-```typescript
-public readonly tableOwner: string;
-```
-
-- *Type:* string
-
----
-
-##### `tablePath`<sup>Required</sup> <a name="tablePath" id="dms-patterns.Table.property.tablePath"></a>
-
-```typescript
-public readonly tablePath: string;
-```
-
-- *Type:* string
-
----
-
-### TableColumn <a name="TableColumn" id="dms-patterns.TableColumn"></a>
-
-#### Initializer <a name="Initializer" id="dms-patterns.TableColumn.Initializer"></a>
-
-```typescript
-import { TableColumn } from 'dms-patterns'
-
-const tableColumn: TableColumn = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#dms-patterns.TableColumn.property.columnName">columnName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnType">columnType</a></code> | <code><a href="#dms-patterns.S3DataType">S3DataType</a></code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnDateFormat">columnDateFormat</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnIsPk">columnIsPk</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnLength">columnLength</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnNullable">columnNullable</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnPrecision">columnPrecision</a></code> | <code>number</code> | *No description.* |
-| <code><a href="#dms-patterns.TableColumn.property.columnScale">columnScale</a></code> | <code>number</code> | *No description.* |
-
----
-
-##### `columnName`<sup>Required</sup> <a name="columnName" id="dms-patterns.TableColumn.property.columnName"></a>
+##### `columnName`<sup>Required</sup> <a name="columnName" id="dms-patterns.TableColumnProps.property.columnName"></a>
 
 ```typescript
 public readonly columnName: string;
@@ -8918,7 +8857,7 @@ public readonly columnName: string;
 
 ---
 
-##### `columnType`<sup>Required</sup> <a name="columnType" id="dms-patterns.TableColumn.property.columnType"></a>
+##### `columnType`<sup>Required</sup> <a name="columnType" id="dms-patterns.TableColumnProps.property.columnType"></a>
 
 ```typescript
 public readonly columnType: S3DataType;
@@ -8928,7 +8867,7 @@ public readonly columnType: S3DataType;
 
 ---
 
-##### `columnDateFormat`<sup>Optional</sup> <a name="columnDateFormat" id="dms-patterns.TableColumn.property.columnDateFormat"></a>
+##### `columnDateFormat`<sup>Optional</sup> <a name="columnDateFormat" id="dms-patterns.TableColumnProps.property.columnDateFormat"></a>
 
 ```typescript
 public readonly columnDateFormat: string;
@@ -8938,7 +8877,7 @@ public readonly columnDateFormat: string;
 
 ---
 
-##### `columnIsPk`<sup>Optional</sup> <a name="columnIsPk" id="dms-patterns.TableColumn.property.columnIsPk"></a>
+##### `columnIsPk`<sup>Optional</sup> <a name="columnIsPk" id="dms-patterns.TableColumnProps.property.columnIsPk"></a>
 
 ```typescript
 public readonly columnIsPk: boolean;
@@ -8948,7 +8887,7 @@ public readonly columnIsPk: boolean;
 
 ---
 
-##### `columnLength`<sup>Optional</sup> <a name="columnLength" id="dms-patterns.TableColumn.property.columnLength"></a>
+##### `columnLength`<sup>Optional</sup> <a name="columnLength" id="dms-patterns.TableColumnProps.property.columnLength"></a>
 
 ```typescript
 public readonly columnLength: number;
@@ -8958,7 +8897,7 @@ public readonly columnLength: number;
 
 ---
 
-##### `columnNullable`<sup>Optional</sup> <a name="columnNullable" id="dms-patterns.TableColumn.property.columnNullable"></a>
+##### `columnNullable`<sup>Optional</sup> <a name="columnNullable" id="dms-patterns.TableColumnProps.property.columnNullable"></a>
 
 ```typescript
 public readonly columnNullable: boolean;
@@ -8968,7 +8907,7 @@ public readonly columnNullable: boolean;
 
 ---
 
-##### `columnPrecision`<sup>Optional</sup> <a name="columnPrecision" id="dms-patterns.TableColumn.property.columnPrecision"></a>
+##### `columnPrecision`<sup>Optional</sup> <a name="columnPrecision" id="dms-patterns.TableColumnProps.property.columnPrecision"></a>
 
 ```typescript
 public readonly columnPrecision: number;
@@ -8978,13 +8917,74 @@ public readonly columnPrecision: number;
 
 ---
 
-##### `columnScale`<sup>Optional</sup> <a name="columnScale" id="dms-patterns.TableColumn.property.columnScale"></a>
+##### `columnScale`<sup>Optional</sup> <a name="columnScale" id="dms-patterns.TableColumnProps.property.columnScale"></a>
 
 ```typescript
 public readonly columnScale: number;
 ```
 
 - *Type:* number
+
+---
+
+### TableProps <a name="TableProps" id="dms-patterns.TableProps"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.TableProps.Initializer"></a>
+
+```typescript
+import { TableProps } from 'dms-patterns'
+
+const tableProps: TableProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.TableProps.property.tableColumns">tableColumns</a></code> | <code><a href="#dms-patterns.TableColumn">TableColumn</a>[]</code> | *No description.* |
+| <code><a href="#dms-patterns.TableProps.property.tableName">tableName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableProps.property.tableOwner">tableOwner</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableProps.property.tablePath">tablePath</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `tableColumns`<sup>Required</sup> <a name="tableColumns" id="dms-patterns.TableProps.property.tableColumns"></a>
+
+```typescript
+public readonly tableColumns: TableColumn[];
+```
+
+- *Type:* <a href="#dms-patterns.TableColumn">TableColumn</a>[]
+
+---
+
+##### `tableName`<sup>Required</sup> <a name="tableName" id="dms-patterns.TableProps.property.tableName"></a>
+
+```typescript
+public readonly tableName: string;
+```
+
+- *Type:* string
+
+---
+
+##### `tableOwner`<sup>Required</sup> <a name="tableOwner" id="dms-patterns.TableProps.property.tableOwner"></a>
+
+```typescript
+public readonly tableOwner: string;
+```
+
+- *Type:* string
+
+---
+
+##### `tablePath`<sup>Required</sup> <a name="tablePath" id="dms-patterns.TableProps.property.tablePath"></a>
+
+```typescript
+public readonly tablePath: string;
+```
+
+- *Type:* string
 
 ---
 
@@ -9041,24 +9041,14 @@ const tableSettingsProps: TableSettingsProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.TableSettingsProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableSettingsProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.TableSettingsObjectLocator">TableSettingsObjectLocator</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.lobSettings">lobSettings</a></code> | <code><a href="#dms-patterns.LobSettings">LobSettings</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettingsProps.property.parallelLoad">parallelLoad</a></code> | <code><a href="#dms-patterns.ParallelLoad">ParallelLoad</a></code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.TableSettingsProps.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -9096,6 +9086,16 @@ public readonly ruleAction: string;
 
 ```typescript
 public readonly ruleId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.TableSettingsProps.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
 ```
 
 - *Type:* string
@@ -9229,11 +9229,11 @@ const transformationRuleProps: TransformationRuleProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.TransformationRuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TransformationRuleProps.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.TransformationObjectLocator">TransformationObjectLocator</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.ruleTarget">ruleTarget</a></code> | <code><a href="#dms-patterns.TransformationTarget">TransformationTarget</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.beforeImageDef">beforeImageDef</a></code> | <code><a href="#dms-patterns.BeforeImageDefinition">BeforeImageDefinition</a></code> | *No description.* |
@@ -9242,16 +9242,6 @@ const transformationRuleProps: TransformationRuleProps = { ... }
 | <code><a href="#dms-patterns.TransformationRuleProps.property.oldValue">oldValue</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.primaryKeyDef">primaryKeyDef</a></code> | <code><a href="#dms-patterns.PrimaryKeyDefinition">PrimaryKeyDefinition</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRuleProps.property.value">value</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.TransformationRuleProps.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -9289,6 +9279,16 @@ public readonly ruleAction: string;
 
 ```typescript
 public readonly ruleId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.TransformationRuleProps.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
 ```
 
 - *Type:* string
@@ -9418,21 +9418,11 @@ public format(): any
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.Rule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.Rule.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.Rule.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.Rule.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.Rule.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.Rule.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
+| <code><a href="#dms-patterns.Rule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 
 ---
 
@@ -9476,6 +9466,16 @@ public readonly ruleId: string;
 
 ---
 
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.Rule.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* string
+
+---
+
 
 ### S3Schema <a name="S3Schema" id="dms-patterns.S3Schema"></a>
 
@@ -9504,6 +9504,7 @@ new S3Schema(tables?: Table[])
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#dms-patterns.S3Schema.addTable">addTable</a></code> | *No description.* |
+| <code><a href="#dms-patterns.S3Schema.format">format</a></code> | *No description.* |
 | <code><a href="#dms-patterns.S3Schema.toJSON">toJSON</a></code> | *No description.* |
 
 ---
@@ -9519,6 +9520,12 @@ public addTable(table: Table): void
 - *Type:* <a href="#dms-patterns.Table">Table</a>
 
 ---
+
+##### `format` <a name="format" id="dms-patterns.S3Schema.format"></a>
+
+```typescript
+public format(): any
+```
 
 ##### `toJSON` <a name="toJSON" id="dms-patterns.S3Schema.toJSON"></a>
 
@@ -9587,23 +9594,13 @@ public format(): any
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.SelectionRule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.SelectionRule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.SelectionObjectLocator">SelectionObjectLocator</a></code> | *No description.* |
 | <code><a href="#dms-patterns.SelectionRule.property.ruleType">ruleType</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.SelectionRule.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -9647,6 +9644,16 @@ public readonly ruleId: string;
 
 ---
 
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.SelectionRule.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
+```
+
+- *Type:* string
+
+---
+
 ##### `objectLocator`<sup>Required</sup> <a name="objectLocator" id="dms-patterns.SelectionRule.property.objectLocator"></a>
 
 ```typescript
@@ -9664,6 +9671,228 @@ public readonly ruleType: string;
 ```
 
 - *Type:* string
+
+---
+
+
+### Table <a name="Table" id="dms-patterns.Table"></a>
+
+#### Initializers <a name="Initializers" id="dms-patterns.Table.Initializer"></a>
+
+```typescript
+import { Table } from 'dms-patterns'
+
+new Table(props: TableProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.Table.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.TableProps">TableProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.Table.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#dms-patterns.TableProps">TableProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.Table.format">format</a></code> | *No description.* |
+
+---
+
+##### `format` <a name="format" id="dms-patterns.Table.format"></a>
+
+```typescript
+public format(): any
+```
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.Table.property.tableColumns">tableColumns</a></code> | <code><a href="#dms-patterns.TableColumn">TableColumn</a>[]</code> | *No description.* |
+| <code><a href="#dms-patterns.Table.property.tableName">tableName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.Table.property.tableOwner">tableOwner</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.Table.property.tablePath">tablePath</a></code> | <code>string</code> | *No description.* |
+
+---
+
+##### `tableColumns`<sup>Required</sup> <a name="tableColumns" id="dms-patterns.Table.property.tableColumns"></a>
+
+```typescript
+public readonly tableColumns: TableColumn[];
+```
+
+- *Type:* <a href="#dms-patterns.TableColumn">TableColumn</a>[]
+
+---
+
+##### `tableName`<sup>Required</sup> <a name="tableName" id="dms-patterns.Table.property.tableName"></a>
+
+```typescript
+public readonly tableName: string;
+```
+
+- *Type:* string
+
+---
+
+##### `tableOwner`<sup>Required</sup> <a name="tableOwner" id="dms-patterns.Table.property.tableOwner"></a>
+
+```typescript
+public readonly tableOwner: string;
+```
+
+- *Type:* string
+
+---
+
+##### `tablePath`<sup>Required</sup> <a name="tablePath" id="dms-patterns.Table.property.tablePath"></a>
+
+```typescript
+public readonly tablePath: string;
+```
+
+- *Type:* string
+
+---
+
+
+### TableColumn <a name="TableColumn" id="dms-patterns.TableColumn"></a>
+
+#### Initializers <a name="Initializers" id="dms-patterns.TableColumn.Initializer"></a>
+
+```typescript
+import { TableColumn } from 'dms-patterns'
+
+new TableColumn(props: TableColumnProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.TableColumn.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.TableColumnProps">TableColumnProps</a></code> | *No description.* |
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.TableColumn.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#dms-patterns.TableColumnProps">TableColumnProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.TableColumn.format">format</a></code> | *No description.* |
+
+---
+
+##### `format` <a name="format" id="dms-patterns.TableColumn.format"></a>
+
+```typescript
+public format(): any
+```
+
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.TableColumn.property.columnName">columnName</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnType">columnType</a></code> | <code><a href="#dms-patterns.S3DataType">S3DataType</a></code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnDateFormat">columnDateFormat</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnIsPk">columnIsPk</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnLength">columnLength</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnNullable">columnNullable</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnPrecision">columnPrecision</a></code> | <code>number</code> | *No description.* |
+| <code><a href="#dms-patterns.TableColumn.property.columnScale">columnScale</a></code> | <code>number</code> | *No description.* |
+
+---
+
+##### `columnName`<sup>Required</sup> <a name="columnName" id="dms-patterns.TableColumn.property.columnName"></a>
+
+```typescript
+public readonly columnName: string;
+```
+
+- *Type:* string
+
+---
+
+##### `columnType`<sup>Required</sup> <a name="columnType" id="dms-patterns.TableColumn.property.columnType"></a>
+
+```typescript
+public readonly columnType: S3DataType;
+```
+
+- *Type:* <a href="#dms-patterns.S3DataType">S3DataType</a>
+
+---
+
+##### `columnDateFormat`<sup>Optional</sup> <a name="columnDateFormat" id="dms-patterns.TableColumn.property.columnDateFormat"></a>
+
+```typescript
+public readonly columnDateFormat: string;
+```
+
+- *Type:* string
+
+---
+
+##### `columnIsPk`<sup>Optional</sup> <a name="columnIsPk" id="dms-patterns.TableColumn.property.columnIsPk"></a>
+
+```typescript
+public readonly columnIsPk: boolean;
+```
+
+- *Type:* boolean
+
+---
+
+##### `columnLength`<sup>Optional</sup> <a name="columnLength" id="dms-patterns.TableColumn.property.columnLength"></a>
+
+```typescript
+public readonly columnLength: number;
+```
+
+- *Type:* number
+
+---
+
+##### `columnNullable`<sup>Optional</sup> <a name="columnNullable" id="dms-patterns.TableColumn.property.columnNullable"></a>
+
+```typescript
+public readonly columnNullable: boolean;
+```
+
+- *Type:* boolean
+
+---
+
+##### `columnPrecision`<sup>Optional</sup> <a name="columnPrecision" id="dms-patterns.TableColumn.property.columnPrecision"></a>
+
+```typescript
+public readonly columnPrecision: number;
+```
+
+- *Type:* number
+
+---
+
+##### `columnScale`<sup>Optional</sup> <a name="columnScale" id="dms-patterns.TableColumn.property.columnScale"></a>
+
+```typescript
+public readonly columnScale: number;
+```
+
+- *Type:* number
 
 ---
 
@@ -9695,6 +9924,7 @@ new TableMappings(rules?: Rule[])
 | **Name** | **Description** |
 | --- | --- |
 | <code><a href="#dms-patterns.TableMappings.addRule">addRule</a></code> | *No description.* |
+| <code><a href="#dms-patterns.TableMappings.format">format</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TableMappings.toJSON">toJSON</a></code> | *No description.* |
 
 ---
@@ -9710,6 +9940,12 @@ public addRule(rule: Rule): void
 - *Type:* <a href="#dms-patterns.Rule">Rule</a>
 
 ---
+
+##### `format` <a name="format" id="dms-patterns.TableMappings.format"></a>
+
+```typescript
+public format(): any
+```
 
 ##### `toJSON` <a name="toJSON" id="dms-patterns.TableMappings.toJSON"></a>
 
@@ -9778,25 +10014,15 @@ public format(): any
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.TableSettings.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TableSettings.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.TableSettingsObjectLocator">TableSettingsObjectLocator</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.ruleType">ruleType</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.lobSettings">lobSettings</a></code> | <code><a href="#dms-patterns.LobSettings">LobSettings</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TableSettings.property.parallelLoad">parallelLoad</a></code> | <code><a href="#dms-patterns.ParallelLoad">ParallelLoad</a></code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.TableSettings.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -9834,6 +10060,16 @@ public readonly ruleAction: string;
 
 ```typescript
 public readonly ruleId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.TableSettings.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
 ```
 
 - *Type:* string
@@ -9954,11 +10190,11 @@ public format(): any
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#dms-patterns.TransformationRule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.filters">filters</a></code> | <code>any[]</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.loadOrder">loadOrder</a></code> | <code>number</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.ruleAction">ruleAction</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.ruleId">ruleId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.TransformationRule.property.ruleName">ruleName</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.objectLocator">objectLocator</a></code> | <code><a href="#dms-patterns.TransformationObjectLocator">TransformationObjectLocator</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.ruleTarget">ruleTarget</a></code> | <code><a href="#dms-patterns.TransformationTarget">TransformationTarget</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.ruleType">ruleType</a></code> | <code>string</code> | *No description.* |
@@ -9968,16 +10204,6 @@ public format(): any
 | <code><a href="#dms-patterns.TransformationRule.property.oldValue">oldValue</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.primaryKeyDef">primaryKeyDef</a></code> | <code><a href="#dms-patterns.PrimaryKeyDefinition">PrimaryKeyDefinition</a></code> | *No description.* |
 | <code><a href="#dms-patterns.TransformationRule.property.value">value</a></code> | <code>string</code> | *No description.* |
-
----
-
-##### `ruleName`<sup>Required</sup> <a name="ruleName" id="dms-patterns.TransformationRule.property.ruleName"></a>
-
-```typescript
-public readonly ruleName: string;
-```
-
-- *Type:* string
 
 ---
 
@@ -10015,6 +10241,16 @@ public readonly ruleAction: string;
 
 ```typescript
 public readonly ruleId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `ruleName`<sup>Optional</sup> <a name="ruleName" id="dms-patterns.TransformationRule.property.ruleName"></a>
+
+```typescript
+public readonly ruleName: string;
 ```
 
 - *Type:* string

@@ -81,7 +81,26 @@ const computeConfig: dms.CfnReplicationConfig.ComputeConfigProperty = {
   ],
 };
 ```
-and the replication in itself:
+and some rules for e.g. selecting the right tables:
+
+```typescript
+    const tableMappings = new TableMappings(
+      [
+        new SelectionRule(
+          {
+            objectLocator: {
+              schemaName: 'schemaname',
+              tableName: 'tableName',
+            },
+            ruleAction: SelectionAction.INCLUDE,
+          },
+        ),
+      ],
+    );
+```
+
+The tableMappings object takes care of assigning the rules a name and id if not specified and comes with a format method, see below.
+Finally, we can write the replication in itself:
 
 ```typescript
 new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
@@ -89,18 +108,7 @@ new dms.CfnReplicationConfig(this, 'ReplicationConfig', {
   replicationConfigIdentifier: 'replicationConfigIdentifier',
   replicationType: ReplicationTypes.FULL_LOAD,
   sourceEndpointArn: this.source.ref,
-  tableMappings: {
-        rules: [{
-          'rule-type': 'selection',
-          'rule-id': '1',
-          'rule-name': '1',
-          'object-locator': {
-            'schema-name': '%',
-            'table-name': 'experiment',
-          },
-          'rule-action': 'include',
-        }],
-      },
+  tableMappings: tableMappings.format(),
   targetEndpointArn: this.target.ref,
 });
 
