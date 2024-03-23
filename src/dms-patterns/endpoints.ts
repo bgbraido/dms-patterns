@@ -721,7 +721,7 @@ export interface MySqlSettings {
   readonly sslMode?: string;
 }
 
-export interface MySqlSourceProps {
+export interface MySqlProps {
   /**
    * The database name on the MongoDB source endpoint.
    *
@@ -741,9 +741,9 @@ export interface MySqlSourceProps {
    */
   readonly endpointType: string;
   /**
-   * The settings for the source mysql endpoint.
+   * The settings for the mysql endpoint.
    */
-  readonly mySqlSourceEndpointSettings: MySqlSettings;
+  readonly mySqlEndpointSettings: MySqlSettings;
 }
 
 /**
@@ -752,16 +752,16 @@ export interface MySqlSourceProps {
  */
 export class MySqlEndpoint extends dms.CfnEndpoint {
 
-  constructor(scope: Construct, id: string, props: MySqlSourceProps) {
+  constructor(scope: Construct, id: string, props: MySqlProps) {
 
-    const secretArn = props.mySqlSourceEndpointSettings.secretsManagerSecretId;
+    const secretArn = props.mySqlEndpointSettings.secretsManagerSecretId;
     const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
 
     super(scope, id, {
       endpointType: props.endpointType,
       engineName: EndpointEngine.MYSQL,
       mySqlSettings: {
-        ...props.mySqlSourceEndpointSettings,
+        ...props.mySqlEndpointSettings,
         secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
         secretsManagerSecretId: secretArn,
       },

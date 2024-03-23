@@ -14,7 +14,7 @@ export interface MySql2S3Props {
   /*
    * The settings for the source mysql endpoint.
    */
-  readonly mySqlSourceEndpointSettings: MySqlSettings;
+  readonly mySqlEndpointSettings: MySqlSettings;
   /*
    * The arn of the S3 bucket to be used as target.
    */
@@ -65,7 +65,7 @@ export class MySql2S3 extends Construct {
       endpointType: EndpointType.SOURCE,
       databaseName: props.databaseName,
       endpointIdentifier: `${scope}-mysqlEndpoint`,
-      mySqlSourceEndpointSettings: props.mySqlSourceEndpointSettings,
+      mySqlEndpointSettings: props.mySqlEndpointSettings,
     });
 
     this.target = new S3TargetEndpoint(this, 'S3Target', {
