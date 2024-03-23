@@ -602,7 +602,7 @@ export interface PostgreSqlSettings {
   readonly secretsManagerSecretId: string;
 }
 
-export interface PostgresSourceProps {
+export interface PostgresProps {
   /**
    * The database name on the MongoDB source endpoint.
    *
@@ -624,7 +624,7 @@ export interface PostgresSourceProps {
   /**
    * The settings for the source postgres endpoint.
    */
-  readonly postgresSourceEndpointSettings: PostgreSqlSettings;
+  readonly postgresEndpointSettings: PostgreSqlSettings;
   /**
    * The port value for the source endpoint.
    *
@@ -647,9 +647,9 @@ export interface PostgresSourceProps {
  */
 export class PostgreSQLEndpoint extends dms.CfnEndpoint {
 
-  constructor(scope: Construct, id: string, props: PostgresSourceProps) {
+  constructor(scope: Construct, id: string, props: PostgresProps) {
 
-    const secretArn = props.postgresSourceEndpointSettings.secretsManagerSecretId;
+    const secretArn = props.postgresEndpointSettings.secretsManagerSecretId;
     const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
 
     super(scope, id, {
@@ -659,7 +659,7 @@ export class PostgreSQLEndpoint extends dms.CfnEndpoint {
       databaseName: props.databaseName,
       sslMode: props.sslMode,
       postgreSqlSettings: {
-        ...props.postgresSourceEndpointSettings,
+        ...props.postgresEndpointSettings,
         secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
         secretsManagerSecretId: secretArn,
       },

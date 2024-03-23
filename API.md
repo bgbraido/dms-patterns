@@ -1031,14 +1031,14 @@ This construct creates a role for DMS to access the secrets manager secret.
 ```typescript
 import { MySqlEndpoint } from 'dms-patterns'
 
-new MySqlEndpoint(scope: Construct, id: string, props: MySqlSourceProps)
+new MySqlEndpoint(scope: Construct, id: string, props: MySqlProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#dms-patterns.MySqlEndpoint.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#dms-patterns.MySqlEndpoint.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.MySqlEndpoint.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.MySqlSourceProps">MySqlSourceProps</a></code> | *No description.* |
+| <code><a href="#dms-patterns.MySqlEndpoint.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.MySqlProps">MySqlProps</a></code> | *No description.* |
 
 ---
 
@@ -1056,7 +1056,7 @@ new MySqlEndpoint(scope: Construct, id: string, props: MySqlSourceProps)
 
 ##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.MySqlEndpoint.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#dms-patterns.MySqlSourceProps">MySqlSourceProps</a>
+- *Type:* <a href="#dms-patterns.MySqlProps">MySqlProps</a>
 
 ---
 
@@ -2219,14 +2219,14 @@ This construct creates a role for DMS to access the secrets manager secret.
 ```typescript
 import { PostgreSQLEndpoint } from 'dms-patterns'
 
-new PostgreSQLEndpoint(scope: Construct, id: string, props: PostgresSourceProps)
+new PostgreSQLEndpoint(scope: Construct, id: string, props: PostgresProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
 | <code><a href="#dms-patterns.PostgreSQLEndpoint.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
 | <code><a href="#dms-patterns.PostgreSQLEndpoint.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.PostgreSQLEndpoint.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.PostgresSourceProps">PostgresSourceProps</a></code> | *No description.* |
+| <code><a href="#dms-patterns.PostgreSQLEndpoint.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.PostgresProps">PostgresProps</a></code> | *No description.* |
 
 ---
 
@@ -2244,7 +2244,7 @@ new PostgreSQLEndpoint(scope: Construct, id: string, props: PostgresSourceProps)
 
 ##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.PostgreSQLEndpoint.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#dms-patterns.PostgresSourceProps">PostgresSourceProps</a>
+- *Type:* <a href="#dms-patterns.PostgresProps">PostgresProps</a>
 
 ---
 
@@ -6783,7 +6783,7 @@ const mySql2S3Props: MySql2S3Props = { ... }
 | --- | --- | --- |
 | <code><a href="#dms-patterns.MySql2S3Props.property.bucketArn">bucketArn</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.MySql2S3Props.property.databaseName">databaseName</a></code> | <code>string</code> | *No description.* |
-| <code><a href="#dms-patterns.MySql2S3Props.property.mySqlSourceEndpointSettings">mySqlSourceEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2S3Props.property.mySqlEndpointSettings">mySqlEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | *No description.* |
 | <code><a href="#dms-patterns.MySql2S3Props.property.replicationConfigIdentifier">replicationConfigIdentifier</a></code> | <code>string</code> | *No description.* |
 | <code><a href="#dms-patterns.MySql2S3Props.property.tableMappings">tableMappings</a></code> | <code><a href="#dms-patterns.TableMappings">TableMappings</a></code> | *No description.* |
 | <code><a href="#dms-patterns.MySql2S3Props.property.computeConfig">computeConfig</a></code> | <code>aws-cdk-lib.aws_dms.CfnReplicationConfig.ComputeConfigProperty</code> | *No description.* |
@@ -6813,10 +6813,10 @@ public readonly databaseName: string;
 
 ---
 
-##### `mySqlSourceEndpointSettings`<sup>Required</sup> <a name="mySqlSourceEndpointSettings" id="dms-patterns.MySql2S3Props.property.mySqlSourceEndpointSettings"></a>
+##### `mySqlEndpointSettings`<sup>Required</sup> <a name="mySqlEndpointSettings" id="dms-patterns.MySql2S3Props.property.mySqlEndpointSettings"></a>
 
 ```typescript
-public readonly mySqlSourceEndpointSettings: MySqlSettings;
+public readonly mySqlEndpointSettings: MySqlSettings;
 ```
 
 - *Type:* <a href="#dms-patterns.MySqlSettings">MySqlSettings</a>
@@ -6880,6 +6880,81 @@ public readonly taskSettings: TaskSettings;
 ```
 
 - *Type:* <a href="#dms-patterns.TaskSettings">TaskSettings</a>
+
+---
+
+### MySqlProps <a name="MySqlProps" id="dms-patterns.MySqlProps"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.MySqlProps.Initializer"></a>
+
+```typescript
+import { MySqlProps } from 'dms-patterns'
+
+const mySqlProps: MySqlProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MySqlProps.property.databaseName">databaseName</a></code> | <code>string</code> | The database name on the MongoDB source endpoint. |
+| <code><a href="#dms-patterns.MySqlProps.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
+| <code><a href="#dms-patterns.MySqlProps.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
+| <code><a href="#dms-patterns.MySqlProps.property.mySqlEndpointSettings">mySqlEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | The settings for the mysql endpoint. |
+
+---
+
+##### `databaseName`<sup>Required</sup> <a name="databaseName" id="dms-patterns.MySqlProps.property.databaseName"></a>
+
+```typescript
+public readonly databaseName: string;
+```
+
+- *Type:* string
+
+The database name on the MongoDB source endpoint.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename)
+
+---
+
+##### `endpointIdentifier`<sup>Required</sup> <a name="endpointIdentifier" id="dms-patterns.MySqlProps.property.endpointIdentifier"></a>
+
+```typescript
+public readonly endpointIdentifier: string;
+```
+
+- *Type:* string
+
+The database endpoint identifier.
+
+Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier)
+
+---
+
+##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.MySqlProps.property.endpointType"></a>
+
+```typescript
+public readonly endpointType: string;
+```
+
+- *Type:* string
+
+The type of endpoint.
+
+---
+
+##### `mySqlEndpointSettings`<sup>Required</sup> <a name="mySqlEndpointSettings" id="dms-patterns.MySqlProps.property.mySqlEndpointSettings"></a>
+
+```typescript
+public readonly mySqlEndpointSettings: MySqlSettings;
+```
+
+- *Type:* <a href="#dms-patterns.MySqlSettings">MySqlSettings</a>
+
+The settings for the mysql endpoint.
 
 ---
 
@@ -7001,81 +7076,6 @@ The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default i
 > When `engine_name` is set to S3, the only allowed value is `none` .
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode)
-
----
-
-### MySqlSourceProps <a name="MySqlSourceProps" id="dms-patterns.MySqlSourceProps"></a>
-
-#### Initializer <a name="Initializer" id="dms-patterns.MySqlSourceProps.Initializer"></a>
-
-```typescript
-import { MySqlSourceProps } from 'dms-patterns'
-
-const mySqlSourceProps: MySqlSourceProps = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#dms-patterns.MySqlSourceProps.property.databaseName">databaseName</a></code> | <code>string</code> | The database name on the MongoDB source endpoint. |
-| <code><a href="#dms-patterns.MySqlSourceProps.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
-| <code><a href="#dms-patterns.MySqlSourceProps.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
-| <code><a href="#dms-patterns.MySqlSourceProps.property.mySqlSourceEndpointSettings">mySqlSourceEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | The settings for the source mysql endpoint. |
-
----
-
-##### `databaseName`<sup>Required</sup> <a name="databaseName" id="dms-patterns.MySqlSourceProps.property.databaseName"></a>
-
-```typescript
-public readonly databaseName: string;
-```
-
-- *Type:* string
-
-The database name on the MongoDB source endpoint.
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename)
-
----
-
-##### `endpointIdentifier`<sup>Required</sup> <a name="endpointIdentifier" id="dms-patterns.MySqlSourceProps.property.endpointIdentifier"></a>
-
-```typescript
-public readonly endpointIdentifier: string;
-```
-
-- *Type:* string
-
-The database endpoint identifier.
-
-Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier)
-
----
-
-##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.MySqlSourceProps.property.endpointType"></a>
-
-```typescript
-public readonly endpointType: string;
-```
-
-- *Type:* string
-
-The type of endpoint.
-
----
-
-##### `mySqlSourceEndpointSettings`<sup>Required</sup> <a name="mySqlSourceEndpointSettings" id="dms-patterns.MySqlSourceProps.property.mySqlSourceEndpointSettings"></a>
-
-```typescript
-public readonly mySqlSourceEndpointSettings: MySqlSettings;
-```
-
-- *Type:* <a href="#dms-patterns.MySqlSettings">MySqlSettings</a>
-
-The settings for the source mysql endpoint.
 
 ---
 
@@ -7350,6 +7350,113 @@ public readonly taskSettings: TaskSettings;
 
 ---
 
+### PostgresProps <a name="PostgresProps" id="dms-patterns.PostgresProps"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.PostgresProps.Initializer"></a>
+
+```typescript
+import { PostgresProps } from 'dms-patterns'
+
+const postgresProps: PostgresProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.PostgresProps.property.databaseName">databaseName</a></code> | <code>string</code> | The database name on the MongoDB source endpoint. |
+| <code><a href="#dms-patterns.PostgresProps.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
+| <code><a href="#dms-patterns.PostgresProps.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
+| <code><a href="#dms-patterns.PostgresProps.property.postgresEndpointSettings">postgresEndpointSettings</a></code> | <code><a href="#dms-patterns.PostgreSqlSettings">PostgreSqlSettings</a></code> | The settings for the source postgres endpoint. |
+| <code><a href="#dms-patterns.PostgresProps.property.port">port</a></code> | <code>number</code> | The port value for the source endpoint. |
+| <code><a href="#dms-patterns.PostgresProps.property.sslMode">sslMode</a></code> | <code>string</code> | The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default is `none` . |
+
+---
+
+##### `databaseName`<sup>Required</sup> <a name="databaseName" id="dms-patterns.PostgresProps.property.databaseName"></a>
+
+```typescript
+public readonly databaseName: string;
+```
+
+- *Type:* string
+
+The database name on the MongoDB source endpoint.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename)
+
+---
+
+##### `endpointIdentifier`<sup>Required</sup> <a name="endpointIdentifier" id="dms-patterns.PostgresProps.property.endpointIdentifier"></a>
+
+```typescript
+public readonly endpointIdentifier: string;
+```
+
+- *Type:* string
+
+The database endpoint identifier.
+
+Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier)
+
+---
+
+##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.PostgresProps.property.endpointType"></a>
+
+```typescript
+public readonly endpointType: string;
+```
+
+- *Type:* string
+
+The type of endpoint.
+
+---
+
+##### `postgresEndpointSettings`<sup>Required</sup> <a name="postgresEndpointSettings" id="dms-patterns.PostgresProps.property.postgresEndpointSettings"></a>
+
+```typescript
+public readonly postgresEndpointSettings: PostgreSqlSettings;
+```
+
+- *Type:* <a href="#dms-patterns.PostgreSqlSettings">PostgreSqlSettings</a>
+
+The settings for the source postgres endpoint.
+
+---
+
+##### `port`<sup>Optional</sup> <a name="port" id="dms-patterns.PostgresProps.property.port"></a>
+
+```typescript
+public readonly port: number;
+```
+
+- *Type:* number
+
+The port value for the source endpoint.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-port](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-port)
+
+---
+
+##### `sslMode`<sup>Optional</sup> <a name="sslMode" id="dms-patterns.PostgresProps.property.sslMode"></a>
+
+```typescript
+public readonly sslMode: string;
+```
+
+- *Type:* string
+
+The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default is `none` .
+
+> When `engine_name` is set to S3, the only allowed value is `none` .
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode)
+
+---
+
 ### PostgreSqlSettings <a name="PostgreSqlSettings" id="dms-patterns.PostgreSqlSettings"></a>
 
 #### Initializer <a name="Initializer" id="dms-patterns.PostgreSqlSettings.Initializer"></a>
@@ -7530,113 +7637,6 @@ When used with the `CdcStartPosition` request parameter for the AWS DMS API , th
 For more information about setting the `CdcStartPosition` request parameter, see [Determining a CDC native start point](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native) in the *AWS Database Migration Service User Guide* . For more information about using `CdcStartPosition` , see [CreateReplicationTask](https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html) , [StartReplicationTask](https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html) , and [ModifyReplicationTask](https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html) .
 
 > [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html#cfn-dms-endpoint-postgresqlsettings-slotname](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-postgresqlsettings.html#cfn-dms-endpoint-postgresqlsettings-slotname)
-
----
-
-### PostgresSourceProps <a name="PostgresSourceProps" id="dms-patterns.PostgresSourceProps"></a>
-
-#### Initializer <a name="Initializer" id="dms-patterns.PostgresSourceProps.Initializer"></a>
-
-```typescript
-import { PostgresSourceProps } from 'dms-patterns'
-
-const postgresSourceProps: PostgresSourceProps = { ... }
-```
-
-#### Properties <a name="Properties" id="Properties"></a>
-
-| **Name** | **Type** | **Description** |
-| --- | --- | --- |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.databaseName">databaseName</a></code> | <code>string</code> | The database name on the MongoDB source endpoint. |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.postgresSourceEndpointSettings">postgresSourceEndpointSettings</a></code> | <code><a href="#dms-patterns.PostgreSqlSettings">PostgreSqlSettings</a></code> | The settings for the source postgres endpoint. |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.port">port</a></code> | <code>number</code> | The port value for the source endpoint. |
-| <code><a href="#dms-patterns.PostgresSourceProps.property.sslMode">sslMode</a></code> | <code>string</code> | The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default is `none` . |
-
----
-
-##### `databaseName`<sup>Required</sup> <a name="databaseName" id="dms-patterns.PostgresSourceProps.property.databaseName"></a>
-
-```typescript
-public readonly databaseName: string;
-```
-
-- *Type:* string
-
-The database name on the MongoDB source endpoint.
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-databasename)
-
----
-
-##### `endpointIdentifier`<sup>Required</sup> <a name="endpointIdentifier" id="dms-patterns.PostgresSourceProps.property.endpointIdentifier"></a>
-
-```typescript
-public readonly endpointIdentifier: string;
-```
-
-- *Type:* string
-
-The database endpoint identifier.
-
-Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier)
-
----
-
-##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.PostgresSourceProps.property.endpointType"></a>
-
-```typescript
-public readonly endpointType: string;
-```
-
-- *Type:* string
-
-The type of endpoint.
-
----
-
-##### `postgresSourceEndpointSettings`<sup>Required</sup> <a name="postgresSourceEndpointSettings" id="dms-patterns.PostgresSourceProps.property.postgresSourceEndpointSettings"></a>
-
-```typescript
-public readonly postgresSourceEndpointSettings: PostgreSqlSettings;
-```
-
-- *Type:* <a href="#dms-patterns.PostgreSqlSettings">PostgreSqlSettings</a>
-
-The settings for the source postgres endpoint.
-
----
-
-##### `port`<sup>Optional</sup> <a name="port" id="dms-patterns.PostgresSourceProps.property.port"></a>
-
-```typescript
-public readonly port: number;
-```
-
-- *Type:* number
-
-The port value for the source endpoint.
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-port](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-mongodbsettings.html#cfn-dms-endpoint-mongodbsettings-port)
-
----
-
-##### `sslMode`<sup>Optional</sup> <a name="sslMode" id="dms-patterns.PostgresSourceProps.property.sslMode"></a>
-
-```typescript
-public readonly sslMode: string;
-```
-
-- *Type:* string
-
-The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default is `none` .
-
-> When `engine_name` is set to S3, the only allowed value is `none` .
-
-> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-sslmode)
 
 ---
 
