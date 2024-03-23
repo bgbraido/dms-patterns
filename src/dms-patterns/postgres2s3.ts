@@ -65,7 +65,7 @@ export class Postgres2S3 extends Construct {
       endpointType: EndpointType.SOURCE,
       databaseName: props.databaseName,
       endpointIdentifier: `${scope}-postgresEndpoint`,
-      postgresSourceEndpointSettings: props.postgresEndpointSettings,
+      postgresEndpointSettings: props.postgresEndpointSettings,
     });
 
     this.target = new S3TargetEndpoint(this, 'S3Target', {

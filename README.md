@@ -28,7 +28,7 @@ this.source = new MySqlEndpoint(this, 'SourceEndpoint', {
   endpointType: EndpointType.SOURCE,
   databaseName: *******,
   endpointIdentifier: 'mysqlEndpoint',
-  mySqlSourceEndpointSettings: {
+  mySqlEndpointSettings: {
     secretsManagerSecretId: 'arn:aws:secretsmanager:**********',
  },
 });
@@ -120,7 +120,7 @@ So far I demonstrated a couple of L2 constructs for the endpoints; but an L3 con
 ```typescript
 const mySql2S3 = new MySql2S3(this, 'mysql2S3', {
   databaseName: ******,
-  mySqlSourceEndpointSettings: {
+  mySqlEndpointSettings: {
     secretsManagerSecretId: 'arn:aws:secretsmanager:*******',
   },
   bucketArn: bucketArn,

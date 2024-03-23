@@ -37,7 +37,7 @@ export class MySql2S3Stack extends cdk.Stack {
 
     const mySql2S3 = new MySql2S3(this, 'mysql2S3', {
       databaseName: 'xxxxxxx',
-      mySqlSourceEndpointSettings: {
+      mySqlEndpointSettings: {
         secretsManagerSecretId: 'arn:aws:secretsmanager:xxxxxxxxxxxxxxxxx',
       },
       bucketArn: bucket.bucketArn,
