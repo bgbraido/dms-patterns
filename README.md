@@ -131,3 +131,8 @@ const mySql2S3 = new MySql2S3(this, 'mysql2S3', {
 ```
 
 which makes migrations easier. A similar pattern exists for postgres, and more could be added in future versions.
+
+# Contributors
+
+Matteo Giani
+Bruno Baido
