@@ -18,6 +18,21 @@ And on pypi:
 
 # Usage Examples
 
+## Deploying the dms-vpc-role
+
+If you use the AWS CLI or the AWS DMS API for your database migration, you must add three IAM roles to your AWS account before you can use the features of AWS DMS (see [here](https://docs.aws.amazon.com/dms/latest/userguide/security-iam.html#CHAP_Security.APIRole)).
+
+The dms-patterns includes a stack that creates these roles for you. Here is an example of how to use it:
+
+```typescript
+import { DmsVpcRoleStack } from 'dms-patterns';
+
+const app = new cdk.App();
+new DmsVpcRoleStack(app, 'DmsVpcRoleStack');
+```
+
+adding an explicit dependency might be required to make sure that the role is deployed prior to the migration stack.
+
 ## Migrating data from MySQL to S3
 
 This section demonstrates creating a stack that migrates data from a MySQL database to S3. The stack is created in TypeScript, but the same constructs are available in Python.
