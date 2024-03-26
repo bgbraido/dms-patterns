@@ -36,7 +36,7 @@ export class DmsVpcRoleStack extends cdk.Stack {
       description: 'Service role for AWS DMS Logs',
       assumedBy: new iam.ServicePrincipal('dms.amazonaws.com'),
     });
-    this.dmsCloudwatchRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonDMSCloudWatchLogsRole '));
+    this.dmsCloudwatchRole.addManagedPolicy(iam.ManagedPolicy.fromAwsManagedPolicyName('service-role/AmazonDMSCloudWatchLogsRole'));
     this.dmsCloudwatchRole.attachInlinePolicy(dmsAssumeRolePolicy);
 
   }

@@ -21,6 +21,11 @@ const project = new awscdk.AwsCdkConstructLibrary({
   devDeps: ['eslint-plugin-cdk', 'cdk-nag'],
   peerDeps: [],
   packageName: 'dms-patterns',
+  gitignore: [
+    'cdk.out',
+    '*.js',
+    '*.d.ts',
+  ],
 });
 
 project.eslint?.addPlugins('cdk');
