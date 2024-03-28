@@ -25,6 +25,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     'cdk.out',
     '*.js',
     '*.d.ts',
+    'test/microsoftsqlserver.test.ts'
   ],
 });
 
