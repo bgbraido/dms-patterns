@@ -8,6 +8,7 @@ export enum EndpointEngine {
   MYSQL = 'mysql',
   POSTGRES = 'postgres',
   S3 = 's3',
+  SQLSERVER = 'sqlserver',
 }
 
 export enum EndpointType {
@@ -769,4 +770,182 @@ export class MySqlEndpoint extends dms.CfnEndpoint {
   }
 }
 
+/**
+     * Provides information that defines a Microsoft SQL Server endpoint.
+     *
+     * This information includes the output format of records applied to the endpoint and details of transaction and control table data information. For information about other available settings, see [Extra connection attributes when using SQL Server as a source for AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.ConnectionAttrib) and [Extra connection attributes when using SQL Server as a target for AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.ConnectionAttrib) in the *AWS Database Migration Service User Guide* .
+     *
+     * @struct
+     * @stability external
+     * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html
+     */
+export interface MicrosoftSqlServerSettings {
+  /**
+   * The maximum size of the packets (in bytes) used to transfer data using BCP.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-bcppacketsize
+   */
+  readonly bcpPacketSize?: number;
+  /**
+   * Specifies a file group for the AWS DMS internal tables.
+   *
+   * When the replication task starts, all the internal AWS DMS control tables (awsdms_ apply_exception, awsdms_apply, awsdms_changes) are created for the specified file group.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-controltablesfilegroup
+   */
+  readonly controlTablesFileGroup?: string;
+  /**
+   * Forces LOB lookup on inline LOB.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-forceloblookup
+   */
+  readonly forceLobLookup?: boolean | cdk.IResolvable;
+  /**
+   * Endpoint connection password.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-password
+   */
+  readonly password?: string;
+  /**
+   * Cleans and recreates table metadata information on the replication instance when a mismatch occurs.
+   *
+   * An example is a situation where running an alter DDL statement on a table might result in different information about the table cached in the replication instance.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-querysinglealwaysonnode
+   */
+  readonly querySingleAlwaysOnNode?: boolean | cdk.IResolvable;
+  /**
+   * When this attribute is set to `Y` , AWS DMS only reads changes from transaction log backups and doesn't read from the active transaction log file during ongoing replication.
+   *
+   * Setting this parameter to `Y` enables you to control active transaction log file growth during full load and ongoing replication tasks. However, it can add some source latency to ongoing replication.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-readbackuponly
+   */
+  readonly readBackupOnly?: boolean | cdk.IResolvable;
+  /**
+   * Use this attribute to minimize the need to access the backup log and enable AWS DMS to prevent truncation using one of the following two methods.
+   *
+   * *Start transactions in the database:* This is the default method. When this method is used, AWS DMS prevents TLOG truncation by mimicking a transaction in the database. As long as such a transaction is open, changes that appear after the transaction started aren't truncated. If you need Microsoft Replication to be enabled in your database, then you must choose this method.
+   *
+   * *Exclusively use sp_repldone within a single task* : When this method is used, AWS DMS reads the changes and then uses sp_repldone to mark the TLOG transactions as ready for truncation. Although this method doesn't involve any transactional activities, it can only be used when Microsoft Replication isn't running. Also, when using this method, only one AWS DMS task can access the database at any given time. Therefore, if you need to run parallel AWS DMS tasks against the same database, use the default method.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-safeguardpolicy
+   */
+  readonly safeguardPolicy?: string;
+  /**
+   * The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS as the trusted entity and grants the required permissions to access the value in `SecretsManagerSecret` .
+   *
+   * The role must allow the `iam:PassRole` action. `SecretsManagerSecret` has the value of the AWS Secrets Manager secret that allows access to the SQL Server endpoint.
+   *
+   * > You can specify one of two sets of values for these permissions. You can specify the values for this setting and `SecretsManagerSecretId` . Or you can specify clear-text values for `UserName` , `Password` , `ServerName` , and `Port` . You can't specify both.
+   * >
+   * > For more information on creating this `SecretsManagerSecret` , the corresponding `SecretsManagerAccessRoleArn` , and the `SecretsManagerSecretId` that is required to access it, see [Using secrets to access AWS Database Migration Service resources](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager) in the *AWS Database Migration Service User Guide* .
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanageraccessrolearn
+   */
+  readonly secretsManagerAccessRoleArn?: string;
+  /**
+   * The full ARN, partial ARN, or display name of the `SecretsManagerSecret` that contains the MicrosoftSQLServer endpoint connection details.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanagersecretid
+   */
+  readonly secretsManagerSecretId: string;
+  /**
+   * Indicates the mode used to fetch CDC data.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-tlogaccessmode
+   */
+  readonly tlogAccessMode?: string;
+  /**
+   * Use the `TrimSpaceInChar` source endpoint setting to right-trim data on CHAR and NCHAR data types during migration.
+   *
+   * Setting `TrimSpaceInChar` does not left-trim data. The default value is `true` .
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-trimspaceinchar
+   */
+  readonly trimSpaceInChar?: boolean | cdk.IResolvable;
+  /**
+   * Use this to attribute to transfer data for full-load operations using BCP.
+   *
+   * When the target table contains an identity column that does not exist in the source table, you must disable the use BCP for loading table option.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usebcpfullload
+   */
+  readonly useBcpFullLoad?: boolean | cdk.IResolvable;
+  /**
+   * When this attribute is set to `Y` , DMS processes third-party transaction log backups if they are created in native format.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usethirdpartybackupdevice
+   */
+  readonly useThirdPartyBackupDevice?: boolean | cdk.IResolvable;
+}
 
+export interface MicrosoftSQLServerProps {
+  /**
+   * Database name for the endpoint.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-databasename
+   */
+  readonly databaseName?: string;
+  /**
+   * Endpoint connection user name.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-username
+   */
+  readonly username?: string;
+  /**
+   * Fully qualified domain name of the endpoint.
+   *
+   * For an Amazon RDS SQL Server instance, this is the output of [DescribeDBInstances](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) , in the `[Endpoint](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html) .Address` field.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-servername
+   */
+  readonly serverName?: string;
+  /**
+   * Endpoint TCP port.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-port
+   */
+  readonly port?: number;
+  /**
+  * The type of endpoint.
+  */
+  readonly endpointType: string;
+  /**
+   * The database endpoint identifier.
+   *
+   * Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
+   *
+   * @see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier
+   */
+  readonly endpointIdentifier: string;
+  /**
+   * The settings for the source microsoft sqlserver endpoint.
+   */
+  readonly microsoftSqlServerEndpointSettings: MicrosoftSqlServerSettings;
+}
+
+/**
+ * An endpoint for a MicrosoftSQLServer source.
+ * This construct creates a role for DMS to access the secrets manager secret.
+ */
+export class MicrosoftSQLServerEndpoint extends dms.CfnEndpoint {
+
+  constructor(scope: Construct, id: string, props: MicrosoftSQLServerProps) {
+
+    const secretArn = props.microsoftSqlServerEndpointSettings.secretsManagerSecretId;
+    const secretsManagerAccessRole = createSecretsManagerAccessRole(scope, cdk.Stack.of(scope).region, secretArn, props.endpointIdentifier);
+
+    super(scope, id, {
+      endpointType: props.endpointType,
+      endpointIdentifier: props.endpointIdentifier,
+      engineName: EndpointEngine.SQLSERVER,
+      databaseName: props.databaseName,
+      microsoftSqlServerSettings: {
+        ...props.microsoftSqlServerEndpointSettings,
+        secretsManagerAccessRoleArn: secretsManagerAccessRole.roleArn,
+        secretsManagerSecretId: secretArn,
+      },
+    });
+  }
+}
