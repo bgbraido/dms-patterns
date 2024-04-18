@@ -3,7 +3,7 @@
 import * as dms from 'aws-cdk-lib/aws-dms';
 import { Construct } from 'constructs';
 import { ReplicationTypes, TableMappings, TaskSettings } from './core';
-import { EndpointType, MySqlEndpoint, MySqlSettings, S3TargetEndpoint, S3TargetEndpointSettings } from './endpoints';
+import { EndpointType, MySqlEndpoint, MySqlSettings } from './endpoints';
 
 export interface MySql2MySqlProps {
     /**
