@@ -899,6 +899,127 @@ public readonly dmsVpcRole: Role;
 ---
 
 
+### MySql2MySql <a name="MySql2MySql" id="dms-patterns.MySql2MySql"></a>
+
+#### Initializers <a name="Initializers" id="dms-patterns.MySql2MySql.Initializer"></a>
+
+```typescript
+import { MySql2MySql } from 'dms-patterns'
+
+new MySql2MySql(scope: Construct, id: string, props: MySql2MySqlProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MySql2MySql.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySql.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySql.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.MySql2MySqlProps">MySql2MySqlProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="dms-patterns.MySql2MySql.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="dms-patterns.MySql2MySql.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.MySql2MySql.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#dms-patterns.MySql2MySqlProps">MySql2MySqlProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.MySql2MySql.toString">toString</a></code> | Returns a string representation of this construct. |
+
+---
+
+##### `toString` <a name="toString" id="dms-patterns.MySql2MySql.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.MySql2MySql.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="dms-patterns.MySql2MySql.isConstruct"></a>
+
+```typescript
+import { MySql2MySql } from 'dms-patterns'
+
+MySql2MySql.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="dms-patterns.MySql2MySql.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MySql2MySql.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#dms-patterns.MySql2MySql.property.source">source</a></code> | <code><a href="#dms-patterns.MySqlEndpoint">MySqlEndpoint</a></code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySql.property.target">target</a></code> | <code><a href="#dms-patterns.MySqlEndpoint">MySqlEndpoint</a></code> | *No description.* |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="dms-patterns.MySql2MySql.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `source`<sup>Required</sup> <a name="source" id="dms-patterns.MySql2MySql.property.source"></a>
+
+```typescript
+public readonly source: MySqlEndpoint;
+```
+
+- *Type:* <a href="#dms-patterns.MySqlEndpoint">MySqlEndpoint</a>
+
+---
+
+##### `target`<sup>Required</sup> <a name="target" id="dms-patterns.MySql2MySql.property.target"></a>
+
+```typescript
+public readonly target: MySqlEndpoint;
+```
+
+- *Type:* <a href="#dms-patterns.MySqlEndpoint">MySqlEndpoint</a>
+
+---
+
+
 ### MySql2S3 <a name="MySql2S3" id="dms-patterns.MySql2S3"></a>
 
 #### Initializers <a name="Initializers" id="dms-patterns.MySql2S3.Initializer"></a>
@@ -6764,6 +6885,172 @@ public readonly mode: string;
 ```
 
 - *Type:* string
+
+---
+
+### MySql2MySqlProps <a name="MySql2MySqlProps" id="dms-patterns.MySql2MySqlProps"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.MySql2MySqlProps.Initializer"></a>
+
+```typescript
+import { MySql2MySqlProps } from 'dms-patterns'
+
+const mySql2MySqlProps: MySql2MySqlProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.replicationConfigIdentifier">replicationConfigIdentifier</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.replicationInstance">replicationInstance</a></code> | <code>aws-cdk-lib.aws_dms.CfnReplicationInstance</code> | Replication Instance created in the State Stack. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.replicationType">replicationType</a></code> | <code><a href="#dms-patterns.ReplicationTypes">ReplicationTypes</a></code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.sourceDatabaseName">sourceDatabaseName</a></code> | <code>string</code> | The name of the source database. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.sourceEndpointSettings">sourceEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | The settings for the source database. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.tableMappings">tableMappings</a></code> | <code><a href="#dms-patterns.TableMappings">TableMappings</a></code> | The table mappings to be used for the replication. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.targetDatabaseName">targetDatabaseName</a></code> | <code>string</code> | The name of the target database. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.targetEndpointSettings">targetEndpointSettings</a></code> | <code><a href="#dms-patterns.MySqlSettings">MySqlSettings</a></code> | The settings for the target database. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.computeConfig">computeConfig</a></code> | <code>aws-cdk-lib.aws_dms.CfnReplicationConfig.ComputeConfigProperty</code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.replicationInstanceClass">replicationInstanceClass</a></code> | <code>string</code> | The replication instance class to use. |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.replicationSettings">replicationSettings</a></code> | <code>any</code> | *No description.* |
+| <code><a href="#dms-patterns.MySql2MySqlProps.property.taskSettings">taskSettings</a></code> | <code><a href="#dms-patterns.TaskSettings">TaskSettings</a></code> | Optional JSON settings for AWS DMS Serverless replications. |
+
+---
+
+##### `replicationConfigIdentifier`<sup>Required</sup> <a name="replicationConfigIdentifier" id="dms-patterns.MySql2MySqlProps.property.replicationConfigIdentifier"></a>
+
+```typescript
+public readonly replicationConfigIdentifier: string;
+```
+
+- *Type:* string
+
+---
+
+##### `replicationInstance`<sup>Required</sup> <a name="replicationInstance" id="dms-patterns.MySql2MySqlProps.property.replicationInstance"></a>
+
+```typescript
+public readonly replicationInstance: CfnReplicationInstance;
+```
+
+- *Type:* aws-cdk-lib.aws_dms.CfnReplicationInstance
+
+Replication Instance created in the State Stack.
+
+---
+
+##### `replicationType`<sup>Required</sup> <a name="replicationType" id="dms-patterns.MySql2MySqlProps.property.replicationType"></a>
+
+```typescript
+public readonly replicationType: ReplicationTypes;
+```
+
+- *Type:* <a href="#dms-patterns.ReplicationTypes">ReplicationTypes</a>
+
+---
+
+##### `sourceDatabaseName`<sup>Required</sup> <a name="sourceDatabaseName" id="dms-patterns.MySql2MySqlProps.property.sourceDatabaseName"></a>
+
+```typescript
+public readonly sourceDatabaseName: string;
+```
+
+- *Type:* string
+
+The name of the source database.
+
+---
+
+##### `sourceEndpointSettings`<sup>Required</sup> <a name="sourceEndpointSettings" id="dms-patterns.MySql2MySqlProps.property.sourceEndpointSettings"></a>
+
+```typescript
+public readonly sourceEndpointSettings: MySqlSettings;
+```
+
+- *Type:* <a href="#dms-patterns.MySqlSettings">MySqlSettings</a>
+
+The settings for the source database.
+
+---
+
+##### `tableMappings`<sup>Required</sup> <a name="tableMappings" id="dms-patterns.MySql2MySqlProps.property.tableMappings"></a>
+
+```typescript
+public readonly tableMappings: TableMappings;
+```
+
+- *Type:* <a href="#dms-patterns.TableMappings">TableMappings</a>
+
+The table mappings to be used for the replication.
+
+---
+
+##### `targetDatabaseName`<sup>Required</sup> <a name="targetDatabaseName" id="dms-patterns.MySql2MySqlProps.property.targetDatabaseName"></a>
+
+```typescript
+public readonly targetDatabaseName: string;
+```
+
+- *Type:* string
+
+The name of the target database.
+
+---
+
+##### `targetEndpointSettings`<sup>Required</sup> <a name="targetEndpointSettings" id="dms-patterns.MySql2MySqlProps.property.targetEndpointSettings"></a>
+
+```typescript
+public readonly targetEndpointSettings: MySqlSettings;
+```
+
+- *Type:* <a href="#dms-patterns.MySqlSettings">MySqlSettings</a>
+
+The settings for the target database.
+
+---
+
+##### `computeConfig`<sup>Optional</sup> <a name="computeConfig" id="dms-patterns.MySql2MySqlProps.property.computeConfig"></a>
+
+```typescript
+public readonly computeConfig: ComputeConfigProperty;
+```
+
+- *Type:* aws-cdk-lib.aws_dms.CfnReplicationConfig.ComputeConfigProperty
+
+---
+
+##### `replicationInstanceClass`<sup>Optional</sup> <a name="replicationInstanceClass" id="dms-patterns.MySql2MySqlProps.property.replicationInstanceClass"></a>
+
+```typescript
+public readonly replicationInstanceClass: string;
+```
+
+- *Type:* string
+- *Default:* dms.t2.small
+
+The replication instance class to use.
+
+---
+
+##### `replicationSettings`<sup>Optional</sup> <a name="replicationSettings" id="dms-patterns.MySql2MySqlProps.property.replicationSettings"></a>
+
+```typescript
+public readonly replicationSettings: any;
+```
+
+- *Type:* any
+
+---
+
+##### `taskSettings`<sup>Optional</sup> <a name="taskSettings" id="dms-patterns.MySql2MySqlProps.property.taskSettings"></a>
+
+```typescript
+public readonly taskSettings: TaskSettings;
+```
+
+- *Type:* <a href="#dms-patterns.TaskSettings">TaskSettings</a>
+
+Optional JSON settings for AWS DMS Serverless replications.
 
 ---
 
