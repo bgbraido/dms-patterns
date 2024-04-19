@@ -899,6 +899,1073 @@ public readonly dmsVpcRole: Role;
 ---
 
 
+### MicrosoftSQLServerEndpoint <a name="MicrosoftSQLServerEndpoint" id="dms-patterns.MicrosoftSQLServerEndpoint"></a>
+
+An endpoint for a MicrosoftSQLServer source.
+
+This construct creates a role for DMS to access the secrets manager secret.
+
+#### Initializers <a name="Initializers" id="dms-patterns.MicrosoftSQLServerEndpoint.Initializer"></a>
+
+```typescript
+import { MicrosoftSQLServerEndpoint } from 'dms-patterns'
+
+new MicrosoftSQLServerEndpoint(scope: Construct, id: string, props: MicrosoftSQLServerProps)
+```
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.id">id</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.props">props</a></code> | <code><a href="#dms-patterns.MicrosoftSQLServerProps">MicrosoftSQLServerProps</a></code> | *No description.* |
+
+---
+
+##### `scope`<sup>Required</sup> <a name="scope" id="dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.scope"></a>
+
+- *Type:* constructs.Construct
+
+---
+
+##### `id`<sup>Required</sup> <a name="id" id="dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.id"></a>
+
+- *Type:* string
+
+---
+
+##### `props`<sup>Required</sup> <a name="props" id="dms-patterns.MicrosoftSQLServerEndpoint.Initializer.parameter.props"></a>
+
+- *Type:* <a href="#dms-patterns.MicrosoftSQLServerProps">MicrosoftSQLServerProps</a>
+
+---
+
+#### Methods <a name="Methods" id="Methods"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.overrideLogicalId">overrideLogicalId</a></code> | Overrides the auto-generated logical ID with a specific ID. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addDeletionOverride">addDeletionOverride</a></code> | Syntactic sugar for `addOverride(path, undefined)`. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addDependency">addDependency</a></code> | Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addDependsOn">addDependsOn</a></code> | Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addMetadata">addMetadata</a></code> | Add a value to the CloudFormation Resource Metadata. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addOverride">addOverride</a></code> | Adds an override to the synthesized CloudFormation resource. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addPropertyDeletionOverride">addPropertyDeletionOverride</a></code> | Adds an override that deletes the value of a property from the resource definition. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.addPropertyOverride">addPropertyOverride</a></code> | Adds an override to a resource property. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.applyRemovalPolicy">applyRemovalPolicy</a></code> | Sets the deletion policy of the resource based on the removal policy specified. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.getAtt">getAtt</a></code> | Returns a token for an runtime attribute of this resource. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.getMetadata">getMetadata</a></code> | Retrieve a value value from the CloudFormation Resource Metadata. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.obtainDependencies">obtainDependencies</a></code> | Retrieves an array of resources this resource depends on. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.obtainResourceDependencies">obtainResourceDependencies</a></code> | Get a shallow copy of dependencies between this resource and other resources in the same stack. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.removeDependency">removeDependency</a></code> | Indicates that this resource no longer depends on another resource. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.replaceDependency">replaceDependency</a></code> | Replaces one dependency with another. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.inspect">inspect</a></code> | Examines the CloudFormation resource and discloses attributes. |
+
+---
+
+##### `toString` <a name="toString" id="dms-patterns.MicrosoftSQLServerEndpoint.toString"></a>
+
+```typescript
+public toString(): string
+```
+
+Returns a string representation of this construct.
+
+##### `overrideLogicalId` <a name="overrideLogicalId" id="dms-patterns.MicrosoftSQLServerEndpoint.overrideLogicalId"></a>
+
+```typescript
+public overrideLogicalId(newLogicalId: string): void
+```
+
+Overrides the auto-generated logical ID with a specific ID.
+
+###### `newLogicalId`<sup>Required</sup> <a name="newLogicalId" id="dms-patterns.MicrosoftSQLServerEndpoint.overrideLogicalId.parameter.newLogicalId"></a>
+
+- *Type:* string
+
+The new logical ID to use for this stack element.
+
+---
+
+##### `addDeletionOverride` <a name="addDeletionOverride" id="dms-patterns.MicrosoftSQLServerEndpoint.addDeletionOverride"></a>
+
+```typescript
+public addDeletionOverride(path: string): void
+```
+
+Syntactic sugar for `addOverride(path, undefined)`.
+
+###### `path`<sup>Required</sup> <a name="path" id="dms-patterns.MicrosoftSQLServerEndpoint.addDeletionOverride.parameter.path"></a>
+
+- *Type:* string
+
+The path of the value to delete.
+
+---
+
+##### `addDependency` <a name="addDependency" id="dms-patterns.MicrosoftSQLServerEndpoint.addDependency"></a>
+
+```typescript
+public addDependency(target: CfnResource): void
+```
+
+Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.
+
+This can be used for resources across stacks (or nested stack) boundaries
+and the dependency will automatically be transferred to the relevant scope.
+
+###### `target`<sup>Required</sup> <a name="target" id="dms-patterns.MicrosoftSQLServerEndpoint.addDependency.parameter.target"></a>
+
+- *Type:* aws-cdk-lib.CfnResource
+
+---
+
+##### ~~`addDependsOn`~~ <a name="addDependsOn" id="dms-patterns.MicrosoftSQLServerEndpoint.addDependsOn"></a>
+
+```typescript
+public addDependsOn(target: CfnResource): void
+```
+
+Indicates that this resource depends on another resource and cannot be provisioned unless the other resource has been successfully provisioned.
+
+###### `target`<sup>Required</sup> <a name="target" id="dms-patterns.MicrosoftSQLServerEndpoint.addDependsOn.parameter.target"></a>
+
+- *Type:* aws-cdk-lib.CfnResource
+
+---
+
+##### `addMetadata` <a name="addMetadata" id="dms-patterns.MicrosoftSQLServerEndpoint.addMetadata"></a>
+
+```typescript
+public addMetadata(key: string, value: any): void
+```
+
+Add a value to the CloudFormation Resource Metadata.
+
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html
+
+Note that this is a different set of metadata from CDK node metadata; this
+metadata ends up in the stack template under the resource, whereas CDK
+node metadata ends up in the Cloud Assembly.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html
+
+Note that this is a different set of metadata from CDK node metadata; this
+metadata ends up in the stack template under the resource, whereas CDK
+node metadata ends up in the Cloud Assembly.)
+
+###### `key`<sup>Required</sup> <a name="key" id="dms-patterns.MicrosoftSQLServerEndpoint.addMetadata.parameter.key"></a>
+
+- *Type:* string
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="dms-patterns.MicrosoftSQLServerEndpoint.addMetadata.parameter.value"></a>
+
+- *Type:* any
+
+---
+
+##### `addOverride` <a name="addOverride" id="dms-patterns.MicrosoftSQLServerEndpoint.addOverride"></a>
+
+```typescript
+public addOverride(path: string, value: any): void
+```
+
+Adds an override to the synthesized CloudFormation resource.
+
+To add a
+property override, either use `addPropertyOverride` or prefix `path` with
+"Properties." (i.e. `Properties.TopicName`).
+
+If the override is nested, separate each nested level using a dot (.) in the path parameter.
+If there is an array as part of the nesting, specify the index in the path.
+
+To include a literal `.` in the property name, prefix with a `\`. In most
+programming languages you will need to write this as `"\\."` because the
+`\` itself will need to be escaped.
+
+For example,
+```typescript
+cfnResource.addOverride('Properties.GlobalSecondaryIndexes.0.Projection.NonKeyAttributes', ['myattribute']);
+cfnResource.addOverride('Properties.GlobalSecondaryIndexes.1.ProjectionType', 'INCLUDE');
+```
+would add the overrides
+```json
+"Properties": {
+  "GlobalSecondaryIndexes": [
+    {
+      "Projection": {
+        "NonKeyAttributes": [ "myattribute" ]
+        ...
+      }
+      ...
+    },
+    {
+      "ProjectionType": "INCLUDE"
+      ...
+    },
+  ]
+  ...
+}
+```
+
+The `value` argument to `addOverride` will not be processed or translated
+in any way. Pass raw JSON values in here with the correct capitalization
+for CloudFormation. If you pass CDK classes or structs, they will be
+rendered with lowercased key names, and CloudFormation will reject the
+template.
+
+###### `path`<sup>Required</sup> <a name="path" id="dms-patterns.MicrosoftSQLServerEndpoint.addOverride.parameter.path"></a>
+
+- *Type:* string
+
+The path of the property, you can use dot notation to override values in complex types.
+
+Any intermediate keys
+will be created as needed.
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="dms-patterns.MicrosoftSQLServerEndpoint.addOverride.parameter.value"></a>
+
+- *Type:* any
+
+The value.
+
+Could be primitive or complex.
+
+---
+
+##### `addPropertyDeletionOverride` <a name="addPropertyDeletionOverride" id="dms-patterns.MicrosoftSQLServerEndpoint.addPropertyDeletionOverride"></a>
+
+```typescript
+public addPropertyDeletionOverride(propertyPath: string): void
+```
+
+Adds an override that deletes the value of a property from the resource definition.
+
+###### `propertyPath`<sup>Required</sup> <a name="propertyPath" id="dms-patterns.MicrosoftSQLServerEndpoint.addPropertyDeletionOverride.parameter.propertyPath"></a>
+
+- *Type:* string
+
+The path to the property.
+
+---
+
+##### `addPropertyOverride` <a name="addPropertyOverride" id="dms-patterns.MicrosoftSQLServerEndpoint.addPropertyOverride"></a>
+
+```typescript
+public addPropertyOverride(propertyPath: string, value: any): void
+```
+
+Adds an override to a resource property.
+
+Syntactic sugar for `addOverride("Properties.<...>", value)`.
+
+###### `propertyPath`<sup>Required</sup> <a name="propertyPath" id="dms-patterns.MicrosoftSQLServerEndpoint.addPropertyOverride.parameter.propertyPath"></a>
+
+- *Type:* string
+
+The path of the property.
+
+---
+
+###### `value`<sup>Required</sup> <a name="value" id="dms-patterns.MicrosoftSQLServerEndpoint.addPropertyOverride.parameter.value"></a>
+
+- *Type:* any
+
+The value.
+
+---
+
+##### `applyRemovalPolicy` <a name="applyRemovalPolicy" id="dms-patterns.MicrosoftSQLServerEndpoint.applyRemovalPolicy"></a>
+
+```typescript
+public applyRemovalPolicy(policy?: RemovalPolicy, options?: RemovalPolicyOptions): void
+```
+
+Sets the deletion policy of the resource based on the removal policy specified.
+
+The Removal Policy controls what happens to this resource when it stops
+being managed by CloudFormation, either because you've removed it from the
+CDK application or because you've made a change that requires the resource
+to be replaced.
+
+The resource can be deleted (`RemovalPolicy.DESTROY`), or left in your AWS
+account for data recovery and cleanup later (`RemovalPolicy.RETAIN`). In some
+cases, a snapshot can be taken of the resource prior to deletion
+(`RemovalPolicy.SNAPSHOT`). A list of resources that support this policy
+can be found in the following link:
+
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-attribute-deletionpolicy.html#aws-attribute-deletionpolicy-options)
+
+###### `policy`<sup>Optional</sup> <a name="policy" id="dms-patterns.MicrosoftSQLServerEndpoint.applyRemovalPolicy.parameter.policy"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicy
+
+---
+
+###### `options`<sup>Optional</sup> <a name="options" id="dms-patterns.MicrosoftSQLServerEndpoint.applyRemovalPolicy.parameter.options"></a>
+
+- *Type:* aws-cdk-lib.RemovalPolicyOptions
+
+---
+
+##### `getAtt` <a name="getAtt" id="dms-patterns.MicrosoftSQLServerEndpoint.getAtt"></a>
+
+```typescript
+public getAtt(attributeName: string, typeHint?: ResolutionTypeHint): Reference
+```
+
+Returns a token for an runtime attribute of this resource.
+
+Ideally, use generated attribute accessors (e.g. `resource.arn`), but this can be used for future compatibility
+in case there is no generated attribute.
+
+###### `attributeName`<sup>Required</sup> <a name="attributeName" id="dms-patterns.MicrosoftSQLServerEndpoint.getAtt.parameter.attributeName"></a>
+
+- *Type:* string
+
+The name of the attribute.
+
+---
+
+###### `typeHint`<sup>Optional</sup> <a name="typeHint" id="dms-patterns.MicrosoftSQLServerEndpoint.getAtt.parameter.typeHint"></a>
+
+- *Type:* aws-cdk-lib.ResolutionTypeHint
+
+---
+
+##### `getMetadata` <a name="getMetadata" id="dms-patterns.MicrosoftSQLServerEndpoint.getMetadata"></a>
+
+```typescript
+public getMetadata(key: string): any
+```
+
+Retrieve a value value from the CloudFormation Resource Metadata.
+
+> [https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html
+
+Note that this is a different set of metadata from CDK node metadata; this
+metadata ends up in the stack template under the resource, whereas CDK
+node metadata ends up in the Cloud Assembly.](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/metadata-section-structure.html
+
+Note that this is a different set of metadata from CDK node metadata; this
+metadata ends up in the stack template under the resource, whereas CDK
+node metadata ends up in the Cloud Assembly.)
+
+###### `key`<sup>Required</sup> <a name="key" id="dms-patterns.MicrosoftSQLServerEndpoint.getMetadata.parameter.key"></a>
+
+- *Type:* string
+
+---
+
+##### `obtainDependencies` <a name="obtainDependencies" id="dms-patterns.MicrosoftSQLServerEndpoint.obtainDependencies"></a>
+
+```typescript
+public obtainDependencies(): Stack | CfnResource[]
+```
+
+Retrieves an array of resources this resource depends on.
+
+This assembles dependencies on resources across stacks (including nested stacks)
+automatically.
+
+##### `obtainResourceDependencies` <a name="obtainResourceDependencies" id="dms-patterns.MicrosoftSQLServerEndpoint.obtainResourceDependencies"></a>
+
+```typescript
+public obtainResourceDependencies(): CfnResource[]
+```
+
+Get a shallow copy of dependencies between this resource and other resources in the same stack.
+
+##### `removeDependency` <a name="removeDependency" id="dms-patterns.MicrosoftSQLServerEndpoint.removeDependency"></a>
+
+```typescript
+public removeDependency(target: CfnResource): void
+```
+
+Indicates that this resource no longer depends on another resource.
+
+This can be used for resources across stacks (including nested stacks)
+and the dependency will automatically be removed from the relevant scope.
+
+###### `target`<sup>Required</sup> <a name="target" id="dms-patterns.MicrosoftSQLServerEndpoint.removeDependency.parameter.target"></a>
+
+- *Type:* aws-cdk-lib.CfnResource
+
+---
+
+##### `replaceDependency` <a name="replaceDependency" id="dms-patterns.MicrosoftSQLServerEndpoint.replaceDependency"></a>
+
+```typescript
+public replaceDependency(target: CfnResource, newTarget: CfnResource): void
+```
+
+Replaces one dependency with another.
+
+###### `target`<sup>Required</sup> <a name="target" id="dms-patterns.MicrosoftSQLServerEndpoint.replaceDependency.parameter.target"></a>
+
+- *Type:* aws-cdk-lib.CfnResource
+
+The dependency to replace.
+
+---
+
+###### `newTarget`<sup>Required</sup> <a name="newTarget" id="dms-patterns.MicrosoftSQLServerEndpoint.replaceDependency.parameter.newTarget"></a>
+
+- *Type:* aws-cdk-lib.CfnResource
+
+The new dependency to add.
+
+---
+
+##### `inspect` <a name="inspect" id="dms-patterns.MicrosoftSQLServerEndpoint.inspect"></a>
+
+```typescript
+public inspect(inspector: TreeInspector): void
+```
+
+Examines the CloudFormation resource and discloses attributes.
+
+###### `inspector`<sup>Required</sup> <a name="inspector" id="dms-patterns.MicrosoftSQLServerEndpoint.inspect.parameter.inspector"></a>
+
+- *Type:* aws-cdk-lib.TreeInspector
+
+tree inspector to collect and process attributes.
+
+---
+
+#### Static Functions <a name="Static Functions" id="Static Functions"></a>
+
+| **Name** | **Description** |
+| --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.isCfnElement">isCfnElement</a></code> | Returns `true` if a construct is a stack element (i.e. part of the synthesized cloudformation template). |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.isCfnResource">isCfnResource</a></code> | Check whether the given construct is a CfnResource. |
+
+---
+
+##### ~~`isConstruct`~~ <a name="isConstruct" id="dms-patterns.MicrosoftSQLServerEndpoint.isConstruct"></a>
+
+```typescript
+import { MicrosoftSQLServerEndpoint } from 'dms-patterns'
+
+MicrosoftSQLServerEndpoint.isConstruct(x: any)
+```
+
+Checks if `x` is a construct.
+
+###### `x`<sup>Required</sup> <a name="x" id="dms-patterns.MicrosoftSQLServerEndpoint.isConstruct.parameter.x"></a>
+
+- *Type:* any
+
+Any object.
+
+---
+
+##### `isCfnElement` <a name="isCfnElement" id="dms-patterns.MicrosoftSQLServerEndpoint.isCfnElement"></a>
+
+```typescript
+import { MicrosoftSQLServerEndpoint } from 'dms-patterns'
+
+MicrosoftSQLServerEndpoint.isCfnElement(x: any)
+```
+
+Returns `true` if a construct is a stack element (i.e. part of the synthesized cloudformation template).
+
+Uses duck-typing instead of `instanceof` to allow stack elements from different
+versions of this library to be included in the same stack.
+
+###### `x`<sup>Required</sup> <a name="x" id="dms-patterns.MicrosoftSQLServerEndpoint.isCfnElement.parameter.x"></a>
+
+- *Type:* any
+
+---
+
+##### `isCfnResource` <a name="isCfnResource" id="dms-patterns.MicrosoftSQLServerEndpoint.isCfnResource"></a>
+
+```typescript
+import { MicrosoftSQLServerEndpoint } from 'dms-patterns'
+
+MicrosoftSQLServerEndpoint.isCfnResource(construct: IConstruct)
+```
+
+Check whether the given construct is a CfnResource.
+
+###### `construct`<sup>Required</sup> <a name="construct" id="dms-patterns.MicrosoftSQLServerEndpoint.isCfnResource.parameter.construct"></a>
+
+- *Type:* constructs.IConstruct
+
+---
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.creationStack">creationStack</a></code> | <code>string[]</code> | *No description.* |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.logicalId">logicalId</a></code> | <code>string</code> | The logical ID for this CloudFormation stack element. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.stack">stack</a></code> | <code>aws-cdk-lib.Stack</code> | The stack in which this element is defined. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.ref">ref</a></code> | <code>string</code> | Return a string that will be resolved to a CloudFormation `{ Ref }` for this element. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.cfnOptions">cfnOptions</a></code> | <code>aws-cdk-lib.ICfnResourceOptions</code> | Options for this resource, such as condition, update policy etc. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.cfnResourceType">cfnResourceType</a></code> | <code>string</code> | AWS resource type. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.attrExternalId">attrExternalId</a></code> | <code>string</code> | A value that can be used for cross-account validation. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.attrId">attrId</a></code> | <code>string</code> | *No description.* |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.tags">tags</a></code> | <code>aws-cdk-lib.TagManager</code> | Tag Manager which manages the tags for this resource. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.engineName">engineName</a></code> | <code>string</code> | The type of engine for the endpoint, depending on the `EndpointType` value. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.certificateArn">certificateArn</a></code> | <code>string</code> | The Amazon Resource Name (ARN) for the certificate. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.databaseName">databaseName</a></code> | <code>string</code> | The name of the endpoint database. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.docDbSettings">docDbSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.DocDbSettingsProperty</code> | Settings in JSON format for the source and target DocumentDB endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.dynamoDbSettings">dynamoDbSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.DynamoDbSettingsProperty</code> | Settings in JSON format for the target Amazon DynamoDB endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.elasticsearchSettings">elasticsearchSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.ElasticsearchSettingsProperty</code> | Settings in JSON format for the target OpenSearch endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.extraConnectionAttributes">extraConnectionAttributes</a></code> | <code>string</code> | Additional attributes associated with the connection. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.gcpMySqlSettings">gcpMySqlSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.GcpMySQLSettingsProperty</code> | Settings in JSON format for the source GCP MySQL endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.ibmDb2Settings">ibmDb2Settings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.IbmDb2SettingsProperty</code> | Settings in JSON format for the source IBM Db2 LUW endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.kafkaSettings">kafkaSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.KafkaSettingsProperty</code> | Settings in JSON format for the target Apache Kafka endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.kinesisSettings">kinesisSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.KinesisSettingsProperty</code> | Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.kmsKeyId">kmsKeyId</a></code> | <code>string</code> | An AWS KMS key identifier that is used to encrypt the connection parameters for the endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.microsoftSqlServerSettings">microsoftSqlServerSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.MicrosoftSqlServerSettingsProperty</code> | Settings in JSON format for the source and target Microsoft SQL Server endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.mongoDbSettings">mongoDbSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.MongoDbSettingsProperty</code> | Settings in JSON format for the source MongoDB endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.mySqlSettings">mySqlSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.MySqlSettingsProperty</code> | Settings in JSON format for the source and target MySQL endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.neptuneSettings">neptuneSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.NeptuneSettingsProperty</code> | Settings in JSON format for the target Amazon Neptune endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.oracleSettings">oracleSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.OracleSettingsProperty</code> | Settings in JSON format for the source and target Oracle endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.password">password</a></code> | <code>string</code> | The password to be used to log in to the endpoint database. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.port">port</a></code> | <code>number</code> | The port used by the endpoint database. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.postgreSqlSettings">postgreSqlSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.PostgreSqlSettingsProperty</code> | Settings in JSON format for the source and target PostgreSQL endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.redisSettings">redisSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.RedisSettingsProperty</code> | Settings in JSON format for the target Redis endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.redshiftSettings">redshiftSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.RedshiftSettingsProperty</code> | Settings in JSON format for the Amazon Redshift endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.resourceIdentifier">resourceIdentifier</a></code> | <code>string</code> | A display name for the resource identifier at the end of the `EndpointArn` response parameter that is returned in the created `Endpoint` object. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.s3Settings">s3Settings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.S3SettingsProperty</code> | Settings in JSON format for the source and target Amazon S3 endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.serverName">serverName</a></code> | <code>string</code> | The name of the server where the endpoint database resides. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.sslMode">sslMode</a></code> | <code>string</code> | The Secure Sockets Layer (SSL) mode to use for the SSL connection. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.sybaseSettings">sybaseSettings</a></code> | <code>aws-cdk-lib.IResolvable \| aws-cdk-lib.aws_dms.CfnEndpoint.SybaseSettingsProperty</code> | Settings in JSON format for the source and target SAP ASE endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.tagsRaw">tagsRaw</a></code> | <code>aws-cdk-lib.CfnTag[]</code> | One or more tags to be assigned to the endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.username">username</a></code> | <code>string</code> | The user name to be used to log in to the endpoint database. |
+
+---
+
+##### `node`<sup>Required</sup> <a name="node" id="dms-patterns.MicrosoftSQLServerEndpoint.property.node"></a>
+
+```typescript
+public readonly node: Node;
+```
+
+- *Type:* constructs.Node
+
+The tree node.
+
+---
+
+##### `creationStack`<sup>Required</sup> <a name="creationStack" id="dms-patterns.MicrosoftSQLServerEndpoint.property.creationStack"></a>
+
+```typescript
+public readonly creationStack: string[];
+```
+
+- *Type:* string[]
+
+---
+
+##### `logicalId`<sup>Required</sup> <a name="logicalId" id="dms-patterns.MicrosoftSQLServerEndpoint.property.logicalId"></a>
+
+```typescript
+public readonly logicalId: string;
+```
+
+- *Type:* string
+
+The logical ID for this CloudFormation stack element.
+
+The logical ID of the element
+is calculated from the path of the resource node in the construct tree.
+
+To override this value, use `overrideLogicalId(newLogicalId)`.
+
+---
+
+##### `stack`<sup>Required</sup> <a name="stack" id="dms-patterns.MicrosoftSQLServerEndpoint.property.stack"></a>
+
+```typescript
+public readonly stack: Stack;
+```
+
+- *Type:* aws-cdk-lib.Stack
+
+The stack in which this element is defined.
+
+CfnElements must be defined within a stack scope (directly or indirectly).
+
+---
+
+##### `ref`<sup>Required</sup> <a name="ref" id="dms-patterns.MicrosoftSQLServerEndpoint.property.ref"></a>
+
+```typescript
+public readonly ref: string;
+```
+
+- *Type:* string
+
+Return a string that will be resolved to a CloudFormation `{ Ref }` for this element.
+
+If, by any chance, the intrinsic reference of a resource is not a string, you could
+coerce it to an IResolvable through `Lazy.any({ produce: resource.ref })`.
+
+---
+
+##### `cfnOptions`<sup>Required</sup> <a name="cfnOptions" id="dms-patterns.MicrosoftSQLServerEndpoint.property.cfnOptions"></a>
+
+```typescript
+public readonly cfnOptions: ICfnResourceOptions;
+```
+
+- *Type:* aws-cdk-lib.ICfnResourceOptions
+
+Options for this resource, such as condition, update policy etc.
+
+---
+
+##### `cfnResourceType`<sup>Required</sup> <a name="cfnResourceType" id="dms-patterns.MicrosoftSQLServerEndpoint.property.cfnResourceType"></a>
+
+```typescript
+public readonly cfnResourceType: string;
+```
+
+- *Type:* string
+
+AWS resource type.
+
+---
+
+##### `attrExternalId`<sup>Required</sup> <a name="attrExternalId" id="dms-patterns.MicrosoftSQLServerEndpoint.property.attrExternalId"></a>
+
+```typescript
+public readonly attrExternalId: string;
+```
+
+- *Type:* string
+
+A value that can be used for cross-account validation.
+
+---
+
+##### `attrId`<sup>Required</sup> <a name="attrId" id="dms-patterns.MicrosoftSQLServerEndpoint.property.attrId"></a>
+
+```typescript
+public readonly attrId: string;
+```
+
+- *Type:* string
+
+---
+
+##### `tags`<sup>Required</sup> <a name="tags" id="dms-patterns.MicrosoftSQLServerEndpoint.property.tags"></a>
+
+```typescript
+public readonly tags: TagManager;
+```
+
+- *Type:* aws-cdk-lib.TagManager
+
+Tag Manager which manages the tags for this resource.
+
+---
+
+##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.MicrosoftSQLServerEndpoint.property.endpointType"></a>
+
+```typescript
+public readonly endpointType: string;
+```
+
+- *Type:* string
+
+The type of endpoint.
+
+---
+
+##### `engineName`<sup>Required</sup> <a name="engineName" id="dms-patterns.MicrosoftSQLServerEndpoint.property.engineName"></a>
+
+```typescript
+public readonly engineName: string;
+```
+
+- *Type:* string
+
+The type of engine for the endpoint, depending on the `EndpointType` value.
+
+---
+
+##### `certificateArn`<sup>Optional</sup> <a name="certificateArn" id="dms-patterns.MicrosoftSQLServerEndpoint.property.certificateArn"></a>
+
+```typescript
+public readonly certificateArn: string;
+```
+
+- *Type:* string
+
+The Amazon Resource Name (ARN) for the certificate.
+
+---
+
+##### `databaseName`<sup>Optional</sup> <a name="databaseName" id="dms-patterns.MicrosoftSQLServerEndpoint.property.databaseName"></a>
+
+```typescript
+public readonly databaseName: string;
+```
+
+- *Type:* string
+
+The name of the endpoint database.
+
+---
+
+##### `docDbSettings`<sup>Optional</sup> <a name="docDbSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.docDbSettings"></a>
+
+```typescript
+public readonly docDbSettings: IResolvable | DocDbSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.DocDbSettingsProperty
+
+Settings in JSON format for the source and target DocumentDB endpoint.
+
+---
+
+##### `dynamoDbSettings`<sup>Optional</sup> <a name="dynamoDbSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.dynamoDbSettings"></a>
+
+```typescript
+public readonly dynamoDbSettings: IResolvable | DynamoDbSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.DynamoDbSettingsProperty
+
+Settings in JSON format for the target Amazon DynamoDB endpoint.
+
+---
+
+##### `elasticsearchSettings`<sup>Optional</sup> <a name="elasticsearchSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.elasticsearchSettings"></a>
+
+```typescript
+public readonly elasticsearchSettings: IResolvable | ElasticsearchSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.ElasticsearchSettingsProperty
+
+Settings in JSON format for the target OpenSearch endpoint.
+
+---
+
+##### `endpointIdentifier`<sup>Optional</sup> <a name="endpointIdentifier" id="dms-patterns.MicrosoftSQLServerEndpoint.property.endpointIdentifier"></a>
+
+```typescript
+public readonly endpointIdentifier: string;
+```
+
+- *Type:* string
+
+The database endpoint identifier.
+
+---
+
+##### `extraConnectionAttributes`<sup>Optional</sup> <a name="extraConnectionAttributes" id="dms-patterns.MicrosoftSQLServerEndpoint.property.extraConnectionAttributes"></a>
+
+```typescript
+public readonly extraConnectionAttributes: string;
+```
+
+- *Type:* string
+
+Additional attributes associated with the connection.
+
+---
+
+##### `gcpMySqlSettings`<sup>Optional</sup> <a name="gcpMySqlSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.gcpMySqlSettings"></a>
+
+```typescript
+public readonly gcpMySqlSettings: IResolvable | GcpMySQLSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.GcpMySQLSettingsProperty
+
+Settings in JSON format for the source GCP MySQL endpoint.
+
+---
+
+##### `ibmDb2Settings`<sup>Optional</sup> <a name="ibmDb2Settings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.ibmDb2Settings"></a>
+
+```typescript
+public readonly ibmDb2Settings: IResolvable | IbmDb2SettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.IbmDb2SettingsProperty
+
+Settings in JSON format for the source IBM Db2 LUW endpoint.
+
+---
+
+##### `kafkaSettings`<sup>Optional</sup> <a name="kafkaSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.kafkaSettings"></a>
+
+```typescript
+public readonly kafkaSettings: IResolvable | KafkaSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.KafkaSettingsProperty
+
+Settings in JSON format for the target Apache Kafka endpoint.
+
+---
+
+##### `kinesisSettings`<sup>Optional</sup> <a name="kinesisSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.kinesisSettings"></a>
+
+```typescript
+public readonly kinesisSettings: IResolvable | KinesisSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.KinesisSettingsProperty
+
+Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams.
+
+---
+
+##### `kmsKeyId`<sup>Optional</sup> <a name="kmsKeyId" id="dms-patterns.MicrosoftSQLServerEndpoint.property.kmsKeyId"></a>
+
+```typescript
+public readonly kmsKeyId: string;
+```
+
+- *Type:* string
+
+An AWS KMS key identifier that is used to encrypt the connection parameters for the endpoint.
+
+---
+
+##### `microsoftSqlServerSettings`<sup>Optional</sup> <a name="microsoftSqlServerSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.microsoftSqlServerSettings"></a>
+
+```typescript
+public readonly microsoftSqlServerSettings: IResolvable | MicrosoftSqlServerSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.MicrosoftSqlServerSettingsProperty
+
+Settings in JSON format for the source and target Microsoft SQL Server endpoint.
+
+---
+
+##### `mongoDbSettings`<sup>Optional</sup> <a name="mongoDbSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.mongoDbSettings"></a>
+
+```typescript
+public readonly mongoDbSettings: IResolvable | MongoDbSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.MongoDbSettingsProperty
+
+Settings in JSON format for the source MongoDB endpoint.
+
+---
+
+##### `mySqlSettings`<sup>Optional</sup> <a name="mySqlSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.mySqlSettings"></a>
+
+```typescript
+public readonly mySqlSettings: IResolvable | MySqlSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.MySqlSettingsProperty
+
+Settings in JSON format for the source and target MySQL endpoint.
+
+---
+
+##### `neptuneSettings`<sup>Optional</sup> <a name="neptuneSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.neptuneSettings"></a>
+
+```typescript
+public readonly neptuneSettings: IResolvable | NeptuneSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.NeptuneSettingsProperty
+
+Settings in JSON format for the target Amazon Neptune endpoint.
+
+---
+
+##### `oracleSettings`<sup>Optional</sup> <a name="oracleSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.oracleSettings"></a>
+
+```typescript
+public readonly oracleSettings: IResolvable | OracleSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.OracleSettingsProperty
+
+Settings in JSON format for the source and target Oracle endpoint.
+
+---
+
+##### `password`<sup>Optional</sup> <a name="password" id="dms-patterns.MicrosoftSQLServerEndpoint.property.password"></a>
+
+```typescript
+public readonly password: string;
+```
+
+- *Type:* string
+
+The password to be used to log in to the endpoint database.
+
+---
+
+##### `port`<sup>Optional</sup> <a name="port" id="dms-patterns.MicrosoftSQLServerEndpoint.property.port"></a>
+
+```typescript
+public readonly port: number;
+```
+
+- *Type:* number
+
+The port used by the endpoint database.
+
+---
+
+##### `postgreSqlSettings`<sup>Optional</sup> <a name="postgreSqlSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.postgreSqlSettings"></a>
+
+```typescript
+public readonly postgreSqlSettings: IResolvable | PostgreSqlSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.PostgreSqlSettingsProperty
+
+Settings in JSON format for the source and target PostgreSQL endpoint.
+
+---
+
+##### `redisSettings`<sup>Optional</sup> <a name="redisSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.redisSettings"></a>
+
+```typescript
+public readonly redisSettings: IResolvable | RedisSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.RedisSettingsProperty
+
+Settings in JSON format for the target Redis endpoint.
+
+---
+
+##### `redshiftSettings`<sup>Optional</sup> <a name="redshiftSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.redshiftSettings"></a>
+
+```typescript
+public readonly redshiftSettings: IResolvable | RedshiftSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.RedshiftSettingsProperty
+
+Settings in JSON format for the Amazon Redshift endpoint.
+
+---
+
+##### `resourceIdentifier`<sup>Optional</sup> <a name="resourceIdentifier" id="dms-patterns.MicrosoftSQLServerEndpoint.property.resourceIdentifier"></a>
+
+```typescript
+public readonly resourceIdentifier: string;
+```
+
+- *Type:* string
+
+A display name for the resource identifier at the end of the `EndpointArn` response parameter that is returned in the created `Endpoint` object.
+
+---
+
+##### `s3Settings`<sup>Optional</sup> <a name="s3Settings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.s3Settings"></a>
+
+```typescript
+public readonly s3Settings: IResolvable | S3SettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.S3SettingsProperty
+
+Settings in JSON format for the source and target Amazon S3 endpoint.
+
+---
+
+##### `serverName`<sup>Optional</sup> <a name="serverName" id="dms-patterns.MicrosoftSQLServerEndpoint.property.serverName"></a>
+
+```typescript
+public readonly serverName: string;
+```
+
+- *Type:* string
+
+The name of the server where the endpoint database resides.
+
+---
+
+##### `sslMode`<sup>Optional</sup> <a name="sslMode" id="dms-patterns.MicrosoftSQLServerEndpoint.property.sslMode"></a>
+
+```typescript
+public readonly sslMode: string;
+```
+
+- *Type:* string
+
+The Secure Sockets Layer (SSL) mode to use for the SSL connection.
+
+The default is `none` .
+
+---
+
+##### `sybaseSettings`<sup>Optional</sup> <a name="sybaseSettings" id="dms-patterns.MicrosoftSQLServerEndpoint.property.sybaseSettings"></a>
+
+```typescript
+public readonly sybaseSettings: IResolvable | SybaseSettingsProperty;
+```
+
+- *Type:* aws-cdk-lib.IResolvable | aws-cdk-lib.aws_dms.CfnEndpoint.SybaseSettingsProperty
+
+Settings in JSON format for the source and target SAP ASE endpoint.
+
+---
+
+##### `tagsRaw`<sup>Optional</sup> <a name="tagsRaw" id="dms-patterns.MicrosoftSQLServerEndpoint.property.tagsRaw"></a>
+
+```typescript
+public readonly tagsRaw: CfnTag[];
+```
+
+- *Type:* aws-cdk-lib.CfnTag[]
+
+One or more tags to be assigned to the endpoint.
+
+---
+
+##### `username`<sup>Optional</sup> <a name="username" id="dms-patterns.MicrosoftSQLServerEndpoint.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+The user name to be used to log in to the endpoint database.
+
+---
+
+#### Constants <a name="Constants" id="Constants"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerEndpoint.property.CFN_RESOURCE_TYPE_NAME">CFN_RESOURCE_TYPE_NAME</a></code> | <code>string</code> | The CloudFormation resource type name for this resource class. |
+
+---
+
+##### `CFN_RESOURCE_TYPE_NAME`<sup>Required</sup> <a name="CFN_RESOURCE_TYPE_NAME" id="dms-patterns.MicrosoftSQLServerEndpoint.property.CFN_RESOURCE_TYPE_NAME"></a>
+
+```typescript
+public readonly CFN_RESOURCE_TYPE_NAME: string;
+```
+
+- *Type:* string
+
+The CloudFormation resource type name for this resource class.
+
+---
+
 ### MySql2S3 <a name="MySql2S3" id="dms-patterns.MySql2S3"></a>
 
 #### Initializers <a name="Initializers" id="dms-patterns.MySql2S3.Initializer"></a>
@@ -6767,6 +7834,366 @@ public readonly mode: string;
 
 ---
 
+### MicrosoftSQLServerProps <a name="MicrosoftSQLServerProps" id="dms-patterns.MicrosoftSQLServerProps"></a>
+
+#### Initializer <a name="Initializer" id="dms-patterns.MicrosoftSQLServerProps.Initializer"></a>
+
+```typescript
+import { MicrosoftSQLServerProps } from 'dms-patterns'
+
+const microsoftSQLServerProps: MicrosoftSQLServerProps = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.endpointIdentifier">endpointIdentifier</a></code> | <code>string</code> | The database endpoint identifier. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.endpointType">endpointType</a></code> | <code>string</code> | The type of endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.microsoftSqlServerEndpointSettings">microsoftSqlServerEndpointSettings</a></code> | <code><a href="#dms-patterns.MicrosoftSqlServerSettings">MicrosoftSqlServerSettings</a></code> | The settings for the source microsoft sqlserver endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.databaseName">databaseName</a></code> | <code>string</code> | Database name for the endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.port">port</a></code> | <code>number</code> | Endpoint TCP port. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.serverName">serverName</a></code> | <code>string</code> | Fully qualified domain name of the endpoint. |
+| <code><a href="#dms-patterns.MicrosoftSQLServerProps.property.username">username</a></code> | <code>string</code> | Endpoint connection user name. |
+
+---
+
+##### `endpointIdentifier`<sup>Required</sup> <a name="endpointIdentifier" id="dms-patterns.MicrosoftSQLServerProps.property.endpointIdentifier"></a>
+
+```typescript
+public readonly endpointIdentifier: string;
+```
+
+- *Type:* string
+
+The database endpoint identifier.
+
+Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-dms-endpoint.html#cfn-dms-endpoint-endpointidentifier)
+
+---
+
+##### `endpointType`<sup>Required</sup> <a name="endpointType" id="dms-patterns.MicrosoftSQLServerProps.property.endpointType"></a>
+
+```typescript
+public readonly endpointType: string;
+```
+
+- *Type:* string
+
+The type of endpoint.
+
+---
+
+##### `microsoftSqlServerEndpointSettings`<sup>Required</sup> <a name="microsoftSqlServerEndpointSettings" id="dms-patterns.MicrosoftSQLServerProps.property.microsoftSqlServerEndpointSettings"></a>
+
+```typescript
+public readonly microsoftSqlServerEndpointSettings: MicrosoftSqlServerSettings;
+```
+
+- *Type:* <a href="#dms-patterns.MicrosoftSqlServerSettings">MicrosoftSqlServerSettings</a>
+
+The settings for the source microsoft sqlserver endpoint.
+
+---
+
+##### `databaseName`<sup>Optional</sup> <a name="databaseName" id="dms-patterns.MicrosoftSQLServerProps.property.databaseName"></a>
+
+```typescript
+public readonly databaseName: string;
+```
+
+- *Type:* string
+
+Database name for the endpoint.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-databasename](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-databasename)
+
+---
+
+##### `port`<sup>Optional</sup> <a name="port" id="dms-patterns.MicrosoftSQLServerProps.property.port"></a>
+
+```typescript
+public readonly port: number;
+```
+
+- *Type:* number
+
+Endpoint TCP port.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-port](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-port)
+
+---
+
+##### `serverName`<sup>Optional</sup> <a name="serverName" id="dms-patterns.MicrosoftSQLServerProps.property.serverName"></a>
+
+```typescript
+public readonly serverName: string;
+```
+
+- *Type:* string
+
+Fully qualified domain name of the endpoint.
+
+For an Amazon RDS SQL Server instance, this is the output of [DescribeDBInstances](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_DescribeDBInstances.html) , in the `[Endpoint](https://docs.aws.amazon.com/AmazonRDS/latest/APIReference/API_Endpoint.html) .Address` field.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-servername](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-servername)
+
+---
+
+##### `username`<sup>Optional</sup> <a name="username" id="dms-patterns.MicrosoftSQLServerProps.property.username"></a>
+
+```typescript
+public readonly username: string;
+```
+
+- *Type:* string
+
+Endpoint connection user name.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-username](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-username)
+
+---
+
+### MicrosoftSqlServerSettings <a name="MicrosoftSqlServerSettings" id="dms-patterns.MicrosoftSqlServerSettings"></a>
+
+Provides information that defines a Microsoft SQL Server endpoint.
+
+This information includes the output format of records applied to the endpoint and details of transaction and control table data information. For information about other available settings, see [Extra connection attributes when using SQL Server as a source for AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Source.SQLServer.html#CHAP_Source.SQLServer.ConnectionAttrib) and [Extra connection attributes when using SQL Server as a target for AWS DMS](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.SQLServer.html#CHAP_Target.SQLServer.ConnectionAttrib) in the *AWS Database Migration Service User Guide* .
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html)
+
+#### Initializer <a name="Initializer" id="dms-patterns.MicrosoftSqlServerSettings.Initializer"></a>
+
+```typescript
+import { MicrosoftSqlServerSettings } from 'dms-patterns'
+
+const microsoftSqlServerSettings: MicrosoftSqlServerSettings = { ... }
+```
+
+#### Properties <a name="Properties" id="Properties"></a>
+
+| **Name** | **Type** | **Description** |
+| --- | --- | --- |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.secretsManagerSecretId">secretsManagerSecretId</a></code> | <code>string</code> | The full ARN, partial ARN, or display name of the `SecretsManagerSecret` that contains the MicrosoftSQLServer endpoint connection details. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.bcpPacketSize">bcpPacketSize</a></code> | <code>number</code> | The maximum size of the packets (in bytes) used to transfer data using BCP. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.controlTablesFileGroup">controlTablesFileGroup</a></code> | <code>string</code> | Specifies a file group for the AWS DMS internal tables. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.forceLobLookup">forceLobLookup</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | Forces LOB lookup on inline LOB. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.password">password</a></code> | <code>string</code> | Endpoint connection password. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.querySingleAlwaysOnNode">querySingleAlwaysOnNode</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | Cleans and recreates table metadata information on the replication instance when a mismatch occurs. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.readBackupOnly">readBackupOnly</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | When this attribute is set to `Y` , AWS DMS only reads changes from transaction log backups and doesn't read from the active transaction log file during ongoing replication. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.safeguardPolicy">safeguardPolicy</a></code> | <code>string</code> | Use this attribute to minimize the need to access the backup log and enable AWS DMS to prevent truncation using one of the following two methods. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.secretsManagerAccessRoleArn">secretsManagerAccessRoleArn</a></code> | <code>string</code> | The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS as the trusted entity and grants the required permissions to access the value in `SecretsManagerSecret` . |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.tlogAccessMode">tlogAccessMode</a></code> | <code>string</code> | Indicates the mode used to fetch CDC data. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.trimSpaceInChar">trimSpaceInChar</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | Use the `TrimSpaceInChar` source endpoint setting to right-trim data on CHAR and NCHAR data types during migration. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.useBcpFullLoad">useBcpFullLoad</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | Use this to attribute to transfer data for full-load operations using BCP. |
+| <code><a href="#dms-patterns.MicrosoftSqlServerSettings.property.useThirdPartyBackupDevice">useThirdPartyBackupDevice</a></code> | <code>boolean \| aws-cdk-lib.IResolvable</code> | When this attribute is set to `Y` , DMS processes third-party transaction log backups if they are created in native format. |
+
+---
+
+##### `secretsManagerSecretId`<sup>Required</sup> <a name="secretsManagerSecretId" id="dms-patterns.MicrosoftSqlServerSettings.property.secretsManagerSecretId"></a>
+
+```typescript
+public readonly secretsManagerSecretId: string;
+```
+
+- *Type:* string
+
+The full ARN, partial ARN, or display name of the `SecretsManagerSecret` that contains the MicrosoftSQLServer endpoint connection details.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanagersecretid](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanagersecretid)
+
+---
+
+##### `bcpPacketSize`<sup>Optional</sup> <a name="bcpPacketSize" id="dms-patterns.MicrosoftSqlServerSettings.property.bcpPacketSize"></a>
+
+```typescript
+public readonly bcpPacketSize: number;
+```
+
+- *Type:* number
+
+The maximum size of the packets (in bytes) used to transfer data using BCP.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-bcppacketsize](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-bcppacketsize)
+
+---
+
+##### `controlTablesFileGroup`<sup>Optional</sup> <a name="controlTablesFileGroup" id="dms-patterns.MicrosoftSqlServerSettings.property.controlTablesFileGroup"></a>
+
+```typescript
+public readonly controlTablesFileGroup: string;
+```
+
+- *Type:* string
+
+Specifies a file group for the AWS DMS internal tables.
+
+When the replication task starts, all the internal AWS DMS control tables (awsdms_ apply_exception, awsdms_apply, awsdms_changes) are created for the specified file group.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-controltablesfilegroup](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-controltablesfilegroup)
+
+---
+
+##### `forceLobLookup`<sup>Optional</sup> <a name="forceLobLookup" id="dms-patterns.MicrosoftSqlServerSettings.property.forceLobLookup"></a>
+
+```typescript
+public readonly forceLobLookup: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+Forces LOB lookup on inline LOB.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-forceloblookup](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-forceloblookup)
+
+---
+
+##### `password`<sup>Optional</sup> <a name="password" id="dms-patterns.MicrosoftSqlServerSettings.property.password"></a>
+
+```typescript
+public readonly password: string;
+```
+
+- *Type:* string
+
+Endpoint connection password.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-password](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-password)
+
+---
+
+##### `querySingleAlwaysOnNode`<sup>Optional</sup> <a name="querySingleAlwaysOnNode" id="dms-patterns.MicrosoftSqlServerSettings.property.querySingleAlwaysOnNode"></a>
+
+```typescript
+public readonly querySingleAlwaysOnNode: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+Cleans and recreates table metadata information on the replication instance when a mismatch occurs.
+
+An example is a situation where running an alter DDL statement on a table might result in different information about the table cached in the replication instance.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-querysinglealwaysonnode](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-querysinglealwaysonnode)
+
+---
+
+##### `readBackupOnly`<sup>Optional</sup> <a name="readBackupOnly" id="dms-patterns.MicrosoftSqlServerSettings.property.readBackupOnly"></a>
+
+```typescript
+public readonly readBackupOnly: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+When this attribute is set to `Y` , AWS DMS only reads changes from transaction log backups and doesn't read from the active transaction log file during ongoing replication.
+
+Setting this parameter to `Y` enables you to control active transaction log file growth during full load and ongoing replication tasks. However, it can add some source latency to ongoing replication.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-readbackuponly](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-readbackuponly)
+
+---
+
+##### `safeguardPolicy`<sup>Optional</sup> <a name="safeguardPolicy" id="dms-patterns.MicrosoftSqlServerSettings.property.safeguardPolicy"></a>
+
+```typescript
+public readonly safeguardPolicy: string;
+```
+
+- *Type:* string
+
+Use this attribute to minimize the need to access the backup log and enable AWS DMS to prevent truncation using one of the following two methods.
+
+*Start transactions in the database:* This is the default method. When this method is used, AWS DMS prevents TLOG truncation by mimicking a transaction in the database. As long as such a transaction is open, changes that appear after the transaction started aren't truncated. If you need Microsoft Replication to be enabled in your database, then you must choose this method.
+
+*Exclusively use sp_repldone within a single task* : When this method is used, AWS DMS reads the changes and then uses sp_repldone to mark the TLOG transactions as ready for truncation. Although this method doesn't involve any transactional activities, it can only be used when Microsoft Replication isn't running. Also, when using this method, only one AWS DMS task can access the database at any given time. Therefore, if you need to run parallel AWS DMS tasks against the same database, use the default method.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-safeguardpolicy](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-safeguardpolicy)
+
+---
+
+##### `secretsManagerAccessRoleArn`<sup>Optional</sup> <a name="secretsManagerAccessRoleArn" id="dms-patterns.MicrosoftSqlServerSettings.property.secretsManagerAccessRoleArn"></a>
+
+```typescript
+public readonly secretsManagerAccessRoleArn: string;
+```
+
+- *Type:* string
+
+The full Amazon Resource Name (ARN) of the IAM role that specifies AWS DMS as the trusted entity and grants the required permissions to access the value in `SecretsManagerSecret` .
+
+The role must allow the `iam:PassRole` action. `SecretsManagerSecret` has the value of the AWS Secrets Manager secret that allows access to the SQL Server endpoint.
+
+> You can specify one of two sets of values for these permissions. You can specify the values for this setting and `SecretsManagerSecretId` . Or you can specify clear-text values for `UserName` , `Password` , `ServerName` , and `Port` . You can't specify both.
+>
+> For more information on creating this `SecretsManagerSecret` , the corresponding `SecretsManagerAccessRoleArn` , and the `SecretsManagerSecretId` that is required to access it, see [Using secrets to access AWS Database Migration Service resources](https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Security.html#security-iam-secretsmanager) in the *AWS Database Migration Service User Guide* .
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanageraccessrolearn](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-secretsmanageraccessrolearn)
+
+---
+
+##### `tlogAccessMode`<sup>Optional</sup> <a name="tlogAccessMode" id="dms-patterns.MicrosoftSqlServerSettings.property.tlogAccessMode"></a>
+
+```typescript
+public readonly tlogAccessMode: string;
+```
+
+- *Type:* string
+
+Indicates the mode used to fetch CDC data.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-tlogaccessmode](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-tlogaccessmode)
+
+---
+
+##### `trimSpaceInChar`<sup>Optional</sup> <a name="trimSpaceInChar" id="dms-patterns.MicrosoftSqlServerSettings.property.trimSpaceInChar"></a>
+
+```typescript
+public readonly trimSpaceInChar: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+Use the `TrimSpaceInChar` source endpoint setting to right-trim data on CHAR and NCHAR data types during migration.
+
+Setting `TrimSpaceInChar` does not left-trim data. The default value is `true` .
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-trimspaceinchar](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-trimspaceinchar)
+
+---
+
+##### `useBcpFullLoad`<sup>Optional</sup> <a name="useBcpFullLoad" id="dms-patterns.MicrosoftSqlServerSettings.property.useBcpFullLoad"></a>
+
+```typescript
+public readonly useBcpFullLoad: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+Use this to attribute to transfer data for full-load operations using BCP.
+
+When the target table contains an identity column that does not exist in the source table, you must disable the use BCP for loading table option.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usebcpfullload](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usebcpfullload)
+
+---
+
+##### `useThirdPartyBackupDevice`<sup>Optional</sup> <a name="useThirdPartyBackupDevice" id="dms-patterns.MicrosoftSqlServerSettings.property.useThirdPartyBackupDevice"></a>
+
+```typescript
+public readonly useThirdPartyBackupDevice: boolean | IResolvable;
+```
+
+- *Type:* boolean | aws-cdk-lib.IResolvable
+
+When this attribute is set to `Y` , DMS processes third-party transaction log backups if they are created in native format.
+
+> [http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usethirdpartybackupdevice](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-dms-endpoint-microsoftsqlserversettings.html#cfn-dms-endpoint-microsoftsqlserversettings-usethirdpartybackupdevice)
+
+---
+
 ### MySql2S3Props <a name="MySql2S3Props" id="dms-patterns.MySql2S3Props"></a>
 
 #### Initializer <a name="Initializer" id="dms-patterns.MySql2S3Props.Initializer"></a>
@@ -10435,6 +11862,7 @@ public readonly value: string;
 | <code><a href="#dms-patterns.EndpointEngine.MYSQL">MYSQL</a></code> | *No description.* |
 | <code><a href="#dms-patterns.EndpointEngine.POSTGRES">POSTGRES</a></code> | *No description.* |
 | <code><a href="#dms-patterns.EndpointEngine.S3">S3</a></code> | *No description.* |
+| <code><a href="#dms-patterns.EndpointEngine.SQLSERVER">SQLSERVER</a></code> | *No description.* |
 
 ---
 
@@ -10449,6 +11877,11 @@ public readonly value: string;
 
 
 ##### `S3` <a name="S3" id="dms-patterns.EndpointEngine.S3"></a>
+
+---
+
+
+##### `SQLSERVER` <a name="SQLSERVER" id="dms-patterns.EndpointEngine.SQLSERVER"></a>
 
 ---
 
